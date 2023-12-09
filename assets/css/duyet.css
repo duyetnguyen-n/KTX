@@ -1,0 +1,511 @@
+img {
+    height: auto;
+    width: 100%;
+}
+body, html {
+    height: 100%;
+    margin: 0;
+    background-color: #FAFBFE;
+}
+.title-logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.header-sidebar {
+    display: flex;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #eaedf0;
+    box-shadow: 0 0 30px #e6e2e2;
+}
+.logo {
+    width: 15%;
+    margin-left: 0 !important;
+}
+.title-logo span {
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color:#4d4e4e;
+}
+ul.list-item {
+    list-style: none;
+    padding: 0px 13px;
+}
+.item {
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: space-between;
+    padding: 10px;
+    cursor: pointer;
+}
+i.fas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 15px;
+    color: #959FA9;
+}
+.content-item {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #8b8888;
+}
+a:hover {
+    text-decoration: none;
+}
+.sidebar {
+    border-right: 1px solid #959FA9;
+    position: relative;
+    overflow-y: scroll;
+    background-color: #ffffff;
+    width: 20%;
+    height: 100%;
+    padding: 0;
+    z-index: 31;
+    left: 16px;
+}
+.sidebar .menu-arrow {
+    -webkit-transition: -webkit-transform 0.15s;
+    -o-transition: -o-transform 0.15s;
+    transition: transform .15s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: 900;
+    text-rendering: auto;
+    font-size: 18px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
+    line-height: 18px;
+}
+.item-sub {
+    padding: 10px 30px;
+    background: #FAFBFE;
+    margin: 20px 0;
+    display: none;
+}
+.item:hover, .item:focus, .item:visited {
+    background: #1B284F;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+.item:hover i,
+.item:focus i,
+.item:visited i,
+.item:hover a,
+.item:focus a,
+.item:visited a,
+.item:hover span,
+.item:focus span,
+.item:visited span {
+    color: white;
+}
+.menu-sidebar .item-sub li a {
+    font-size: 15px;
+    cursor: pointer;
+    padding: 4px 7px;
+    margin: 0;
+    color: black;
+}
+.item-sub {
+    list-style: none;
+    padding-left: 30px;
+}
+
+.item-sub li {
+    position: relative;
+}
+
+.item-sub li a {
+    color: #a1a1a1;
+    text-decoration: none; /* Remove underlines from links */
+    position: relative;
+    display: inline-block;
+}
+
+.item-sub li a:hover {
+    color: #FF9F43;
+}
+
+.item-sub li a::before {
+    content: "";
+    border: 1px solid #a1a1a1;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: -18px;
+    transform: translateY(-50%);
+}
+
+.item-sub li a:hover::before {
+    background-color: #FF9F43;
+    border: 1px solid #FF9F43;
+}
+.arrow-left:hover,.arrow-right:hover {
+    background: #1B284F;
+}
+.arrow-left:hover i,.arrow-right:hover i {
+    color: white;
+}
+/*================*/
+/*header*/
+#header {
+    height: 8.5%;
+    display: flex;
+    justify-content: space-between;
+    background: #ffffff;
+    box-shadow: 0px 0px 30px #ede8e8;
+    position: fixed;
+    z-index: 30;
+    width: 100%;
+    top: 0;
+    border-bottom: 1px solid #eaedf0;
+}
+.content-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding: 5px;
+}
+.content-header:hover{
+    background-color: #eeeded;
+    cursor: pointer;
+}
+img.avatar {
+    border-radius: 50%;
+    height: 100%;
+    position: relative;
+}
+.header-right {
+    display: flex;
+}
+.header-left {
+    display: flex;
+}
+.arrow-left,.arrow-right {
+    padding: 0 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid #eaedf0;
+    margin-right: 4px;
+}
+.header-left img{
+    height: 100%;
+    width: 100%;
+}
+.header-left span {
+    font-size: 12px;
+}
+.content-avatar-header {
+    position: absolute;
+    top: 60px;
+    right: 8px;
+    background-color: #FFFFFF;
+    border-radius: 7px;
+    width: 15%;
+    display: none;
+    z-index: 30;
+}
+.img-info {
+    padding: 15px;
+    border-bottom: 1px solid #e8e4e4;
+}
+.img-info img {
+    width: 30%;
+}
+span.name-admin {
+    font-size: 18px;
+    text-transform: capitalize;
+}
+span.quyen {
+    font-size: 15px;
+    text-transform: lowercase;
+    color: #a1a1a1;
+}
+.name-and-quyen{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.profile-and-setting {
+    border-bottom: 1px solid #e8e4e4;
+}
+.profile i,.log-out i {
+    font-size: 18px;
+}
+.profile {
+    padding: 15px;
+}
+.profile:hover{
+    background-color: #637381;
+}
+.profile:hover i, .profile:hover a{
+    color: white;
+}
+
+/*==================================*/
+/*//////////dang nhap///////////////*/
+/*========================================*/
+#body-dang-nhap{
+    background-image: url(../img/bg-3.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; /* 100% chiều cao của viewport */
+    margin: 0; /* Đảm bảo không có margin để tránh scroll */
+    padding-top: 8.5rem;
+}
+.img-login img {
+    width: 7%;
+}
+form.login h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    padding: 20px 0 0 0;
+}
+form.login p {
+    color: #b6b6b6;
+    text-transform: none;
+}
+.input-login {
+    width: 25%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 1.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    border: unset;
+    background: transparent;
+}
+.input-login:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+input#username {
+    border-bottom: 1px solid #EAEDF2;
+}
+.butn {
+    border: 1px solid #1B284F;
+    background: #1B284F;
+    color: white;
+    padding: 10px 50px;
+}
+.butn:hover {
+    border: 1px solid #0e1333;
+    background: #0e1333;
+    color: white;
+    padding: 10px 50px;
+}
+/*===========================================*/
+/*end dang nhap*/
+/*=======================================*/
+
+
+/*=========================================*/
+/*list room*/
+/*=================================*/
+.container-content {
+    margin-top: 70px;
+    position: relative;
+    overflow-y: scroll;
+    overflow: hidden;
+}
+.button-add {
+    display: flex;
+    padding: 0 30px;
+    border-radius: 10px;
+    background-color: #FF9E43;
+    color: white;
+}
+.button-add:hover,.button-add:hover i{
+    color: #FFFFFF;
+    background-color: #f6841a;
+}
+.button-add i {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 20px;
+    color: white;
+}
+.button-add span {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.header-content {
+    display: flex;
+    justify-content: space-between;
+}
+.table-data {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-data th,.table-data td {
+    padding: 8px;
+    text-align: left;
+}
+
+.table-data th {
+    background-color: #f2f2f2;
+}
+table.table-data img {
+    width: 50px;
+    height: 50px;
+}
+a#filter_search {
+    border: 1px solid #FF9E43;
+    background: #FF9E43;
+}
+a#filter_search:hover {
+    border: 1px solid #f6841a;
+    background: #f6841a;
+}
+div#DataTables_Table_0_filter input {
+    background: transparent;
+    height: 40px;
+    border: 1px solid rgba(145, 158, 171, 0.32);
+    width: 200px;
+    border-radius: 5px ;
+    padding: 0 15px 0 30px;
+}
+
+
+div#DataTables_Table_0_filter {
+    position: relative;
+    height: 100%;
+}
+a.btn.btn-searchset {
+    padding: 2px;
+    border-radius: 50px;
+    position: absolute;
+    top: 8px;
+    left: 6px;
+    z-index: 2;
+}
+.search-input {
+    position: relative;
+    /* height: 100%; */
+}
+div#DataTables_Table_0_filter label {
+    margin: 0;
+}
+td.thao-tac .icon-edit {
+    width: 16px;
+}
+td.thao-tac img {
+    width: 25px;
+}
+/*=========================================*/
+/*end list room*/
+/*=================================*/
+
+/*=========================================*/
+/*add room*/
+/*=================================*/
+.drag-area-1,.drag-area-2 {
+    border: 1px dashed #CED4D9;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.content-add-room .but-add {
+    padding: 15px 50px;
+    margin-top: 30px;
+    color: white;
+    background: #FF9E43;
+    border: 1px solid #FF9E43;
+    border-radius: 5px;
+}
+.content-add-room .but-cancel {
+    padding: 15px 50px;
+    margin-top: 30px;
+    color: white;
+    background: #637381;
+    border: 1px solid #637381;
+    border-radius: 5px;
+}
+.but-add-image {
+    background: #FF9E43;
+    border: 1px solid #FF9E43;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 40px;
+}
+.but-add-image:hover,input#but-add-image:focus,input#but-add-image:focus-visible {
+    background: #f6841a;
+    border: 1px solid #f6841a;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+.content-add-room {
+    padding: 20px 30px;
+    border: 1px solid #CED4D9;
+    border-radius: 7px;
+    background: #ffffff;
+}
+.strong {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+    width: 100px; /* Đặt kích thước ảnh theo ý muốn, ví dụ 100px */
+    height: 100px; /* Đặt kích thước ảnh theo ý muốn, ví dụ 100px */
+    overflow: hidden; /* Đảm bảo kích thước không bị tràn ra nếu ảnh lớn hơn */
+}
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Đảm bảo ảnh không bị méo khi kích thước không tỉ lệ */
+}
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.drag-area {
+    position: relative;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.remove-image {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    color: white;
+    background-color: red;
+    padding:0 6px;
+    border-radius: 50%;
+}
+
+/*=========================================*/
+/*end add room*/
+/*=================================*/
