@@ -1,10 +1,3 @@
-<?php
-session_start();
-if(empty($_SESSION['username'])){
-    var_dump($_SESSION['username']);
-    header("location: dang_nhap.html");
-} else{ ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,5 +66,3 @@ if(empty($_SESSION['username'])){
         </div>
     </div>
 </header>
-
-<?php } ?>

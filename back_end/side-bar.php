@@ -1,9 +1,3 @@
-<?php
-session_start();
-if(empty($_SESSION['username'])){
-    var_dump($_SESSION['username']);
-    header("location: dang_nhap.html");
-} else{ ?>
 
 <div class="row">
     <div class="sidebar col-12 col-md-3 slimscroll">
@@ -240,6 +234,4 @@ if(empty($_SESSION['username'])){
         <div class="slimScrollBar"></div>
     </div>
 
-
-<?php } ?>
 
