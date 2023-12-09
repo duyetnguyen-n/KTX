@@ -1,12 +1,6 @@
 <?php
-session_start();
-
 include '../config/database.php'; // Import file database.php
-
-if(empty($_SESSION['username']) || empty($_SESSION['password'])){
-    var_dump($_SESSION['username']);
-    header("location: dang_nhap.php");
-} else{ ?>
+ ?>
     <?php
     $db = new Database();
     $id = $_GET['id'];
@@ -19,5 +13,4 @@ if(empty($_SESSION['username']) || empty($_SESSION['password'])){
     } else {
         echo "Lỗi: " . $sql . "<br>" . $db->getError();
     }
-    ?>
-<?php } ?>
+    ?>  

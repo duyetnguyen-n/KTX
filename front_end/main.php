@@ -430,7 +430,56 @@
                             <div class="px-4 pb-3">
                                 <div class="box boxs4 row">
                                     <div class="col-3 col-md-2 no-padding">
-                                        <div class="img-boxs4 ">
+                                        <div class="img-boxs4">
+                                            <img src="../assets/img/avt1.jpg" alt="img avata" class="img-fluid">
+                                        </div>
+                                    </div>
+                                    <div class="col-9 col-md-10 pr-0">
+                                        <div class="column2-in-boxs4">
+                                            <h4>Nguyễn Thế Duyệt</h4>
+                                            <ul class="star no-padding">
+                                                <li><ic class="fa fa-star"></ic></li>
+                                                <li><ic class="fa fa-star"></ic></li>
+                                                <li><ic class="fa fa-star"></ic></li>
+                                                <li><ic class="fa fa-star"></ic></li>
+                                                <li><ic class="fa fa-star"></ic></li>
+                                            </ul>
+                                            <p class ="small-text">" Kí túc xá này thật là tuyệt vời tôi đã trải nghiệm được rất nhiều những điều mới lạ từ kí túc xá này sẽ còn đăng ký nữa."</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item p-4">
+                            <div class="px-4 pb-3">
+                                <div class="box boxs4 row">
+                                    <div class="col-3 col-md-2 no-padding">
+                                        <div class="img-boxs4">
+                                            <img src="../assets/img/Facebook-Avatar_3.png" alt="img avata" class="img-fluid">
+                                        </div>
+                                    </div>
+                                    <div class="col-9 col-md-10 pr-0">
+                                        <div class="column2-in-boxs4">
+                                            <h4>Nguyễn Thị Như Hà</h4>
+                                            <ul class="star no-padding">
+                                                <li><ic class="fa fa-star"></ic></li>
+                                                <li><ic class="fa fa-star"></ic></li>
+                                                <li><ic class="fa fa-star"></ic></li>
+                                                <li><ic class="fa fa-star"></ic></li>
+                                                <li><ic class="fa fa-star"></ic></li>
+                                            </ul>
+                                            <p class ="small-text">"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item p-4">
+                            <div class="px-4 pb-3">
+                                <div class="box boxs4 row">
+                                    <div class="col-3 col-md-2 no-padding">
+                                        <div class="img-boxs4">
+                                            <img src="../assets/img/avt1.jpg" alt="img avata" class="img-fluid">
                                         </div>
                                     </div>
                                     <div class="col-9 col-md-10 pr-0">
@@ -454,6 +503,7 @@
                                 <div class="box boxs4 row">
                                     <div class="col-3 col-md-2 no-padding">
                                         <div class="img-boxs4 ">
+                                            <img src="../assets/img/avt1.jpg" alt="img avata" class="img-fluid">
                                         </div>
                                     </div>
                                     <div class="col-9 col-md-10 pr-0">
@@ -472,82 +522,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item p-4">
-                            <div class="px-4 pb-3">
-                                <div class="box boxs4 row">
-                                    <div class="col-3 col-md-2 no-padding">
-                                        <div class="img-boxs4 ">
-                                        </div>
-                                    </div>
-                                    <div class="col-9 col-md-10 pr-0">
-                                        <div class="column2-in-boxs4">
-                                            <h4>Mr. Jonathon Doe</h4>
-                                            <ul class="star no-padding">
-                                                <li><ic class="fa fa-star"></ic></li>
-                                                <li><ic class="fa fa-star"></ic></li>
-                                                <li><ic class="fa fa-star"></ic></li>
-                                                <li><ic class="fa fa-star"></ic></li>
-                                                <li><ic class="fa fa-star"></ic></li>
-                                            </ul>
-                                            <p class ="small-text">"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item p-4">
-                            <div class="px-4 pb-3">
-                                <div class="box boxs4 row">
-                                    <div class="col-3 col-md-2 no-padding">
-                                        <div class="img-boxs4 ">
-                                        </div>
-                                    </div>
-                                    <div class="col-9 col-md-10 pr-0">
-                                        <div class="column2-in-boxs4">
-                                            <h4>Mr. Jonathon Doe</h4>
-                                            <ul class="star no-padding">
-                                                <li><ic class="fa fa-star"></ic></li>
-                                                <li><ic class="fa fa-star"></ic></li>
-                                                <li><ic class="fa fa-star"></ic></li>
-                                                <li><ic class="fa fa-star"></ic></li>
-                                                <li><ic class="fa fa-star"></ic></li>
-                                            </ul>
-                                            <p class ="small-text">"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item p-4">
-                            <div class="px-4 pb-3">
-                                <div class="box boxs4 row">
-                                    <div class="col-3 col-md-2 no-padding">
-                                        <div class="img-boxs4 ">
-                                        </div>
-                                    </div>
-                                    <div class="col-9 col-md-10 pr-0">
-                                        <div class="column2-in-boxs4">
-                                            <h4>Mr. Jonathon Doe</h4>
-                                            <ul class="star no-padding">
-                                                <li><ic class="fa fa-star"></ic></li>
-                                                <li><ic class="fa fa-star"></ic></li>
-                                                <li><ic class="fa fa-star"></ic></li>
-                                                <li><ic class="fa fa-star"></ic></li>
-                                                <li><ic class="fa fa-star"></ic></li>
-                                            </ul>
-                                            <p class ="small-text">"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                     <script>
                         $(".owl-carousel").owlCarousel({
-                            loop:true,
+                            // loop:true,
                             margin:10,
-                            autoplay:true,
+                            // autoplay:true,
                             autoplayTimeout:5000,
                             autoplayHoverPause:true,
                             responsiveClass:true,

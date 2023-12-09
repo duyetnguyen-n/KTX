@@ -256,8 +256,7 @@ button.btn.butn.trial-special:hover {
 /*------*/
 /*slide6*/
 .img-boxs4 {
-    background-image: url(assets/images/1.jpg);
-    border-radius: 100px;
+    border-radius: 50%;
     max-width: 80px;
     min-height: 80px;
 }
