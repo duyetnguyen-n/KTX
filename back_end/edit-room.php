@@ -176,6 +176,12 @@ if (empty($_SESSION['username'])) {
     </div>
 </div>
 <script src="../assets/js/area-image.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.16.2/full/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace( 'mo_ta' );
+        CKEDITOR.replace( 'noi_dung' );
+    </script>
 </body>
 </html>
 <?php } ?>
