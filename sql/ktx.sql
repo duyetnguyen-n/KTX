@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 10, 2023 lúc 04:45 PM
+-- Thời gian đã tạo: Th12 10, 2023 lúc 05:10 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.0.28
 
@@ -42,8 +42,7 @@ CREATE TABLE `dichvu` (
 --
 
 INSERT INTO `dichvu` (`id`, `ten_dv`, `gia`, `trangthai`, `ngaytao`, `nguoitao`, `anh`) VALUES
-(1, 'quần vợt', 0.00, 'đóng', '2023-12-10 01:33:46', '', 'admin'),
-(2, 'cầu lông', 0.00, 'Đang hoạt động', '2023-12-10 01:39:36', '', 'admin');
+(6, 'Phòng GYM', 4.00, 'Đang hoạt động', '2023-12-10 22:55:24', 'admin', 'sp-6.jpeg');
 
 -- --------------------------------------------------------
 
@@ -256,7 +255,7 @@ ALTER TABLE `trangthietbi`
 -- AUTO_INCREMENT cho bảng `dichvu`
 --
 ALTER TABLE `dichvu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `phong`
