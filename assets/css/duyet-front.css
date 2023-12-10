@@ -89,6 +89,7 @@ img {
     position: relative;
     border: 1px solid #ececec;
     transition: transform 0.3s, background-color 0.3s,box-shadow 0.3s;
+    overflow: hidden;
 }
 .box:hover {
     color: #fff;
@@ -394,10 +395,10 @@ div#slide-10 {
 
 
 /*=========room=======*/
-.row1-in-columnboxs2 img {
+.phong .row1-in-columnboxs2 img {
     height: 240px;
 }
-.box.boxs3 {
+.phong {
     padding: 0;
     height: 100%;
 }
@@ -407,17 +408,47 @@ a{
 a:hover{
     text-decoration: none !important;
 }
-.row2-in-columnboxs2 {
+.phong .row2-in-columnboxs2 {
     border-bottom: 1px solid #EEEEEE;
 }
 strong{
     font-weight: 900;
 }
-span.gia {
+.phong span.gia {
     font-size: 22px;
     color: #466bc6;
 }
-.tenphong{
+.phong .tenphong{
     font-size: 25px;
 }
 /*=========end room=========*/
+/*===========dich vu==============*/
+.dichvu .row2-in-columnboxs2 {
+    position: relative;
+    margin: 0 !important;
+    transform: translateY(100%);
+    left: 0;
+    width: 100%;
+    transition: 0.3s; /* Thời gian chuyển đổi */
+    padding: 20px 20px;
+    background: black;
+    opacity: 0.8;
+    color: white;
+}
+.dichvu .row1-in-columnboxs2.text-center {
+    position: absolute;
+    height: 100%;
+}
+.dichvu {
+    padding: 0;
+    border: none;
+}
+.dichvu img {
+    height: 100%;
+}
+.dichvu:hover .row2-in-columnboxs2 {
+    transform: translateY(0);}
+.dichvu:hover {
+    border: none !important;
+}
+/*==========end dich vu=============*/

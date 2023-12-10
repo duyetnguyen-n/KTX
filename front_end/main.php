@@ -123,70 +123,47 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class ="col-lg-3 col-sm-6 col-12 space-padding-bottom">
-                        <div class="box boxs1">
-                            <div class="column-in-boxs1">
-                                <div class="row-in-columnboxs1 mb-3">
-                                    <img src="" alt="">
-                                </div>
-                                <div class="row-in-columnboxs1">
-                                    <h4 class="normal-text my-3">Instant Setup</h4>
-                                    <div>
-                                        <p class ="small-text no-margin">Lorem ipsum dolor sit amet consectetur adipisicing elit,
-                                            sed do eiusmod tempor incididunt ut labore dolore.</p>
+                    <?php
+                    include '../config/database.php';
+                    $db = new Database();
+                    // Lấy dữ liệu từ cơ sở dữ liệu
+                    $sqldichvu = "SELECT * FROM dichvu";
+                    $resultdichvu = $db->select($sqldichvu);
+                    ?>
+
+                    <?php
+                    // Số lượng khối cần hiển thị
+                    $blocksToShow = 8;
+                    $blockCount = 0;
+
+                    if ($resultdichvu->num_rows > 0) {
+                        while ($row = $resultdichvu->fetch_assoc()) {
+                            if ($blockCount >= $blocksToShow) {
+                                break;
+                            }
+                            // Tăng biến đếm
+                            $blockCount++;
+                            ?>
+                            <div class ="col-lg-3 col-sm-6 col-12 space-padding-bottom">
+                                <div class="box boxs1 dichvu">
+                                    <div class="column-in-boxs1">
+                                        <div class="row1-in-columnboxs2 text-center">
+                                            <img src="../assets/img/<?php echo $row['anh']; ?>" alt="img" class="img-fluid img-thumbnail">
+                                        </div>
+                                        <div class="row2-in-columnboxs2 px-4 my-3">
+                                            <h4 class="normal-text tendichvu strong"><?php echo $row['ten_dv']; ?></h4>
+                                            <span class="normal-text">Giá: </span><span class="gia">$<?php echo $row['gia']; ?></span>
+                                            <p class="small-text">
+                                            <p class ="small-text no-margin">Dịch vụ của chúng tôi quá là oke rồi tôi có thể đảm bảo điều ấy nếu bạn có thể tìm thấy chỗ nào oke hơn bảo tôi hoàn tiền .</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class ="col-lg-3 col-sm-6 col-12 space-padding-bottom">
-                        <div class="box boxs1">
-                            <div class="column-in-boxs1">
-                                <div class="row-in-columnboxs1 mb-3">
-                                    <ic class="hero-icon lnr lnr-rocket"></ic>
-                                </div>
-                                <div class="row-in-columnboxs1">
-                                    <h4 class="normal-text my-3">Fast Loading</h4>
-                                    <div>
-                                        <p class ="small-text no-margin">Lorem ipsum dolor sit amet consectetur adipisicing elit,
-                                            sed do eiusmod tempor incididunt ut labore dolore.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class ="col-lg-3 col-sm-6 col-12 space-padding-bottom">
-                        <div class="box boxs1">
-                            <div class="column-in-boxs1">
-                                <div class="row-in-columnboxs1 mb-3">
-                                    <ic class="hero-icon lnr lnr-phone"></ic>
-                                </div>
-                                <div class="row-in-columnboxs1">
-                                    <h4 class="normal-text my-3">24/7 Support</h4>
-                                    <div>
-                                        <p class ="small-text no-margin">Lorem ipsum dolor sit amet consectetur adipisicing elit,
-                                            sed do eiusmod tempor incididunt ut labore dolore.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class ="col-lg-3 col-sm-6 col-12 space-padding-bottom">
-                        <div class="box boxs1">
-                            <div class="column-in-boxs1">
-                                <div class="row-in-columnboxs1 mb-3">
-                                    <ic class="hero-icon lnr lnr-layers"></ic>
-                                </div>
-                                <div class="row-in-columnboxs1">
-                                    <h4 class="normal-text my-3">Affordable Price</h4>
-                                    <div>
-                                        <p class ="small-text no-margin">Lorem ipsum dolor sit amet consectetur adipisicing elit,
-                                            sed do eiusmod tempor incididunt ut labore dolore.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                            <?php
+                        }
+                    }
+                    ?>
                 </div>
             </div>
 
@@ -342,8 +319,6 @@
             <div class="column-shape-slide5">
                 <div class ="row">
                     <?php
-                    include '../config/database.php';
-                    $db = new Database();
                     // Lấy dữ liệu từ cơ sở dữ liệu
                     $sqlphong = "SELECT * FROM phong";
                     $resultphong = $db->select($sqlphong);
@@ -362,10 +337,9 @@
                             // Tăng biến đếm
                             $blockCount++;
                             ?>
-
                             <div class="col-12 col-sm-6 col-lg-4 space-padding-bottom">
                                 <a href="room-detail.php?id=<?php echo $row['id']; ?>">
-                                    <div class="box boxs3">
+                                    <div class="box boxs3 phong">
                                         <div class="column-in-boxs2">
                                             <div class="row1-in-columnboxs2 text-center">
                                                 <img src="../assets/img/<?php echo $row['anh_dai_dien']; ?>" alt="img" class="img-fluid">

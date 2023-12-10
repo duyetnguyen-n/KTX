@@ -72,7 +72,6 @@ if(empty($_SESSION['username'])){
                                   
                                     <th>Tên Dịch Vụ</th>
                                     <th>Giá</th>
-                               
                                     <th>Trạng Thái</th>
                                     <th>Ngày tạo</th>
                                     <th>Người tạo</th>
