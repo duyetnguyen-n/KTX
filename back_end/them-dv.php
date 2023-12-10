@@ -65,7 +65,7 @@
                             <input type="text" id="trangthai" name="trangthai" class="form-control" required>
                         </div>
 
-                       
+                      
                         
                         <div class="col-12 p-2">
                             <label>Ảnh đại diện:</label>

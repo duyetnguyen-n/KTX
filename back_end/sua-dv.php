@@ -113,12 +113,12 @@ if (empty($_SESSION['username'])) {
                         </div>
                     </div>
 
-                   
-
                     <div class="col-12">
                         <input class="but-add mr-2" type="submit" value="Cập nhật">
                         <input class="but-cancel" type="button" value="Hủy">
                     </div>
+
+                    
                 </div>
             </form>
         </div>

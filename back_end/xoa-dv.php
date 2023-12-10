@@ -14,3 +14,4 @@ include '../config/database.php'; // Import file database.php
         echo "Lỗi: " . $sql . "<br>" . $db->getError();
     }
     ?>  
+    
