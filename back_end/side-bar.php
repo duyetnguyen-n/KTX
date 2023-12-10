@@ -88,10 +88,10 @@
                 </li>
                 <ul class="item-4-sub item-sub">
                     <li class="mb-2">
-                        <a href="">List aquipment</a>
+                        <a href="">Danh sách thiết bị</a>
                     </li>
                     <li class="mb-2">
-                        <a href="">Add aquipment</a>
+                        <a href="">Thêm thiết bị</a>
                     </li>
                     <li class="mb-2">
                         <a href="">List category</a>
@@ -117,10 +117,10 @@
                 </li>
                 <ul class="item-5-sub item-sub">
                     <li class="mb-2">
-                        <a href="">List service</a>
+                        <a href="list-dv.php">Danh sách dịch vụ</a>
                     </li>
                     <li class="mb-2">
-                        <a href="">Add services</a>
+                        <a href="them-dv.php">Thêm dịch vụ</a>
                     </li>
                     <li class="mb-2">
                         <a href="">List type of service</a>
