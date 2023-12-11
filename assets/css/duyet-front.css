@@ -452,3 +452,89 @@ strong{
     border: none !important;
 }
 /*==========end dich vu=============*/
+
+/*=============detail-rooms========*/
+.title-phong {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+    margin-top: 90px;
+}
+.owl-carousel .item .img-phong {
+     object-fit: cover;
+     width: 100%;
+     height: 500px !important;
+ }
+
+.img-title {
+    position: relative;
+    height: 100%; /* Chiều cao của vùng hình ảnh sẽ chiếm toàn bộ vùng title-phong */
+}
+
+.img-fluid.background-title-phong {
+    width: 100%;
+    height: 100%; /* Ảnh sẽ chiếm toàn bộ chiều cao của vùng img-title */
+    object-fit: cover; /* Để giữ tỷ lệ khung hình và cắt ảnh nếu cần thiết */
+}
+
+.content-title-header {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    width: 100%;
+    z-index: 1;
+    height: 100%;
+    background: black;
+    opacity: 0.8;
+}
+.title-room {
+    margin-top: 75px;
+}
+.content-title-header h3,.content-title-header a{
+    color: #FFFFFF !important;
+}
+.content-title-header a:hover{
+    color: #0c5460;
+}
+/*=====sidebar of detail======*/
+.container-icon {
+    padding: 13px;
+    border-radius: 0 5px 5px 0;
+    border: 1px;
+    color: white;
+}
+.tim-kiem .form-control{
+    border-radius: 5px 0 0 5px;
+}
+img.img-phong-rel {
+    width: 100px;
+    border-radius: 50%;
+
+}
+.phong-relative .img-avatar{
+    height: 100px;
+}
+@media (min-width: 1200px){
+    .container{
+        max-width: 1200px !important;
+    }
+}
+input.butn.but-lien-he {
+    padding: 10px 50px;
+    border-radius: 30px;
+    border: 1px solid #CED4D8;
+}
+.input-form-sidebar {
+    padding: 10px 30px;
+    border-radius: 50px;
+    border: 1px solid #CED4D8;
+}
+.form-lien-he {
+    border: 1px solid #CED4D8;
+    border-radius: 30px;
+}
+/*end sidebar*/
+/*======end detail room========*/

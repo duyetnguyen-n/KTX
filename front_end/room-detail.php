@@ -1,6 +1,131 @@
 <?php include 'header.php'?>
-<div id="detail-phong">
-    
+<?php
+include '../config/database.php';
+$db = new Database();
+$id = $_GET['id'];
+// Lấy dữ liệu từ cơ sở dữ liệu
+$sqlphong = "SELECT * FROM phong where id = $id";
+$resultphong = $db->select($sqlphong);
+if ($resultphong->num_rows > 0) {
+while ($row = $resultphong->fetch_assoc()) {
+?>
+
+<div class="title-phong">
+    <div class="img-title">
+        <img src="../assets/img/<?php echo $row['anh_khac']; ?>" alt="img" class="img-fluid background-title-phong">
+
+    </div>
+    <div class="content-title-header text-center">
+        <h3 class="big-text p-3 title-room">
+            ROOM DETAIL
+        </h3>
+        <div class="breadcrumbs">
+            <a href="main.php">Home</a> <span> -> </span><a href="rooms.php"> Rooms </a> <span> -> </span> <a
+                    href="room-detail.php"> Detail room</a>
+        </div>
+    </div>
+</div>
+<div id="detail-phong" class="bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 bg-white p-0 mt-5 content-detail">
+                <div class="owl-carousel">
+                    <div class="item h-100">
+                        <img src="../assets/img/<?php echo $row['anh_dai_dien']; ?>" class="img-phong img-fluid img-responsive h-100" alt="<?php echo $row['ten_phong']; ?>">
+                    </div>
+                    <div class="item h-100">
+                        <img src="../assets/img/<?php echo $row['anh_khac']; ?>" class="img-phong img-fluid img-responsive h-100" alt="<?php echo $row['ten_phong']; ?>">
+                    </div>
+                </div>
+                <script>
+
+                    $(".owl-carousel").owlCarousel({
+                        items:1,
+                        loop:true,
+                        margin:10,
+                        autoplay:true,
+                        autoplayTimeout:5000,
+                        autoplayHoverPause:true
+                    });
+
+                </script>
+                <div class="main-content px-4">
+                    <div class="name-phone">
+                        <h1><?php echo $row['ten_phong']; ?></h1>
+                    </div>
+                    <div class="thongtin d-flex">
+                        <span class="mr-3"><?php echo $row['nguoi_tao']; ?></span>
+                        <span id="real-time"></span>
+                    </div>
+                    <div class="price-phone">
+                        <h2><?php echo $row['price']; ?></h2>
+                    </div>
+                    <button class="but-buy">
+                        <p class="m-0">Buy</p>
+                    </button>
+                    <div class="detail-phone">
+                        <?php echo $row['noi_dung']; ?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-3 mt-5 p-0">
+                <h2>Tìm Kiếm</h2>
+                <div class="tim-kiem">
+                    <div class="row">
+                        <div class="col-8 pr-0">
+                            <input type="text" placeholder="Tìm kiếm" class="form-control p-4" id="search" name="search">
+                        </div>
+                        <div class="col-4 pl-0">
+                            <div class="container-icon bg-danger text-center">
+                                <i class="fa fa-search"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-lien-he p-4 my-5">
+                    <h3 class="text-center pb-3">Liên Hệ</h3>
+                    <div class="form text-center">
+                        <input type="text" placeholder="Họ Tên" class="hvt input-form-sidebar mb-3" name="hvt">
+                        <input type="text" placeholder="Nội Dung" class="noi-dung input-form-sidebar mb-3" name="noidung">
+                        <input type="submit" class="butn but-lien-he" >
+                    </div>
+                </div>
+                <h3 class="my-3">Những phòng liên quan</h3>
+                <div class="phong-relative">
+
+                    <?php
+                    $sqlphonglienquan = "SELECT * FROM phong";
+                    $resultphonglienquan = $db->select($sqlphonglienquan);
+                    // Số lượng khối cần hiển thị
+                    $blocksToShow = 3;
+                    $blockCount = 0;
+
+                    if ($resultphonglienquan->num_rows > 0) {
+                        while ($row = $resultphonglienquan->fetch_assoc()) {
+                            if ($blockCount >= $blocksToShow) {
+                                break;
+                            }
+                            // Tăng biến đếm
+                            $blockCount++;
+                            ?>
+                            <div class="row mb-3">
+                                <div class="img-avatar col-5">
+                                    <img src="../assets/img/<?php echo $row['anh_dai_dien']; ?>" class="img-phong-rel img-fluid h-100" alt="<?php echo $row['ten_phong']; ?>">
+                                </div>
+                                <div class="col-7 d-flex align-items-center p-0">
+                                    <h2><?php echo $row['ten_phong']; ?></h2>
+                                </div>
+                            </div>
+                            <?php
+                        }
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
 <div id="slide-10">
     <div class="container pb-5">
@@ -110,4 +235,27 @@
     </div>
 </div>
 </body>
+    <script>
+        function updateTime() {
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+
+            // Định dạng giờ, phút, giây thành chuỗi với định dạng hh:mm:ss
+            var timeString = hours.toString().padStart(2, '0') + ':' +
+                minutes.toString().padStart(2, '0') + ':' +
+                seconds.toString().padStart(2, '0');
+
+            // Hiển thị thời gian trong phần tử có id là "real-time"
+            document.getElementById('real-time').innerHTML = timeString;
+        }
+
+        // Gọi hàm updateTime mỗi giây (1000 milliseconds)
+
+
+        // Chạy hàm updateTime lần đầu tiên để hiển thị thời gian ngay khi trang được load
+        updateTime();
+    </script>
 </html>
+<?php } }?>

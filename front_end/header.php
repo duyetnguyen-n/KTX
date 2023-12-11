@@ -28,6 +28,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="../assets/plugins/OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
 
+    <script src="../assets/js/duyet-front.js"></script>
 
 </head>
 <body>

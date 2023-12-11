@@ -42,5 +42,13 @@ $(document).ready(function(){
                 });
             }
         });
+    var maxHeight = 0;
+    $('.owl-carousel .item img').each(function(){
+        var currentHeight = $(this).height();
+        if(currentHeight > maxHeight){
+            maxHeight = currentHeight;
+        }
+    });
+    $('.owl-carousel .item img').height(maxHeight);
 
 });
