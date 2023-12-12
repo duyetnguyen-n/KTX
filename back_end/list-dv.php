@@ -12,12 +12,12 @@ if(empty($_SESSION['username'])){
             <div class="col-12 container-content">
                 <div class="header-content pb-3">
                     <div class="title-content">
-                        <h3 class="m-0 strong">Room List</h3>
-                        <div class="span">Manage your rooms</div>
+                        <h3 class="m-0 strong">Danh sách dịch vụ</h3>
+                        <div class="span">QUản lý dịch vụ của bạn!</div>
                     </div>
-                    <a href="add-rooms.php" class="button-add">
+                    <a href="add-dv.php" class="button-add">
                         <i class="fas fa-plus"></i>
-                        <span>Add New Room</span>
+                        <span>Thêm mới</span>
                     </a>
                 </div>
                 <div class="content-add-room col-12">

@@ -36,10 +36,10 @@
                 </li>
                 <ul class="item-2-sub item-sub">
                     <li class="mb-2">
-                        <a href="">Danh sách khách hàng</a>
+                        <a href="list-sv.php">Danh sách khách hàng</a>
                     </li>
                     <li class="mb-2">
-                        <a href="">Thêm khách hàng</a>
+                        <a href="add-sv.php">Thêm khách hàng</a>
                     </li>
                     <li class="mb-2">
                         <a href="">Hồ sơ</a>
@@ -66,16 +66,16 @@
                         <a href="add-rooms.php">Thêm phòng</a>
                     </li>
                     <li class="mb-2">
-                        <a href="">Danh sách tầng</a>
+                        <a href="list-tang.php">Danh sách tầng</a>
                     </li>
                     <li class="mb-2">
-                        <a href="">Thêm tầng</a>
+                        <a href="add-tang.php">Thêm tầng</a>
                     </li>
                     <li class="mb-2">
-                        <a href="">Danh sách khu vực</a>
+                        <a href="list-kv.php">Danh sách khu vực</a>
                     </li>
                     <li class="mb-2">
-                        <a href="">Thêm khu vực</a>
+                        <a href="add-kv.php">Thêm khu vực</a>
                     </li>
                 </ul>
                 <li class="item-4 item">
