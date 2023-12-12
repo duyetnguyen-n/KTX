@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 12, 2023 at 04:35 PM
+-- Generation Time: Dec 12, 2023 at 04:45 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -39,13 +39,6 @@ CREATE TABLE `client` (
   `anh_dai_dien` varchar(255) DEFAULT 'Facebook-Avatar_3.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `client`
---
-
-INSERT INTO `client` (`id_client`, `ma_sinh_vien`, `ten_nguoi_dung`, `ho_ten`, `mat_khau`, `email`, `so_dien_thoai`, `trang_thai`, `anh_dai_dien`) VALUES
-(1, '85723', 'ntduyet', 'Nguyễn Thế Duyệt', '123', 'nguyentheduyet.mtp@gmail.com', '0982763267', 'sẵn sàng', '');
-
 -- --------------------------------------------------------
 
 --
@@ -67,7 +60,7 @@ CREATE TABLE `dichvu` (
 --
 
 INSERT INTO `dichvu` (`id`, `ten_dv`, `gia`, `trangthai`, `ngaytao`, `nguoitao`, `anh`) VALUES
-(6, 'Phòng GYMM', 7.00, 'Đang hoạt động', '2023-12-10 22:55:24', 'admin', 'sp-6.jpeg');
+(6, 'Phòng GYM', 6.00, 'Tạm ngưng', '2023-12-10 22:55:24', 'admin', 'sp-6.jpeg');
 
 -- --------------------------------------------------------
 
@@ -79,6 +72,27 @@ CREATE TABLE `donvi` (
   `MaDonVi` int(11) NOT NULL,
   `TenDonVi` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `khuvuc`
+--
+
+CREATE TABLE `khuvuc` (
+  `id` int(11) NOT NULL,
+  `tenkhu` varchar(255) NOT NULL,
+  `ngaytao` datetime DEFAULT current_timestamp(),
+  `nguoitao` varchar(255) NOT NULL,
+  `anh` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `khuvuc`
+--
+
+INSERT INTO `khuvuc` (`id`, `tenkhu`, `ngaytao`, `nguoitao`, `anh`) VALUES
+(0, ' A', '0000-00-00 00:00:00', 'admin', 'anh');
 
 -- --------------------------------------------------------
 
@@ -138,7 +152,7 @@ CREATE TABLE `phong` (
 --
 
 INSERT INTO `phong` (`id`, `ten_phong`, `suc_chua`, `id_tang`, `gia`, `trang_thai`, `anh_dai_dien`, `anh_khac`, `noi_dung`, `mo_ta`, `nguoi_tao`) VALUES
-(1, 'Phòng 301', '8 người', 4, 10.00, 'Sẵn Sàng', 'bg.jpeg', 'slide1.jpg', '<h3>Lăn Kim Tế B&agrave;o Gốc</h3>\r\n\r\n<p><strong>Lăn kim tế b&agrave;o gốc l&agrave; một quy tr&igrave;nh thẩm mỹ phổ biến được sử dụng để cải thiện sức khỏe v&agrave; ngoại h&igrave;nh của da. Quy tr&igrave;nh n&agrave;y bao gồm sử dụng một dụng cụ lăn kim c&oacute; những kim nhỏ để lăn qua da, g&acirc;y ra c&aacute;c vết th&acirc;m nhập nhỏ, từ đ&oacute; k&iacute;ch th&iacute;ch qu&aacute; tr&igrave;nh t&aacute;i tạo tế b&agrave;o v&agrave; tăng cường sản xuất collagen.</strong></p>\r\n\r\n<p>Tế b&agrave;o gốc được sử dụng trong quy tr&igrave;nh lăn kim tế b&agrave;o gốc thường l&agrave; tế b&agrave;o gốc từ ch&iacute;nh cơ thể của bạn hoặc từ nguồn tế b&agrave;o gốc b&ecirc;n ngo&agrave;i. Trước khi tiến h&agrave;nh quy tr&igrave;nh n&agrave;y, tế b&agrave;o gốc thường được t&aacute;ch ri&ecirc;ng v&agrave; chuẩn bị để c&oacute; thể được &aacute;p dụng l&ecirc;n da sau khi da đ&atilde; được lăn kim.</p>\r\n\r\n<p>C&aacute;c lợi &iacute;ch của lăn kim tế b&agrave;o gốc c&oacute; thể bao gồm:</p>\r\n\r\n<ol>\r\n	<li>\r\n	<p>K&iacute;ch th&iacute;ch sự t&aacute;i tạo tế b&agrave;o: Qu&aacute; tr&igrave;nh lăn kim tạo ra c&aacute;c vết th&acirc;m nhập nhỏ v&agrave;o da, k&iacute;ch th&iacute;ch sự phục hồi v&agrave; t&aacute;i tạo tế b&agrave;o mới. Điều n&agrave;y c&oacute; thể gi&uacute;p cải thiện t&igrave;nh trạng da mờ, nhăn nheo, sẹo v&agrave; vết th&acirc;m.</p>\r\n	</li>\r\n	<li>\r\n	<p>Tăng cường sản xuất collagen: Khi da bị lăn kim, qu&aacute; tr&igrave;nh tự nhi&ecirc;n của cơ thể phản ứng bằng c&aacute;ch tăng cường sản xuất collagen. Collagen l&agrave; một loại protein quan trọng gi&uacute;p da đ&agrave;n hồi v&agrave; mịn m&agrave;ng.</p>\r\n	</li>\r\n	<li>\r\n	<p>Cải thiện hấp thụ sản phẩm chăm s&oacute;c da: Qu&aacute; tr&igrave;nh lăn kim tạo ra c&aacute;c lỗ nhỏ tr&ecirc;n da, tăng khả năng hấp thụ c&aacute;c sản phẩm chăm s&oacute;c da như kem dưỡng, serum v&agrave; tinh chất. Điều n&agrave;y gi&uacute;p c&aacute;c th&agrave;nh phần chăm s&oacute;c da th&acirc;m nhập s&acirc;u v&agrave;o da v&agrave; c&oacute; hiệu quả tốt hơn.</p>\r\n	</li>\r\n</ol>\r\n\r\n<p>Tuy nhi&ecirc;n, quy tr&igrave;nh lăn kim tế b&agrave;o gốc cần được thực hiện bởi c&aacute;c chuy&ecirc;n gia c&oacute; kinh nghiệm để tr&aacute;nh nguy cơ nhiễm tr&ugrave;ng v&agrave; t&aacute;c động kh&ocirc;ng mong muốn l&ecirc;n da. Ngo&agrave;i ra, mỗi người c&oacute; thể c&oacute; phản ứng da kh&aacute;c nhau sau qu&aacute; tr&igrave;nh lăn kim tế b&agrave;o gốc.</p>\r\n\r\n<p>Trước khi quyết định tiến h&agrave;nh lăn kim tế b&agrave;o gốc, n&ecirc;n tham khảo &yacute; kiến của b&aacute;c sĩ hoặc chuy&ecirc;n gia thẩm mỹ để được tư vấn v&agrave; đ&aacute;nh gi&aacute; xem liệu phương ph&aacute;p n&agrave;y c&oacute; ph&ugrave; hợp với t&igrave;nh trạng da v&agrave; mục ti&ecirc;u c&aacute; nh&acirc;n của bạn hay kh&ocirc;ng.</p>\r\n\r\n<p><strong>Lưu &yacute; rằng th&ocirc;ng tin tr&ecirc;n đ&acirc;y chỉ mang t&iacute;nh chất tham khảo. Việc x&aacute;c định liệu ph&aacute;p ph&ugrave; hợp v&agrave; quyết định quy tr&igrave;nh Lăn Kim Tế B&agrave;o Gốc cần được thực hiện dưới sự hướng dẫn v&agrave; gi&aacute;m s&aacute;t của một b&aacute;c sĩ chuy&ecirc;n khoa thẩm mỹ c&oacute; kinh nghiệm.</strong></p>\r\n\r\n<p><strong>Trước khi quyết định quy tr&igrave;nh Lăn Kim Tế B&agrave;o Gốc, qu&yacute; kh&aacute;ch n&ecirc;n t&igrave;m hiểu v&agrave; tham khảo &yacute; kiến chuy&ecirc;n gia thẩm mỹ để được tư vấn cụ thể về phương ph&aacute;p v&agrave; kỹ thuật th&iacute;ch hợp cho trường hợp của m&igrave;nh.</strong></p>\r\n\r\n<p><em><strong>H&atilde;y để lại th&ocirc;ng tin li&ecirc;n hệ, BlackMed Spa sẵn s&agrave;ng phục vụ, giải đ&aacute;p mọi thắc mắc của qu&yacute; kh&aacute;ch 24/7!</strong></em></p>\r\n', '<p>Ch&agrave;o mừng bạn đến với kh&ocirc;ng gian sống thoải m&aacute;i v&agrave; hiện đại tại k&iacute; t&uacute;c x&aacute; của ch&uacute;ng t&ocirc;i! Ph&ograve;ng ở của ch&uacute;ng t&ocirc;i kh&ocirc;ng chỉ l&agrave; nơi nghỉ m&agrave; c&ograve;n l&agrave; kh&ocirc;ng gian tự do, tạo điều kiện tốt nhất cho sự ph&aacute;t triển c&aacute; nh&acirc;n v&agrave; học tập. Ph&ograve;ng: Ch&uacute;ng t&ocirc;i tự h&agrave;o giới thiệu c&aacute;c ph&ograve;ng ở rộng r&atilde;i, s&aacute;ng sủa v&agrave; được trang bị đầy đủ tiện nghi. Mỗi ph&ograve;ng đều c&oacute; cửa sổ lớn mang lại nguồn &aacute;nh s&aacute;ng tự nhi&ecirc;n, gi&uacute;p tạo n&ecirc;n kh&ocirc;ng kh&iacute; ấm c&uacute;ng v&agrave; thoải m&aacute;i. Nội thất: Ph&ograve;ng ở được trang bị đầy đủ nội thất, bao gồm giường thoải m&aacute;i, b&agrave;n l&agrave;m việc, tủ quần &aacute;o v&agrave; khu vực giữ đồ c&aacute; nh&acirc;n. Tất cả đều được thiết kế với sự thoải m&aacute;i v&agrave; tiện &iacute;ch đặt l&ecirc;n h&agrave;ng đầu. Tiện &iacute;ch: K&iacute; t&uacute;c x&aacute; của ch&uacute;ng t&ocirc;i cung cấp nhiều tiện &iacute;ch để đảm bảo cuộc sống h&agrave;ng ng&agrave;y của bạn su&ocirc;n sẻ. Từ ph&ograve;ng tập thể dục đến khu vực nấu ăn chung, bạn sẽ c&oacute; đầy đủ cơ hội để gặp gỡ v&agrave; chia sẻ c&ugrave;ng cộng đồng. An ninh: Ch&uacute;ng t&ocirc;i coi trọng an ninh v&agrave; sự an to&agrave;n. Hệ thống an ninh hiện đại đảm bảo rằng bạn c&oacute; thể y&ecirc;n t&acirc;m sinh sống v&agrave; l&agrave;m việc trong kh&ocirc;ng gian chung của ch&uacute;ng t&ocirc;i. Kh&ocirc;ng gian xanh: K&iacute; t&uacute;c x&aacute; của ch&uacute;ng t&ocirc;i được thiết kế với &yacute; thức về m&ocirc;i trường. Ch&uacute;ng t&ocirc;i tận dụng &aacute;nh s&aacute;ng tự nhi&ecirc;n v&agrave; c&oacute; c&aacute;c biện ph&aacute;p tiết kiệm năng lượng, gi&uacute;p tạo ra m&ocirc;i trường sống l&agrave;nh mạnh v&agrave; th&acirc;n thiện với thi&ecirc;n nhi&ecirc;n. H&atilde;y đặt ch&acirc;n đến v&agrave; trải nghiệm sự thoải m&aacute;i, an ninh v&agrave; sự gắn kết cộng đồng tại k&iacute; t&uacute;c x&aacute; của ch&uacute;ng t&ocirc;i. Ch&uacute;ng t&ocirc;i hy vọng bạn sẽ tận hưởng mọi khoảnh khắc tại ng&ocirc;i nh&agrave; mới n&agrave;y!</p>\r\n', 'admin'),
+(1, 'Phòng 301', '8 người', 4, 10.00, 'Sẵn Sàng', 'bg.jpeg', 'slide1.jpg', 'Dưới đây là một đoạn mô tả chi tiết về phòng kí túc xá:\r\n\r\nChào mừng bạn đến với không gian sống độc đáo và ấm cúng tại kí túc xá của chúng tôi! Tại đây, chúng tôi cam kết mang đến cho bạn không chỉ một nơi ở, mà còn là một trải nghiệm sống đáng nhớ và thú vị.\r\n\r\nPhòng Ở:\r\n\r\nChất Lượng Đỉnh Cao: Mỗi phòng ở của chúng tôi được thiết kế để mang đến sự thoải mái tối đa và cảm giác như ở nhà. Bạn sẽ tận hưởng không gian rộng lớn với trang thiết bị hiện đại và nội thất sang trọng.\r\n\r\nÁnh Sáng Tự Nhiên: Phòng được thiết kế với nhiều cửa sổ lớn để tận dụng ánh sáng tự nhiên, tạo ra một môi trường sống sáng sủa và ấm áp.\r\n\r\nTiện Ích:\r\n\r\nPhòng Tập Thể Dục: Kí túc xá có một phòng tập thể dục hiện đại với các thiết bị tập luyện đa dạng, giúp bạn duy trì phong độ và tận hưởng lối sống lành mạnh.\r\n\r\nKhu Vực Nấu Ăn Chung: Khu vực nấu ăn chung rộng lớn với các thiết bị hiện đại, nơi bạn có thể tự do sáng tạo và thưởng thức những bữa ăn ngon.\r\n\r\nAn Ninh và An Toàn:\r\n\r\nHệ Thống An Ninh: Chúng tôi đặt sự an toàn của bạn lên hàng đầu. Hệ thống an ninh 24/7 và camera giám sát giúp bảo vệ bạn và tài sản của mình.\r\nGiao Tiếp và Gặp Gỡ:\r\n\r\nKhu Vực Giao Tiếp Chung: Kí túc xá có các khu vực chung lý tưởng để bạn có thể gặp gỡ và tương tác với cộng đồng. Đây là nơi lý tưởng để kết nối với những người sống cùng và xây dựng mối quan hệ.\r\nMôi Trường Xanh:\r\n\r\nThân Thiện Với Môi Trường: Chúng tôi cam kết thực hiện các biện pháp bảo vệ môi trường. Tận dụng năng lượng tái tạo và giảm lượng rác thải, chúng tôi mong muốn tạo ra một kí túc xá thân thiện với thiên nhiên.\r\nHãy đặt chân đến và trải nghiệm không gian sống đẳng cấp và chân thành tại kí túc xá của chúng tôi. Chúng tôi mong rằng bạn sẽ tìm thấy đây là một ngôi nhà thực sự và một cộng đồng đáng sống.\r\n\r\n\r\n\r\n\r\n\r\n', 'Chào mừng bạn đến với không gian sống thoải mái và hiện đại tại kí túc xá của chúng tôi! Phòng ở của chúng tôi không chỉ là nơi nghỉ mà còn là không gian tự do, tạo điều kiện tốt nhất cho sự phát triển cá nhân và học tập.\r\n\r\nPhòng: Chúng tôi tự hào giới thiệu các phòng ở rộng rãi, sáng sủa và được trang bị đầy đủ tiện nghi. Mỗi phòng đều có cửa sổ lớn mang lại nguồn ánh sáng tự nhiên, giúp tạo nên không khí ấm cúng và thoải mái.\r\n\r\nNội thất: Phòng ở được trang bị đầy đủ nội thất, bao gồm giường thoải mái, bàn làm việc, tủ quần áo và khu vực giữ đồ cá nhân. Tất cả đều được thiết kế với sự thoải mái và tiện ích đặt lên hàng đầu.\r\n\r\nTiện ích: Kí túc xá của chúng tôi cung cấp nhiều tiện ích để đảm bảo cuộc sống hàng ngày của bạn suôn sẻ. Từ phòng tập thể dục đến khu vực nấu ăn chung, bạn sẽ có đầy đủ cơ hội để gặp gỡ và chia sẻ cùng cộng đồng.\r\n\r\nAn ninh: Chúng tôi coi trọng an ninh và sự an toàn. Hệ thống an ninh hiện đại đảm bảo rằng bạn có thể yên tâm sinh sống và làm việc trong không gian chung của chúng tôi.\r\n\r\nKhông gian xanh: Kí túc xá của chúng tôi được thiết kế với ý thức về môi trường. Chúng tôi tận dụng ánh sáng tự nhiên và có các biện pháp tiết kiệm năng lượng, giúp tạo ra môi trường sống lành mạnh và thân thiện với thiên nhiên.\r\n\r\nHãy đặt chân đến và trải nghiệm sự thoải mái, an ninh và sự gắn kết cộng đồng tại kí túc xá của chúng tôi. Chúng tôi hy vọng bạn sẽ tận hưởng mọi khoảnh khắc tại ngôi nhà mới này!', 'admin'),
 (2, 'Phòng 101', '4 người', 1, 15.00, 'Sẵn Sàng', 'sp-9.jpeg', 'sp-2.jpeg', 'Chào mừng bạn đến với không gian sống thoải mái và hiện đại tại kí túc xá của chúng tôi! Phòng ở của chúng tôi không chỉ là nơi nghỉ mà còn là không gian tự do, tạo điều kiện tốt nhất cho sự phát triển cá nhân và học tập.\r\n\r\nPhòng: Chúng tôi tự hào giới thiệu các phòng ở rộng rãi, sáng sủa và được trang bị đầy đủ tiện nghi. Mỗi phòng đều có cửa sổ lớn mang lại nguồn ánh sáng tự nhiên, giúp tạo nên không khí ấm cúng và thoải mái.\r\n\r\nNội thất: Phòng ở được trang bị đầy đủ nội thất, bao gồm giường thoải mái, bàn làm việc, tủ quần áo và khu vực giữ đồ cá nhân. Tất cả đều được thiết kế với sự thoải mái và tiện ích đặt lên hàng đầu.\r\n\r\nTiện ích: Kí túc xá của chúng tôi cung cấp nhiều tiện ích để đảm bảo cuộc sống hàng ngày của bạn suôn sẻ. Từ phòng tập thể dục đến khu vực nấu ăn chung, bạn sẽ có đầy đủ cơ hội để gặp gỡ và chia sẻ cùng cộng đồng.\r\n\r\nAn ninh: Chúng tôi coi trọng an ninh và sự an toàn. Hệ thống an ninh hiện đại đảm bảo rằng bạn có thể yên tâm sinh sống và làm việc trong không gian chung của chúng tôi.\r\n\r\nKhông gian xanh: Kí túc xá của chúng tôi được thiết kế với ý thức về môi trường. Chúng tôi tận dụng ánh sáng tự nhiên và có các biện pháp tiết kiệm năng lượng, giúp tạo ra môi trường sống lành mạnh và thân thiện với thiên nhiên.\r\n\r\nHãy đặt chân đến và trải nghiệm sự thoải mái, an ninh và sự gắn kết cộng đồng tại kí túc xá của chúng tôi. Chúng tôi hy vọng bạn sẽ tận hưởng mọi khoảnh khắc tại ngôi nhà mới này!', 'Chào mừng bạn đến với không gian sống thoải mái và hiện đại tại kí túc xá của chúng tôi! Phòng ở của chúng tôi không chỉ là nơi nghỉ mà còn là không gian tự do, tạo điều kiện tốt nhất cho sự phát triển cá nhân và học tập.\r\n\r\nPhòng: Chúng tôi tự hào giới thiệu các phòng ở rộng rãi, sáng sủa và được trang bị đầy đủ tiện nghi. Mỗi phòng đều có cửa sổ lớn mang lại nguồn ánh sáng tự nhiên, giúp tạo nên không khí ấm cúng và thoải mái.\r\n\r\nNội thất: Phòng ở được trang bị đầy đủ nội thất, bao gồm giường thoải mái, bàn làm việc, tủ quần áo và khu vực giữ đồ cá nhân. Tất cả đều được thiết kế với sự thoải mái và tiện ích đặt lên hàng đầu.\r\n\r\nTiện ích: Kí túc xá của chúng tôi cung cấp nhiều tiện ích để đảm bảo cuộc sống hàng ngày của bạn suôn sẻ. Từ phòng tập thể dục đến khu vực nấu ăn chung, bạn sẽ có đầy đủ cơ hội để gặp gỡ và chia sẻ cùng cộng đồng.\r\n\r\nAn ninh: Chúng tôi coi trọng an ninh và sự an toàn. Hệ thống an ninh hiện đại đảm bảo rằng bạn có thể yên tâm sinh sống và làm việc trong không gian chung của chúng tôi.\r\n\r\nKhông gian xanh: Kí túc xá của chúng tôi được thiết kế với ý thức về môi trường. Chúng tôi tận dụng ánh sáng tự nhiên và có các biện pháp tiết kiệm năng lượng, giúp tạo ra môi trường sống lành mạnh và thân thiện với thiên nhiên.\r\n\r\nHãy đặt chân đến và trải nghiệm sự thoải mái, an ninh và sự gắn kết cộng đồng tại kí túc xá của chúng tôi. Chúng tôi hy vọng bạn sẽ tận hưởng mọi khoảnh khắc tại ngôi nhà mới này!', 'admin');
 
 -- --------------------------------------------------------
@@ -155,8 +169,55 @@ CREATE TABLE `sinhvien` (
   `DiaChi` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `SoDienThoai` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `Email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `ngaytao` datetime DEFAULT current_timestamp(),
+  `nguoitao` varchar(255) NOT NULL,
   `AnhDaiDien` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `sinhvien`
+--
+
+INSERT INTO `sinhvien` (`MaSinhVien`, `HoTen`, `NgaySinh`, `GioiTinh`, `DiaChi`, `SoDienThoai`, `Email`, `ngaytao`, `nguoitao`, `AnhDaiDien`) VALUES
+(0, 'Nguyễn Thị Như Hà', '0000-00-00', 'Nữ', 'Thuỷ Nguyên - Hải Phòng', '0357164036', 'ha86093@st.vimaru.edu.vn', '0000-00-00 00:00:00', 'admin', 'AnhDaiDien');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `taikhoan`
+--
+
+CREATE TABLE `taikhoan` (
+  `MaTaiKhoan` int(11) NOT NULL,
+  `MaSinhVien` int(11) DEFAULT NULL,
+  `TenDangNhap` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `MatKhau` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `QuyenTruyCap` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `TrangThai` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tang`
+--
+
+CREATE TABLE `tang` (
+  `id` int(11) NOT NULL,
+  `ten_tang` varchar(255) NOT NULL,
+  `khuvuc` varchar(255) NOT NULL,
+  `ngaytao` datetime DEFAULT current_timestamp(),
+  `nguoitao` text NOT NULL,
+  `anh` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tang`
+--
+
+INSERT INTO `tang` (`id`, `ten_tang`, `khuvuc`, `ngaytao`, `nguoitao`, `anh`) VALUES
+(1, 'Tầng 1', 'B', '2023-12-12 00:07:43', 'admin', 'avt1.jpg'),
+(3, 'Tầng 2', 'A', '0000-00-00 00:00:00', 'admin', 'avt1.jpg');
 
 -- --------------------------------------------------------
 
@@ -227,6 +288,12 @@ ALTER TABLE `donvi`
   ADD PRIMARY KEY (`MaDonVi`);
 
 --
+-- Indexes for table `khuvuc`
+--
+ALTER TABLE `khuvuc`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `loaitrangthietbi`
 --
 ALTER TABLE `loaitrangthietbi`
@@ -243,6 +310,20 @@ ALTER TABLE `phong`
 --
 ALTER TABLE `sinhvien`
   ADD PRIMARY KEY (`MaSinhVien`);
+
+--
+-- Indexes for table `taikhoan`
+--
+ALTER TABLE `taikhoan`
+  ADD PRIMARY KEY (`MaTaiKhoan`),
+  ADD UNIQUE KEY `MaSinhVien` (`MaSinhVien`),
+  ADD UNIQUE KEY `TenDangNhap` (`TenDangNhap`);
+
+--
+-- Indexes for table `tang`
+--
+ALTER TABLE `tang`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `thanhtoan`
@@ -265,7 +346,7 @@ ALTER TABLE `trangthietbi`
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `dichvu`
@@ -277,11 +358,23 @@ ALTER TABLE `dichvu`
 -- AUTO_INCREMENT for table `phong`
 --
 ALTER TABLE `phong`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `tang`
+--
+ALTER TABLE `tang`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `taikhoan`
+--
+ALTER TABLE `taikhoan`
+  ADD CONSTRAINT `taikhoan_ibfk_1` FOREIGN KEY (`MaSinhVien`) REFERENCES `sinhvien` (`MaSinhVien`);
 
 --
 -- Constraints for table `thanhtoan`
