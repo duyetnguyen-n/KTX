@@ -5,29 +5,26 @@ include '../config/database.php';
 function checkLogin($username, $password)
 {
     $db = new Database();
-    $sql = "SELECT * FROM login WHERE username = '$username' AND password = '$password' AND status = 1";
-    $result = $db->select($sql);
 
-    if ($result->num_rows == 1) {
-        $user = $result->fetch_assoc();
-        return $user;
-    } else {
-        return null;
+    // Kiểm tra trong bảng client
+    $sqlClient = "SELECT * FROM client WHERE ten_nguoi_dung = '$username' AND mat_khau = '$password' AND ma_sinh_vien IS NOT NULL AND trang_thai = 'sẵn sàng'";
+    $resultClient = $db->select($sqlClient);
+
+    if ($resultClient->num_rows == 1) {
+        $user = $resultClient->fetch_assoc();
+        return ['username' => $user['ten_nguoi_dung'], 'role' => 'client'];
     }
-}
 
-function checkUserRole($username)
-{
-    $db = new Database();
-    $sql = "SELECT role FROM login WHERE username = '$username'";
-    $result = $db->select($sql);
+    // Kiểm tra trong bảng admin
+    $sqlAdmin = "SELECT * FROM login WHERE username = '$username' AND password = '$password'";
+    $resultAdmin = $db->select($sqlAdmin);
 
-    if ($result->num_rows == 1) {
-        $user = $result->fetch_assoc();
-        return $user['role'];
-    } else {
-        return null;
+    if ($resultAdmin->num_rows == 1) {
+        $user = $resultAdmin->fetch_assoc();
+        return ['username' => $user['username'], 'role' => 'admin'];
     }
+
+    return null;
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -39,18 +36,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($user !== null) {
         session_start();
         $_SESSION['username'] = $user['username'];
-        $_SESSION['role'] = $role = checkUserRole($user['username']);
+        $_SESSION['role'] = $user['role'];
 
-        if ($role == 'admin') {
+        if ($user['role'] == 'admin') {
             header("Location: main.php");
-            exit(); // Kết thúc chương trình sau khi chuyển hướng
-        } elseif ($role == 'client') {
+            exit();
+        } elseif ($user['role'] == 'client') {
             header("Location: ../front_end/main.php");
-            exit(); // Kết thúc chương trình sau khi chuyển hướng
+            exit();
         }
     } else {
         echo "Đăng nhập không thành công";
     }
 }
-
 ?>

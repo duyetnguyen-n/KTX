@@ -32,6 +32,11 @@
 
 </head>
 <body>
+<!-- Start Preloader -->
+<div id="preload-block">
+    <div class="square-block"></div>
+</div>
+<!-- Preloader End -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light position-fixed p-0">
     <div id="header-menu" class="container no-padding">
         <div class="col-3 navbar-brand d-flex">
@@ -48,12 +53,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item"><a class ="nav-link active" aria-current="page" href="#">HOME</a></li>
-                <li class="nav-item"><a class ="nav-link"  href="">PRICE</a></li>
-                <li class="nav-item"><a class ="nav-link"  href="">SERVICE</a></li>
-                <li class="nav-item"><a class ="nav-link"  href="">ROOMs</a></li>
-                <li class="nav-item"><a class ="nav-link"  href="">CONTACT</a></li>
-                <li><button class ="btn butn navbar" >SIGN UP</button> </li>
+                <li class="nav-item"><a class ="nav-link active" aria-current="page" href="main.php">TRANG CHỦ</a></li>
+                <li class="nav-item"><a class ="nav-link"  href="#slide-3">GIÁ</a></li>
+                <li class="nav-item"><a class ="nav-link"  href="#slide-2">DỊCH VỤ</a></li>
+                <li class="nav-item"><a class ="nav-link"  href="">PHÒNG</a></li>
+                <li class="nav-item"><a class ="nav-link"  href="#slide-10">LIÊN HỆ</a></li>
+                <li><a href="../back_end/dang_nhap.html"><button class ="btn butn navbar" >SIGN IN</button></a> </li>
             </ul>
         </div>
     </div>

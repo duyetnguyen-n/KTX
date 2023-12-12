@@ -1,5 +1,9 @@
 <?php include 'header.php'?>
-
+<!-- Start Preloader -->
+<div id="preload-block">
+    <div class="square-block"></div>
+</div>
+<!-- Preloader End -->
     <div id="slide">
         <div class="owl-carousel">
             <div class="item">

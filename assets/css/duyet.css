@@ -39,7 +39,7 @@ ul.list-item {
     padding: 10px;
     cursor: pointer;
 }
-i.fas {
+i.fas, i.fab {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -509,3 +509,76 @@ td.thao-tac img {
 /*=========================================*/
 /*end add room*/
 /*=================================*/
+/*========dang ky tai khoan======*/
+#body-dang-ky{
+}
+form.signup {
+    width: 700px;
+    margin: auto;
+    padding: 100px 0;
+}
+.fb {
+    padding: 10px 10px;
+    background: #0505ad;
+    border-radius: 14px;
+    color: white;
+}
+
+.tw {
+    padding: 10px 10px;
+    background: #28c0ea;
+    border-radius: 14px;
+    color: white;
+}
+.gg {
+    padding: 10px 10px;
+    background: #ad0521;
+    border-radius: 14px;
+    color: white;
+}
+.area-left {
+    border: 1px solid black;
+    background: #121340;
+    border-radius: 10px 0 0 10px;
+    color: white;
+}
+.area-left i {
+    color: white;
+}
+.area-left h2{
+    font-size: 30px;
+    font-weight: 600;
+}
+.area-right {
+    border-right: 1px solid;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    background: white;
+    border-radius: 0 10px 10px 0;
+}
+.area-right p {
+    text-transform: uppercase;
+    font-size: 30px;
+    font-weight: 600;
+}
+.butn-signup {
+    padding: 10px 30px !important;
+    background: #121340 !important;
+    color: white !important;
+    margin-bottom: 30px !important;
+    border: 1px solid #121340 !important;
+}
+.butn-signup:hover{
+    background-color: white !important;
+    color: #121340 !important;
+    border: 1px solid #121340 ;
+}
+form.signup .row {
+    box-shadow: 0 0 10px white;
+    border-radius: 10px;
+}
+.container-fluid.drk-bg {
+    background: black;
+    opacity: 0.9;
+}
+/*=======end dang ky tai khoan===========*/

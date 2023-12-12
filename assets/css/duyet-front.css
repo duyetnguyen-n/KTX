@@ -476,7 +476,6 @@ strong{
     height: 100%; /* Ảnh sẽ chiếm toàn bộ chiều cao của vùng img-title */
     object-fit: cover; /* Để giữ tỷ lệ khung hình và cắt ảnh nếu cần thiết */
 }
-
 .content-title-header {
     position: absolute;
     top: 50%;
