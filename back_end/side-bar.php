@@ -88,24 +88,22 @@
                     </div>
                 </li>
                 <ul class="item-4-sub item-sub">
+                    
                     <li class="mb-2">
-                        <a href="">Danh sách thiết bị</a>
+                        <a href="list-loaitrangthietbi.php">Danh sách loại trang thiết bị</a>
+                    </li>
+
+                    <li class="mb-2">
+                        <a href="add-loaitrangthietbi.php">Thêm loại trang thiết bị</a>
+                    </li>
+
+                    <li class="mb-2">
+                        <a href="list-trangthietbi.php">Danh sách thiết bị</a>
                     </li>
                     <li class="mb-2">
-                        <a href="">Thêm thiết bị</a>
+                        <a href="add-trangthietbi.php">Thêm thiết bị</a>
                     </li>
-                    <li class="mb-2">
-                        <a href="">List category</a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="">Add category</a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="">List unit</a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="">Add unit</a>
-                    </li>
+                   
                 </ul>
                 <li class="item-5 item">
                     <div class="item-right d-flex">
