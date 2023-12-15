@@ -24,8 +24,10 @@ if (isset($_GET['token'])) {
             $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
             $sqlUpdatePassword = "UPDATE client SET mat_khau = '$hashedPassword', reset_token = NULL WHERE reset_token = '$token'";
             $db->query($sqlUpdatePassword);
-
-            echo "Mật khẩu đã được đặt lại thành công!";
+            echo '<script>
+                alert("Mật khẩu đã được đặt lại thành công!");
+                window.location.href = "../back_end/dang_nhap.html";
+            </script>';
             exit();
         }
     } else {

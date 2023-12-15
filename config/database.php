@@ -63,5 +63,9 @@ class Database {
             return false;
         }
     }
+    public function query($query) {
+        $result = $this->link->query($query) or die($this->link->error . __LINE__);
+        return $result;
+    }
 }
 ?>
