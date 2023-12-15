@@ -128,14 +128,8 @@
                 </div>
                 <div class="row">
                     <?php
-                    include '../config/database.php';
-                    $db = new Database();
-                    // Lấy dữ liệu từ cơ sở dữ liệu
                     $sqldichvu = "SELECT * FROM dichvu";
                     $resultdichvu = $db->select($sqldichvu);
-                    ?>
-
-                    <?php
                     // Số lượng khối cần hiển thị
                     $blocksToShow = 8;
                     $blockCount = 0;

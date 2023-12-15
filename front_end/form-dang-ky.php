@@ -17,17 +17,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $anh_dai_dien_tmp = $_FILES["anh_dai_dien"]["tmp_name"];
     move_uploaded_file($anh_dai_dien_tmp, "../assets/img/$anh_dai_dien");
 
+    // Mã hóa mật khẩu
+    $hashed_password = password_hash($mat_khau, PASSWORD_DEFAULT);
+
     // Thực hiện câu lệnh SQL thêm phòng
     $sql = "INSERT INTO client (ma_sinh_vien, ten_nguoi_dung, mat_khau, ho_ten, email, so_dien_thoai, trang_thai, anh_dai_dien)
-            VALUES ('$ma_sinh_vien', '$ten_tai_khoan', '$mat_khau', '$ho_va_ten', '$email', '$so_dien_thoai', 'sẵn sàng', '$anh_dai_dien')";
+            VALUES ('$ma_sinh_vien', '$ten_tai_khoan', '$hashed_password', '$ho_va_ten', '$email', '$so_dien_thoai', 'sẵn sàng', '$anh_dai_dien')";
 
     if ($db->insert($sql)) {
         echo '<script>alert("Đăng ký tài khoản thành công!"); window.location.href = "../back_end/dang_nhap.html";</script>';
         exit(); // Đảm bảo dừng thực thi mã nguồn sau khi chuyển hướng
     } else {
-        echo '<script>alert("Lỗi khi đăng ký: ' . $db->getError() . '");</script>';    }
+        echo '<script>alert("Lỗi khi đăng ký: ' . $db->getError() . '");</script>';
+    }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

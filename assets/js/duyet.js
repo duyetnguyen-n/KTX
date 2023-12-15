@@ -1,4 +1,5 @@
-$(document).ready(function(){
+$(document).ready(function () {
+    // Ẩn/hiện các mục con khi nhấp vào mục cha
     $(".item-2").click(function(){
         $(".item-2-sub").slideToggle();
     });
@@ -17,38 +18,36 @@ $(document).ready(function(){
     $(".item-7").click(function(){
         $(".item-7-sub").slideToggle();
     });
-    $(".arrow-left").click(function(){
+    // Ẩn sidebar khi nhấp vào mũi tên rẽ trái
+    $(".arrow-left").click(function () {
         $(".sidebar").hide();
     });
-    $(".arrow-right").click(function(){
+
+    // Hiện sidebar khi nhấp vào mũi tên rẽ phải
+    $(".arrow-right").click(function () {
         $(".sidebar").show();
     });
-    $("img.avatar").click(function(){
-        $(".content-avatar-header").show();
-    });
-    $(".avatar").click(function(){
-        $(".content-avatar-header").hide();
-    });
-    //menu
-        var menu = $('.navbar');
 
-        $(window).scroll(function() {
-            var scrollPosition = $(window).scrollTop();
+    // Toggle dropdown content khi nhấp vào avatar
+    $(".avatar").click(function () {
+        $(".content-avatar-header").slideToggle();
+    });
 
-            // Kiểm tra vị trí cuộn để thay đổi CSS của menu
-            if (scrollPosition === 0) {
-                menu.css({
-                    'opacity':'0.7'
-                });
-            }
-        });
-    var maxHeight = 0;
-    $('.owl-carousel .item img').each(function(){
-        var currentHeight = $(this).height();
-        if(currentHeight > maxHeight){
-            maxHeight = currentHeight;
+    // Xử lý scroll để thay đổi CSS của menu
+    var menu = $('.navbar');
+
+    $(window).scroll(function () {
+        var scrollPosition = $(window).scrollTop();
+
+        // Kiểm tra vị trí cuộn để thay đổi CSS của menu
+        if (scrollPosition === 0) {
+            menu.css({
+                'opacity': '0.6'
+            });
+        } else {
+            menu.css({
+                'opacity': 'unset'
+            });
         }
     });
-    $('.owl-carousel .item img').height(maxHeight);
-
 });

@@ -34,7 +34,7 @@
         <div class="content-header notification mr-3">
             <img class="notification" src="../assets/img/notification-bing.svg" alt="thông báo">
         </div>
-        <div class="content-header avatar mr-3">
+        <div class="content-header mr-3">
             <img class="avatar" src="../assets/img/Facebook-Avatar_3.png" alt="avatar">
             <div class="content-avatar-header">
                 <div class="img-info d-flex">

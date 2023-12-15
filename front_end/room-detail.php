@@ -1,7 +1,6 @@
 <?php include 'header.php'?>
 <?php
-include '../config/database.php';
-$db = new Database();
+
 $id = $_GET['id'];
 // Lấy dữ liệu từ cơ sở dữ liệu
 $sqlphong = "SELECT * FROM phong where id = $id";
@@ -60,8 +59,8 @@ while ($row = $resultphong->fetch_assoc()) {
                     <div class="price-phone">
                         <h2><?php echo $row['price']; ?></h2>
                     </div>
-                    <button class="but-buy">
-                        <p class="m-0">Buy</p>
+                    <button class="but-resister">
+                        <p class="m-0">Đăng Ký</p>
                     </button>
                     <div class="detail-phone">
                         <?php echo $row['noi_dung']; ?>
@@ -234,6 +233,27 @@ while ($row = $resultphong->fetch_assoc()) {
         </div>
     </div>
 </div>
+    <div class="form-dang-ky-phong">
+        <p class="text-center my-3">Đăng ký phòng</p>
+        <div class="text-center">
+            <input class="input-dkp form-control mb-2" type="date" id="from" name="from" required>
+        </div>
+        <div class="text-center">
+            <input class="input-dkp form-control mb-2" type="date" id="to" name="to" required>
+        </div>
+        <div class="text-center">
+            <input class="input-signup form-control mb-2" type="password" id="mat-khau" name="mat-khau" placeholder="Mật khẩu" required>
+        </div>
+        <div class="text-center">
+            <input class="input-signup form-control mb-2" type="text" id="hvt" name="hvt" placeholder="Họ và tên" required>
+        </div>
+        <div class="text-center">
+            <input class="input-signup form-control mb-2" type="text" id="email" name="email" placeholder="Email" required>
+        </div>
+        <div class="text-center">
+            <input class="input-signup form-control mb-2" type="number" id="sdt" name="sdt" placeholder="Số điện thoại" required>
+        </div>
+    </div>
 </body>
     <script>
         function updateTime() {
