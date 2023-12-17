@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 12, 2023 at 04:45 PM
+-- Generation Time: Dec 17, 2023 at 10:59 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -36,8 +36,166 @@ CREATE TABLE `client` (
   `email` varchar(255) NOT NULL,
   `so_dien_thoai` varchar(20) NOT NULL,
   `trang_thai` varchar(50) DEFAULT 'sẵn sàng',
-  `anh_dai_dien` varchar(255) DEFAULT 'Facebook-Avatar_3.png'
+  `anh_dai_dien` varchar(255) DEFAULT 'Facebook-Avatar_3.png',
+  `reset_token` varchar(255) DEFAULT NULL,
+  `quyen` text NOT NULL DEFAULT 'client'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `client`
+--
+
+INSERT INTO `client` (`id_client`, `ma_sinh_vien`, `ten_nguoi_dung`, `ho_ten`, `mat_khau`, `email`, `so_dien_thoai`, `trang_thai`, `anh_dai_dien`, `reset_token`, `quyen`) VALUES
+(1, '85723', 'ntduyet', 'Nguyễn Thế Duyệt', '$2y$10$4sxxDVggiTis0A0eSEeae.j6ccNKa3RS4K4Mz.6SdNr4GbiPIvkdK', 'nguyentheduyet.mtp@gmail.com', '0982763267', 'sẵn sàng', 'avt1.jpg', NULL, 'client'),
+(2, '99999', 'admin', 'Nguyễn Thế Duyệt', '$2y$10$TNaf2KXUtCDX5JtVF2rSR.MBwLPWGBdQi6yxxPTfwqtuzzLKFJqnK', 'nguyentheduyet.mtp@gmail.com', '0982763267', 'sẵn sàng', 'Facebook-Avatar_3.png', NULL, 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dang_ky_dich_vu`
+--
+
+CREATE TABLE `dang_ky_dich_vu` (
+  `id` int(11) NOT NULL,
+  `tendangnhap` varchar(255) NOT NULL,
+  `id_dichvu` int(11) NOT NULL,
+  `ngay_dang_ky` date NOT NULL,
+  `nguoi_tao` varchar(255) NOT NULL,
+  `ngay_tao` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Triggers `dang_ky_dich_vu`
+--
+DELIMITER $$
+CREATE TRIGGER `dang_ky_dich_vu_after_insert` AFTER INSERT ON `dang_ky_dich_vu` FOR EACH ROW BEGIN
+    -- Cộng tổng số tiền ở bảng thanh_toan khi đăng ký dịch vụ
+    UPDATE thanh_toan
+    SET tong_so_tien = tong_so_tien + (SELECT gia FROM dichvu WHERE id = NEW.id_dichvu)
+    WHERE tendangnhap = NEW.tendangnhap;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `huy_dang_ky_dich_vu_after_delete` AFTER DELETE ON `dang_ky_dich_vu` FOR EACH ROW BEGIN
+    -- Trừ tổng số tiền ở bảng thanh_toan khi hủy đăng ký dịch vụ
+    UPDATE thanh_toan
+    SET tong_so_tien = GREATEST(tong_so_tien - (SELECT gia FROM dichvu WHERE id = OLD.id_dichvu), 0)
+    WHERE tendangnhap = OLD.tendangnhap;
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dang_ky_phong`
+--
+
+CREATE TABLE `dang_ky_phong` (
+  `id` int(11) NOT NULL,
+  `tendangnhap` varchar(255) DEFAULT NULL,
+  `idphong` int(11) DEFAULT NULL,
+  `tu_ngay` date DEFAULT NULL,
+  `den_ngay` date DEFAULT NULL,
+  `ngay_tao` datetime DEFAULT current_timestamp(),
+  `anh_dai_dien` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `dang_ky_phong`
+--
+
+INSERT INTO `dang_ky_phong` (`id`, `tendangnhap`, `idphong`, `tu_ngay`, `den_ngay`, `ngay_tao`, `anh_dai_dien`) VALUES
+(1, 'ntduyet', 2, '2003-10-20', '2023-02-12', '2023-12-16 21:15:22', 'sp-3.webp'),
+(2, 'ntduyet', 1, '2002-10-10', '2000-11-11', '2023-12-16 22:28:15', NULL),
+(3, 'ntduyet', 3, '2003-10-20', '2023-02-12', '2023-12-16 22:43:50', 'sp-3.webp'),
+(4, 'ntduyet', 3, '2002-10-10', '2000-11-11', '2023-12-16 22:54:53', NULL);
+
+--
+-- Triggers `dang_ky_phong`
+--
+DELIMITER $$
+CREATE TRIGGER `dang_ky_phong_after_insert` AFTER INSERT ON `dang_ky_phong` FOR EACH ROW BEGIN
+    -- Tăng số người hiện tại của phòng lên 1
+    UPDATE phong
+    SET so_luong_hien_tai = so_luong_hien_tai + 1
+    WHERE id = NEW.idphong;
+
+    -- Kiểm tra xem số người hiện tại có bằng sức chứa không
+    IF (SELECT so_luong_hien_tai FROM phong WHERE id = NEW.idphong) = (SELECT suc_chua FROM phong WHERE id = NEW.idphong) THEN
+        -- Nếu bằng, cập nhật trạng thái thành "Đủ"
+        UPDATE phong
+        SET trang_thai = 'Đủ'
+        WHERE id = NEW.idphong;
+    END IF;
+
+    -- Cộng tổng số tiền ở bảng thanh_toan khi đăng ký phòng
+    UPDATE thanh_toan
+    SET tong_so_tien = tong_so_tien + (SELECT gia FROM phong WHERE id = NEW.idphong)
+    WHERE tendangnhap = NEW.tendangnhap;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `huy_dang_ky_phong_after_delete` AFTER DELETE ON `dang_ky_phong` FOR EACH ROW BEGIN
+    -- Trừ tổng số tiền ở bảng thanh_toan khi hủy đăng ký phòng
+    UPDATE thanh_toan
+    SET tong_so_tien = GREATEST(tong_so_tien - (SELECT gia FROM phong WHERE id = OLD.id), 0)
+    WHERE tendangnhap = OLD.tendangnhap;
+
+    -- Giảm số người hiện tại của phòng xuống 1
+    UPDATE phong
+    SET so_luong_hien_tai = so_luong_hien_tai - 1
+    WHERE id = OLD.id;
+
+    -- Kiểm tra xem số người hiện tại có nhỏ hơn sức chứa không
+    IF (SELECT so_luong_hien_tai FROM phong WHERE id = OLD.id) < (SELECT suc_chua FROM phong WHERE id = OLD.id) THEN
+        -- Nếu nhỏ hơn, cập nhật trạng thái thành "Chưa đủ"
+        UPDATE phong
+        SET trang_thai = 'Chưa đủ'
+        WHERE id = OLD.id;
+    END IF;
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dang_ky_trang_thiet_bi`
+--
+
+CREATE TABLE `dang_ky_trang_thiet_bi` (
+  `id` int(11) NOT NULL,
+  `tendangnhap` varchar(255) NOT NULL,
+  `ma_trang_thiet_bi` int(11) NOT NULL,
+  `ngay_dang_ky` date NOT NULL,
+  `nguoi_tao` varchar(255) NOT NULL,
+  `ngay_tao` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Triggers `dang_ky_trang_thiet_bi`
+--
+DELIMITER $$
+CREATE TRIGGER `dang_ky_trang_thiet_bi_after_insert` AFTER INSERT ON `dang_ky_trang_thiet_bi` FOR EACH ROW BEGIN
+    -- Cộng tổng số tiền ở bảng thanh_toan khi đăng ký trang thiết bị
+    UPDATE thanh_toan
+    SET tong_so_tien = tong_so_tien + (SELECT giaThue FROM trangthietbi WHERE MaTrangThietBi = NEW.ma_trang_thiet_bi)
+    WHERE tendangnhap = NEW.tendangnhap;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `huy_dang_ky_trang_thiet_bi_after_delete` AFTER DELETE ON `dang_ky_trang_thiet_bi` FOR EACH ROW BEGIN
+    -- Trừ tổng số tiền ở bảng thanh_toan khi hủy đăng ký trang thiết bị
+    UPDATE thanh_toan
+    SET tong_so_tien = GREATEST(tong_so_tien - (SELECT giaThue FROM trangthietbi WHERE MaTrangThietBi = OLD.ma_trang_thiet_bi), 0)
+    WHERE tendangnhap = OLD.tendangnhap;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -125,7 +283,8 @@ CREATE TABLE `login` (
 
 INSERT INTO `login` (`username`, `password`, `role`, `status`) VALUES
 ('admin', 'admin123', 'admin', 1),
-('duyet', 'duyet123', 'client', 1);
+('duyet', 'duyet123', 'client', 1),
+('d', '1', 'admin', 1);
 
 -- --------------------------------------------------------
 
@@ -136,65 +295,26 @@ INSERT INTO `login` (`username`, `password`, `role`, `status`) VALUES
 CREATE TABLE `phong` (
   `id` int(11) NOT NULL,
   `ten_phong` text NOT NULL,
-  `suc_chua` text NOT NULL,
+  `suc_chua` int(11) NOT NULL,
   `id_tang` int(11) NOT NULL,
-  `gia` decimal(10,2) NOT NULL,
-  `trang_thai` text NOT NULL,
+  `gia` decimal(10,0) NOT NULL,
+  `trang_thai` text NOT NULL DEFAULT 'Chưa đủ',
   `anh_dai_dien` varchar(500) DEFAULT NULL,
   `anh_khac` varchar(1000) DEFAULT NULL,
+  `nguoi_tao` text DEFAULT NULL,
   `noi_dung` text DEFAULT NULL,
   `mo_ta` text DEFAULT NULL,
-  `nguoi_tao` text DEFAULT NULL
+  `so_luong_hien_tai` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `phong`
 --
 
-INSERT INTO `phong` (`id`, `ten_phong`, `suc_chua`, `id_tang`, `gia`, `trang_thai`, `anh_dai_dien`, `anh_khac`, `noi_dung`, `mo_ta`, `nguoi_tao`) VALUES
-(1, 'Phòng 301', '8 người', 4, 10.00, 'Sẵn Sàng', 'bg.jpeg', 'slide1.jpg', 'Dưới đây là một đoạn mô tả chi tiết về phòng kí túc xá:\r\n\r\nChào mừng bạn đến với không gian sống độc đáo và ấm cúng tại kí túc xá của chúng tôi! Tại đây, chúng tôi cam kết mang đến cho bạn không chỉ một nơi ở, mà còn là một trải nghiệm sống đáng nhớ và thú vị.\r\n\r\nPhòng Ở:\r\n\r\nChất Lượng Đỉnh Cao: Mỗi phòng ở của chúng tôi được thiết kế để mang đến sự thoải mái tối đa và cảm giác như ở nhà. Bạn sẽ tận hưởng không gian rộng lớn với trang thiết bị hiện đại và nội thất sang trọng.\r\n\r\nÁnh Sáng Tự Nhiên: Phòng được thiết kế với nhiều cửa sổ lớn để tận dụng ánh sáng tự nhiên, tạo ra một môi trường sống sáng sủa và ấm áp.\r\n\r\nTiện Ích:\r\n\r\nPhòng Tập Thể Dục: Kí túc xá có một phòng tập thể dục hiện đại với các thiết bị tập luyện đa dạng, giúp bạn duy trì phong độ và tận hưởng lối sống lành mạnh.\r\n\r\nKhu Vực Nấu Ăn Chung: Khu vực nấu ăn chung rộng lớn với các thiết bị hiện đại, nơi bạn có thể tự do sáng tạo và thưởng thức những bữa ăn ngon.\r\n\r\nAn Ninh và An Toàn:\r\n\r\nHệ Thống An Ninh: Chúng tôi đặt sự an toàn của bạn lên hàng đầu. Hệ thống an ninh 24/7 và camera giám sát giúp bảo vệ bạn và tài sản của mình.\r\nGiao Tiếp và Gặp Gỡ:\r\n\r\nKhu Vực Giao Tiếp Chung: Kí túc xá có các khu vực chung lý tưởng để bạn có thể gặp gỡ và tương tác với cộng đồng. Đây là nơi lý tưởng để kết nối với những người sống cùng và xây dựng mối quan hệ.\r\nMôi Trường Xanh:\r\n\r\nThân Thiện Với Môi Trường: Chúng tôi cam kết thực hiện các biện pháp bảo vệ môi trường. Tận dụng năng lượng tái tạo và giảm lượng rác thải, chúng tôi mong muốn tạo ra một kí túc xá thân thiện với thiên nhiên.\r\nHãy đặt chân đến và trải nghiệm không gian sống đẳng cấp và chân thành tại kí túc xá của chúng tôi. Chúng tôi mong rằng bạn sẽ tìm thấy đây là một ngôi nhà thực sự và một cộng đồng đáng sống.\r\n\r\n\r\n\r\n\r\n\r\n', 'Chào mừng bạn đến với không gian sống thoải mái và hiện đại tại kí túc xá của chúng tôi! Phòng ở của chúng tôi không chỉ là nơi nghỉ mà còn là không gian tự do, tạo điều kiện tốt nhất cho sự phát triển cá nhân và học tập.\r\n\r\nPhòng: Chúng tôi tự hào giới thiệu các phòng ở rộng rãi, sáng sủa và được trang bị đầy đủ tiện nghi. Mỗi phòng đều có cửa sổ lớn mang lại nguồn ánh sáng tự nhiên, giúp tạo nên không khí ấm cúng và thoải mái.\r\n\r\nNội thất: Phòng ở được trang bị đầy đủ nội thất, bao gồm giường thoải mái, bàn làm việc, tủ quần áo và khu vực giữ đồ cá nhân. Tất cả đều được thiết kế với sự thoải mái và tiện ích đặt lên hàng đầu.\r\n\r\nTiện ích: Kí túc xá của chúng tôi cung cấp nhiều tiện ích để đảm bảo cuộc sống hàng ngày của bạn suôn sẻ. Từ phòng tập thể dục đến khu vực nấu ăn chung, bạn sẽ có đầy đủ cơ hội để gặp gỡ và chia sẻ cùng cộng đồng.\r\n\r\nAn ninh: Chúng tôi coi trọng an ninh và sự an toàn. Hệ thống an ninh hiện đại đảm bảo rằng bạn có thể yên tâm sinh sống và làm việc trong không gian chung của chúng tôi.\r\n\r\nKhông gian xanh: Kí túc xá của chúng tôi được thiết kế với ý thức về môi trường. Chúng tôi tận dụng ánh sáng tự nhiên và có các biện pháp tiết kiệm năng lượng, giúp tạo ra môi trường sống lành mạnh và thân thiện với thiên nhiên.\r\n\r\nHãy đặt chân đến và trải nghiệm sự thoải mái, an ninh và sự gắn kết cộng đồng tại kí túc xá của chúng tôi. Chúng tôi hy vọng bạn sẽ tận hưởng mọi khoảnh khắc tại ngôi nhà mới này!', 'admin'),
-(2, 'Phòng 101', '4 người', 1, 15.00, 'Sẵn Sàng', 'sp-9.jpeg', 'sp-2.jpeg', 'Chào mừng bạn đến với không gian sống thoải mái và hiện đại tại kí túc xá của chúng tôi! Phòng ở của chúng tôi không chỉ là nơi nghỉ mà còn là không gian tự do, tạo điều kiện tốt nhất cho sự phát triển cá nhân và học tập.\r\n\r\nPhòng: Chúng tôi tự hào giới thiệu các phòng ở rộng rãi, sáng sủa và được trang bị đầy đủ tiện nghi. Mỗi phòng đều có cửa sổ lớn mang lại nguồn ánh sáng tự nhiên, giúp tạo nên không khí ấm cúng và thoải mái.\r\n\r\nNội thất: Phòng ở được trang bị đầy đủ nội thất, bao gồm giường thoải mái, bàn làm việc, tủ quần áo và khu vực giữ đồ cá nhân. Tất cả đều được thiết kế với sự thoải mái và tiện ích đặt lên hàng đầu.\r\n\r\nTiện ích: Kí túc xá của chúng tôi cung cấp nhiều tiện ích để đảm bảo cuộc sống hàng ngày của bạn suôn sẻ. Từ phòng tập thể dục đến khu vực nấu ăn chung, bạn sẽ có đầy đủ cơ hội để gặp gỡ và chia sẻ cùng cộng đồng.\r\n\r\nAn ninh: Chúng tôi coi trọng an ninh và sự an toàn. Hệ thống an ninh hiện đại đảm bảo rằng bạn có thể yên tâm sinh sống và làm việc trong không gian chung của chúng tôi.\r\n\r\nKhông gian xanh: Kí túc xá của chúng tôi được thiết kế với ý thức về môi trường. Chúng tôi tận dụng ánh sáng tự nhiên và có các biện pháp tiết kiệm năng lượng, giúp tạo ra môi trường sống lành mạnh và thân thiện với thiên nhiên.\r\n\r\nHãy đặt chân đến và trải nghiệm sự thoải mái, an ninh và sự gắn kết cộng đồng tại kí túc xá của chúng tôi. Chúng tôi hy vọng bạn sẽ tận hưởng mọi khoảnh khắc tại ngôi nhà mới này!', 'Chào mừng bạn đến với không gian sống thoải mái và hiện đại tại kí túc xá của chúng tôi! Phòng ở của chúng tôi không chỉ là nơi nghỉ mà còn là không gian tự do, tạo điều kiện tốt nhất cho sự phát triển cá nhân và học tập.\r\n\r\nPhòng: Chúng tôi tự hào giới thiệu các phòng ở rộng rãi, sáng sủa và được trang bị đầy đủ tiện nghi. Mỗi phòng đều có cửa sổ lớn mang lại nguồn ánh sáng tự nhiên, giúp tạo nên không khí ấm cúng và thoải mái.\r\n\r\nNội thất: Phòng ở được trang bị đầy đủ nội thất, bao gồm giường thoải mái, bàn làm việc, tủ quần áo và khu vực giữ đồ cá nhân. Tất cả đều được thiết kế với sự thoải mái và tiện ích đặt lên hàng đầu.\r\n\r\nTiện ích: Kí túc xá của chúng tôi cung cấp nhiều tiện ích để đảm bảo cuộc sống hàng ngày của bạn suôn sẻ. Từ phòng tập thể dục đến khu vực nấu ăn chung, bạn sẽ có đầy đủ cơ hội để gặp gỡ và chia sẻ cùng cộng đồng.\r\n\r\nAn ninh: Chúng tôi coi trọng an ninh và sự an toàn. Hệ thống an ninh hiện đại đảm bảo rằng bạn có thể yên tâm sinh sống và làm việc trong không gian chung của chúng tôi.\r\n\r\nKhông gian xanh: Kí túc xá của chúng tôi được thiết kế với ý thức về môi trường. Chúng tôi tận dụng ánh sáng tự nhiên và có các biện pháp tiết kiệm năng lượng, giúp tạo ra môi trường sống lành mạnh và thân thiện với thiên nhiên.\r\n\r\nHãy đặt chân đến và trải nghiệm sự thoải mái, an ninh và sự gắn kết cộng đồng tại kí túc xá của chúng tôi. Chúng tôi hy vọng bạn sẽ tận hưởng mọi khoảnh khắc tại ngôi nhà mới này!', 'admin');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sinhvien`
---
-
-CREATE TABLE `sinhvien` (
-  `MaSinhVien` int(11) NOT NULL,
-  `HoTen` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `NgaySinh` date DEFAULT NULL,
-  `GioiTinh` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `DiaChi` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `SoDienThoai` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `Email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `ngaytao` datetime DEFAULT current_timestamp(),
-  `nguoitao` varchar(255) NOT NULL,
-  `AnhDaiDien` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `sinhvien`
---
-
-INSERT INTO `sinhvien` (`MaSinhVien`, `HoTen`, `NgaySinh`, `GioiTinh`, `DiaChi`, `SoDienThoai`, `Email`, `ngaytao`, `nguoitao`, `AnhDaiDien`) VALUES
-(0, 'Nguyễn Thị Như Hà', '0000-00-00', 'Nữ', 'Thuỷ Nguyên - Hải Phòng', '0357164036', 'ha86093@st.vimaru.edu.vn', '0000-00-00 00:00:00', 'admin', 'AnhDaiDien');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `taikhoan`
---
-
-CREATE TABLE `taikhoan` (
-  `MaTaiKhoan` int(11) NOT NULL,
-  `MaSinhVien` int(11) DEFAULT NULL,
-  `TenDangNhap` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `MatKhau` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `QuyenTruyCap` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `TrangThai` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+INSERT INTO `phong` (`id`, `ten_phong`, `suc_chua`, `id_tang`, `gia`, `trang_thai`, `anh_dai_dien`, `anh_khac`, `nguoi_tao`, `noi_dung`, `mo_ta`, `so_luong_hien_tai`) VALUES
+(1, 'Phòng 101', 2, 1, 15, 'Chưa đủ', 'sp-3.webp', 'sp-8.webp', 'ntduyet', '<div class=\"room_additinal\">\r\n<h3>AMENITIES AND SERVICES</h3>\r\n\r\n<div class=\"row\">\r\n<div class=\"col-sm-4\">\r\n<ul>\r\n	<li>Priviliged in Bruges</li>\r\n	<li>High satisfaction</li>\r\n	<li>Unparalleded service</li>\r\n	<li>Aenean sollicitudin</li>\r\n</ul>\r\n</div>\r\n\r\n<div class=\"col-sm-4\">\r\n<ul>\r\n	<li>Priviliged in Bruges</li>\r\n	<li>High satisfaction</li>\r\n	<li>Unparalleded service</li>\r\n	<li>Aenean sollicitudin</li>\r\n</ul>\r\n</div>\r\n\r\n<div class=\"col-sm-4\">\r\n<ul>\r\n	<li>Priviliged in Bruges</li>\r\n	<li>High satisfaction</li>\r\n	<li>Unparalleded service</li>\r\n	<li>Aenean sollicitudin</li>\r\n</ul>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class=\"room_pricing\">\r\n<h3>PRICING PLANS</h3>\r\n\r\n<table class=\"room-pricing\">\r\n	<thead>\r\n		<tr>\r\n			<th>Mon</th>\r\n			<th>Tue</th>\r\n			<th>Wed</th>\r\n			<th>Thu</th>\r\n			<th>Fri</th>\r\n			<th>Sat</th>\r\n			<th>Sun</th>\r\n		</tr>\r\n	</thead>\r\n	<tbody>\r\n		<tr>\r\n			<td>$200</td>\r\n			<td>$150</td>\r\n			<td>$150</td>\r\n			<td>$100</td>\r\n			<td>$300</td>\r\n			<td>$210</td>\r\n			<td>$250</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n</div>\r\n\r\n<div class=\"clearfix room_review\" id=\"room_review\">\r\n<h3>REVIEWS</h3>\r\n\r\n<div class=\"inner\">\r\n<div class=\"avatar\"><img alt=\"\" src=\"images/blog/author1.jpg\" /></div>\r\n\r\n<div class=\"content\">\r\n<h4>David Bobby</h4>\r\n\r\n<p>Nam dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a elementum rutrum, neque sem pretium metus, quis mollis nisl nunc et massa. Vestibulum sed metus in lorem tristique ullamcorper id vitae erat. Nulla mollis sapien sollicitudin lacinia lacinia.</p>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class=\"form-review\">\r\n<h4>Add review</h4>\r\n\r\n<form action=\"#\" method=\"post\">\r\n<p>Your rating</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Your review</p>\r\n<textarea cols=\"8\" required=\"\" rows=\"5\"></textarea>Submit</form>\r\n</div>\r\n', '<p>This large suite in the courtyard adobe has a Queen-size built-in platform bed and a large indoor/outdoor stone tub with a rain shower. The suite features a full kitchen with breakfast bar, a spacious sitting area with a wood burning fireplace. The private patio offers dramatic views of the San Jacinto Mountains. The suite features a full kitchen with breakfast bar, a spacious sitting area with a wood burning fireplace. The private patio offers dramatic views of the San Jacinto Mountains.</p>\r\n\r\n<p>The suite features a full kitchen with breakfast bar, a spacious sitting area with a wood burning fireplace. The private patio offers dramatic views of the San Jacinto Mountains.</p>\r\n', NULL),
+(2, 'Phòng 102', 4, 1, 10, 'Chưa đủ', 'sp-3.webp', 'sp-8.webp', 'ntduyet', '<pre>\r\n&lt;div class=&quot;room_additinal&quot;&gt;\r\n    &lt;h3 class=&quot;title style-01&quot;&gt;AMENITIES AND SERVICES&lt;/h3&gt;\r\n    &lt;div class=&quot;row&quot;&gt;\r\n        &lt;div class=&quot;col-sm-4&quot;&gt;\r\n            &lt;ul&gt;\r\n                &lt;li&gt;&lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt;Priviliged in Bruges&lt;/li&gt;\r\n                &lt;li&gt;&lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt;High satisfaction&lt;/li&gt;\r\n                &lt;li&gt;&lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt;Unparalleded service&lt;/li&gt;\r\n                &lt;li&gt;&lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt;Aenean sollicitudin&lt;/li&gt;\r\n            &lt;/ul&gt;\r\n        &lt;/div&gt;\r\n        &lt;div class=&quot;col-sm-4&quot;&gt;\r\n            &lt;ul&gt;\r\n                &lt;li&gt;&lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt;Priviliged in Bruges&lt;/li&gt;\r\n                &lt;li&gt;&lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt;High satisfaction&lt;/li&gt;\r\n                &lt;li&gt;&lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt;Unparalleded service&lt;/li&gt;\r\n                &lt;li&gt;&lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt;Aenean sollicitudin&lt;/li&gt;\r\n            &lt;/ul&gt;\r\n        &lt;/div&gt;\r\n        &lt;div class=&quot;col-sm-4&quot;&gt;\r\n            &lt;ul&gt;\r\n                &lt;li&gt;&lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt;Priviliged in Bruges&lt;/li&gt;\r\n                &lt;li&gt;&lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt;High satisfaction&lt;/li&gt;\r\n                &lt;li&gt;&lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt;Unparalleded service&lt;/li&gt;\r\n                &lt;li&gt;&lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt;Aenean sollicitudin&lt;/li&gt;\r\n            &lt;/ul&gt;\r\n        &lt;/div&gt;\r\n    &lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;div class=&quot;room_pricing&quot;&gt;\r\n    &lt;h3 class=&quot;title style-01&quot;&gt;PRICING PLANS&lt;/h3&gt;\r\n    &lt;table class=&quot;room-pricing&quot;&gt;\r\n        &lt;thead&gt;\r\n        &lt;tr&gt;\r\n            &lt;th&gt;Mon&lt;/th&gt;\r\n            &lt;th&gt;Tue&lt;/th&gt;\r\n            &lt;th&gt;Wed&lt;/th&gt;\r\n            &lt;th&gt;Thu&lt;/th&gt;\r\n            &lt;th&gt;Fri&lt;/th&gt;\r\n            &lt;th&gt;Sat&lt;/th&gt;\r\n            &lt;th&gt;Sun&lt;/th&gt;\r\n        &lt;/tr&gt;\r\n        &lt;/thead&gt;\r\n        &lt;tbody&gt;\r\n        &lt;tr&gt;\r\n            &lt;td&gt;$200&lt;/td&gt;\r\n            &lt;td&gt;$150&lt;/td&gt;\r\n            &lt;td&gt;$150&lt;/td&gt;\r\n            &lt;td&gt;$100&lt;/td&gt;\r\n            &lt;td&gt;$300&lt;/td&gt;\r\n            &lt;td&gt;$210&lt;/td&gt;\r\n            &lt;td&gt;$250&lt;/td&gt;\r\n        &lt;/tr&gt;\r\n        &lt;/tbody&gt;\r\n    &lt;/table&gt;\r\n&lt;/div&gt;\r\n&lt;div class=&quot;room_review clearfix&quot; id=&quot;room_review&quot;&gt;\r\n    &lt;h3 class=&quot;title style-01&quot;&gt;REVIEWS&lt;/h3&gt;\r\n    &lt;div class=&quot;inner&quot;&gt;\r\n        &lt;div class=&quot;avatar&quot;&gt;\r\n            &lt;img src=&quot;images/blog/author1.jpg&quot; alt&gt;\r\n        &lt;/div&gt;\r\n        &lt;div class=&quot;content&quot;&gt;\r\n            &lt;h4&gt;David Bobby &lt;span class=&quot;rating-star&quot;&gt;&lt;/span&gt;&lt;/h4&gt;\r\n            &lt;p&gt;Nam dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a\r\n                elementum rutrum, neque sem pretium metus, quis mollis nisl nunc et massa.\r\n                Vestibulum sed metus in lorem tristique ullamcorper id vitae erat. Nulla mollis\r\n                sapien sollicitudin lacinia lacinia.&lt;/p&gt;\r\n        &lt;/div&gt;\r\n    &lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;div class=&quot;form-review&quot;&gt;\r\n    &lt;h4 class=&quot;title&quot;&gt;&lt;i class=&quot;fa fa-pencil&quot;&gt;&lt;/i&gt;Add review&lt;/h4&gt;\r\n    &lt;form action=&quot;#&quot; method=&quot;post&quot; class=&quot;room_comment&quot;&gt;\r\n        &lt;p&gt;Your rating&lt;/p&gt;\r\n        &lt;p&gt;&lt;span class=&quot;rating-star empty&quot;&gt;&lt;/span&gt;&lt;/p&gt;\r\n        &lt;p&gt;Your review&lt;/p&gt;\r\n        &lt;textarea rows=&quot;5&quot; cols=&quot;8&quot; required placeholder&gt;&lt;/textarea&gt;\r\n        &lt;button type=&quot;submit&quot; class=&quot;submit&quot;&gt;Submit&lt;/button&gt;\r\n    &lt;/form&gt;\r\n&lt;/div&gt;</pre>\r\n', '<p>This large suite in the courtyard adobe has a Queen-size built-in platform bed and a large indoor/outdoor stone tub with a rain shower. The suite features a full kitchen with breakfast bar, a spacious sitting area with a wood burning fireplace. The private patio offers dramatic views of the San Jacinto Mountains. The suite features a full kitchen with breakfast bar, a spacious sitting area with a wood burning fireplace. The private patio offers dramatic views of the San Jacinto Mountains.</p>\r\n\r\n<p>The suite features a full kitchen with breakfast bar, a spacious sitting area with a wood burning fireplace. The private patio offers dramatic views of the San Jacinto Mountains.</p>\r\n', NULL),
+(3, 'Phòng 103', 4, 1, 100, 'Chưa đủ', 'sp-5.webp', 'sp-10.webp', 'ntduyet', '<h3>AMENITIES AND SERVICES</h3>\r\n\r\n<ul>\r\n	<li>Priviliged in Bruges</li>\r\n	<li>High satisfaction</li>\r\n	<li>Unparalleded service</li>\r\n	<li>Aenean sollicitudin</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>Priviliged in Bruges</li>\r\n	<li>High satisfaction</li>\r\n	<li>Unparalleded service</li>\r\n	<li>Aenean sollicitudin</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>Priviliged in Bruges</li>\r\n	<li>High satisfaction</li>\r\n	<li>Unparalleded service</li>\r\n	<li>Aenean sollicitudin</li>\r\n</ul>\r\n\r\n<h3>PRICING PLANS</h3>\r\n\r\n<table>\r\n	<thead>\r\n		<tr>\r\n			<th>Mon</th>\r\n			<th>Tue</th>\r\n			<th>Wed</th>\r\n			<th>Thu</th>\r\n			<th>Fri</th>\r\n			<th>Sat</th>\r\n			<th>Sun</th>\r\n		</tr>\r\n	</thead>\r\n	<tbody>\r\n		<tr>\r\n			<td>$200</td>\r\n			<td>$150</td>\r\n			<td>$150</td>\r\n			<td>$100</td>\r\n			<td>$300</td>\r\n			<td>$210</td>\r\n			<td>$250</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<h3>REVIEWS</h3>\r\n\r\n<p><img alt=\"\" src=\"images/blog/author1.jpg\" /></p>\r\n\r\n<h4>David Bobby</h4>\r\n\r\n<p>Nam dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a elementum rutrum, neque sem pretium metus, quis mollis nisl nunc et massa. Vestibulum sed metus in lorem tristique ullamcorper id vitae erat. Nulla mollis sapien sollicitudin lacinia lacinia.</p>\r\n\r\n<h4>Add review</h4>\r\n\r\n<form action=\"#\" method=\"post\">\r\n<p>Your rating</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Your review</p>\r\n<textarea cols=\"8\" required=\"\" rows=\"5\"></textarea></form>\r\n', '<p>&lt;p&gt;This large suite in the courtyard adobe has a Queen-size built-in platform bed and a large indoor/outdoor stone tub with a rain shower. The suite features a full kitchen with breakfast bar, a spacious sitting area with a wood burning fireplace. The private patio offers dramatic views of the San Jacinto Mountains. The suite features a full kitchen with breakfast bar, a spacious sitting area with a wood burning fireplace. The private patio offers dramatic views of the San Jacinto Mountains.&lt;/p&gt;</p>\r\n\r\n<p>&lt;p&gt;The suite features a full kitchen with breakfast bar, a spacious sitting area with a wood burning fireplace. The private patio offers dramatic views of the San Jacinto Mountains.&lt;/p&gt;<br />\r\n&nbsp;</p>\r\n', 1);
 
 -- --------------------------------------------------------
 
@@ -222,15 +342,17 @@ INSERT INTO `tang` (`id`, `ten_tang`, `khuvuc`, `ngaytao`, `nguoitao`, `anh`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `thanhtoan`
+-- Table structure for table `thanh_toan`
 --
 
-CREATE TABLE `thanhtoan` (
-  `MaThanhToan` int(11) NOT NULL,
-  `MaSinhVien` int(11) DEFAULT NULL,
-  `NgayThanhToan` date DEFAULT NULL,
-  `TongSoTien` decimal(10,2) DEFAULT NULL,
-  `PhuongThucThanhToan` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL
+CREATE TABLE `thanh_toan` (
+  `id` int(11) NOT NULL,
+  `tendangnhap` varchar(255) NOT NULL,
+  `ngay_thanh_toan` date NOT NULL,
+  `tong_so_tien` decimal(10,2) NOT NULL,
+  `phuong_thuc_thanh_toan` varchar(255) NOT NULL,
+  `nguoi_tao` varchar(255) NOT NULL,
+  `ngay_tao` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -276,6 +398,30 @@ ALTER TABLE `client`
   ADD UNIQUE KEY `ten_nguoi_dung` (`ten_nguoi_dung`);
 
 --
+-- Indexes for table `dang_ky_dich_vu`
+--
+ALTER TABLE `dang_ky_dich_vu`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tendangnhap` (`tendangnhap`),
+  ADD KEY `id_dichvu` (`id_dichvu`);
+
+--
+-- Indexes for table `dang_ky_phong`
+--
+ALTER TABLE `dang_ky_phong`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tendangnhap` (`tendangnhap`),
+  ADD KEY `idphong` (`idphong`);
+
+--
+-- Indexes for table `dang_ky_trang_thiet_bi`
+--
+ALTER TABLE `dang_ky_trang_thiet_bi`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tendangnhap` (`tendangnhap`),
+  ADD KEY `ma_trang_thiet_bi` (`ma_trang_thiet_bi`);
+
+--
 -- Indexes for table `dichvu`
 --
 ALTER TABLE `dichvu`
@@ -306,31 +452,17 @@ ALTER TABLE `phong`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `sinhvien`
---
-ALTER TABLE `sinhvien`
-  ADD PRIMARY KEY (`MaSinhVien`);
-
---
--- Indexes for table `taikhoan`
---
-ALTER TABLE `taikhoan`
-  ADD PRIMARY KEY (`MaTaiKhoan`),
-  ADD UNIQUE KEY `MaSinhVien` (`MaSinhVien`),
-  ADD UNIQUE KEY `TenDangNhap` (`TenDangNhap`);
-
---
 -- Indexes for table `tang`
 --
 ALTER TABLE `tang`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `thanhtoan`
+-- Indexes for table `thanh_toan`
 --
-ALTER TABLE `thanhtoan`
-  ADD PRIMARY KEY (`MaThanhToan`),
-  ADD KEY `MaSinhVien` (`MaSinhVien`);
+ALTER TABLE `thanh_toan`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tendangnhap` (`tendangnhap`);
 
 --
 -- Indexes for table `trangthietbi`
@@ -346,7 +478,25 @@ ALTER TABLE `trangthietbi`
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `dang_ky_dich_vu`
+--
+ALTER TABLE `dang_ky_dich_vu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `dang_ky_phong`
+--
+ALTER TABLE `dang_ky_phong`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `dang_ky_trang_thiet_bi`
+--
+ALTER TABLE `dang_ky_trang_thiet_bi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `dichvu`
@@ -358,7 +508,7 @@ ALTER TABLE `dichvu`
 -- AUTO_INCREMENT for table `phong`
 --
 ALTER TABLE `phong`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tang`
@@ -367,20 +517,41 @@ ALTER TABLE `tang`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `thanh_toan`
+--
+ALTER TABLE `thanh_toan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `taikhoan`
+-- Constraints for table `dang_ky_dich_vu`
 --
-ALTER TABLE `taikhoan`
-  ADD CONSTRAINT `taikhoan_ibfk_1` FOREIGN KEY (`MaSinhVien`) REFERENCES `sinhvien` (`MaSinhVien`);
+ALTER TABLE `dang_ky_dich_vu`
+  ADD CONSTRAINT `dang_ky_dich_vu_ibfk_1` FOREIGN KEY (`tendangnhap`) REFERENCES `client` (`ten_nguoi_dung`),
+  ADD CONSTRAINT `dang_ky_dich_vu_ibfk_2` FOREIGN KEY (`id_dichvu`) REFERENCES `dichvu` (`id`);
 
 --
--- Constraints for table `thanhtoan`
+-- Constraints for table `dang_ky_phong`
 --
-ALTER TABLE `thanhtoan`
-  ADD CONSTRAINT `thanhtoan_ibfk_1` FOREIGN KEY (`MaSinhVien`) REFERENCES `sinhvien` (`MaSinhVien`);
+ALTER TABLE `dang_ky_phong`
+  ADD CONSTRAINT `dang_ky_phong_ibfk_1` FOREIGN KEY (`tendangnhap`) REFERENCES `client` (`ten_nguoi_dung`),
+  ADD CONSTRAINT `dang_ky_phong_ibfk_2` FOREIGN KEY (`idphong`) REFERENCES `phong` (`id`);
+
+--
+-- Constraints for table `dang_ky_trang_thiet_bi`
+--
+ALTER TABLE `dang_ky_trang_thiet_bi`
+  ADD CONSTRAINT `dang_ky_trang_thiet_bi_ibfk_1` FOREIGN KEY (`tendangnhap`) REFERENCES `client` (`ten_nguoi_dung`),
+  ADD CONSTRAINT `dang_ky_trang_thiet_bi_ibfk_2` FOREIGN KEY (`ma_trang_thiet_bi`) REFERENCES `trangthietbi` (`MaTrangThietBi`);
+
+--
+-- Constraints for table `thanh_toan`
+--
+ALTER TABLE `thanh_toan`
+  ADD CONSTRAINT `thanh_toan_ibfk_1` FOREIGN KEY (`tendangnhap`) REFERENCES `client` (`ten_nguoi_dung`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

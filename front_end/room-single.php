@@ -1,5 +1,14 @@
 <?php
-    include 'header-f.php';
+    include '../back_end/header-f.php';
+?>
+<?php
+$db = new Database();
+$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+// Lấy dữ liệu từ cơ sở dữ liệu
+$sqlphong = "SELECT * FROM phong where id = $id";
+$resultphong = $db->select($sqlphong);
+if ($resultphong->num_rows > 0) {
+while ($row = $resultphong->fetch_assoc()) {
 ?>
     <div id="main-content">
         <div class="page-title">
@@ -21,181 +30,65 @@
                 <main class="site-main col-sm-12 col-md-9 flex-first">
                     <div class="room-wrapper">
                         <div class="room_gallery clearfix">
-                            <div class="camera_wrap camera_emboss" id="camera_wrap">
-                                <div data-src="images/slides/h1-slider1.jpg"></div>
-                                <div data-src="images/slides/h1-slider3.jpg"></div>
-                                <div data-src="images/slides/h1-slider2.jpg"></div>
+                            <div class="owl-carousel">
+                                <div class="item h-100">
+                                    <img src="../assets/img/<?php echo $row['anh_dai_dien']; ?>" class="img-phong img-fluid img-responsive h-100" alt="<?php echo $row['ten_phong']; ?>">
+                                </div>
+                                <div class="item h-100">
+                                    <img src="../assets/img/<?php echo $row['anh_khac']; ?>" class="img-phong img-fluid img-responsive h-100" alt="<?php echo $row['ten_phong']; ?>">
+                                </div>
                             </div>
+                            <script>
+
+                                $(".owl-carousel").owlCarousel({
+                                    items:1,
+                                    loop:true,
+                                    margin:10,
+                                    autoplay:true,
+                                    autoplayTimeout:5000,
+                                    autoplayHoverPause:true
+                                });
+
+                            </script>
                         </div>
                         <div class="title-share clearfix">
-                            <h2 class="title">Classic Room</h2>
+                            <h2 class="title"><?php echo $row['ten_phong']; ?></h2>
                             <div class="social-share">
                                 <ul>
                                     <li><a class="link facebook" title="Facebook"
                                            href="https://www.facebook.com/sharer/sharer.php?u=#" rel="nofollow"
                                            onclick="window.open(this.href,this.title,'width=600,height=600,top=200px,left=200px');  return false;"
-                                           target="_blank"><i class="ion-social-facebook"></i></a></li>
+                                           target="_blank"><i class="fab fa-facebook"></i></a></li>
                                     <li><a class="link twitter" title="Twitter"
                                            href="https://twitter.com/intent/tweet?url=#&amp;text=TheTitleBlog"
                                            rel="nofollow"
                                            onclick="window.open(this.href,this.title,'width=600,height=600,top=200px,left=200px');  return false;"
-                                           target="_blank"><i class="ion-social-twitter"></i></a></li>
+                                           target="_blank"><i class="fab fa-twitter"></i></a></li>
                                     <li><a class="link google" title="Google" href="https://plus.google.com/share?url=#"
                                            rel="nofollow"
                                            onclick="window.open(this.href,this.title,'width=600,height=600,top=200px,left=200px');  return false;"
-                                           target="_blank"><i class="ion-social-googleplus"></i></a>
+                                           target="_blank"><i class="fab fa-google"></i></a>
                                 </ul>
                             </div>
                         </div>
                         <div class="room_price">
-                            <span class="price_value price_min">$100.0</span>
-                            <span class="unit">Night</span>
+                            <span class="price_value price_min">$<?php echo $row['gia']; ?></span>
+                            <span class="unit">Mon</span>
                         </div>
                         <div class="description">
-                            <p>This large suite in the courtyard adobe has a Queen-size built-in platform bed and a
-                                large indoor/outdoor stone tub with a rain shower. The suite features a full kitchen
-                                with breakfast bar, a spacious sitting area with a wood burning fireplace. The private
-                                patio offers dramatic views of the San Jacinto Mountains. The suite features a full
-                                kitchen with breakfast bar, a spacious sitting area with a wood burning fireplace. The
-                                private patio offers dramatic views of the San Jacinto Mountains.</p>
-                            <p>The suite features a full kitchen with breakfast bar, a spacious sitting area with a wood
-                                burning fireplace. The private patio offers dramatic views of the San Jacinto
-                                Mountains.</p>
+                            <?php echo $row['mo_ta']; ?>
                         </div>
-                        <div class="room_additinal">
-                            <h3 class="title style-01">AMENITIES AND SERVICES</h3>
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <ul>
-                                        <li><i class="fa fa-check"></i>Priviliged in Bruges</li>
-                                        <li><i class="fa fa-check"></i>High satisfaction</li>
-                                        <li><i class="fa fa-check"></i>Unparalleded service</li>
-                                        <li><i class="fa fa-check"></i>Aenean sollicitudin</li>
-                                    </ul>
-                                </div>
-                                <div class="col-sm-4">
-                                    <ul>
-                                        <li><i class="fa fa-check"></i>Priviliged in Bruges</li>
-                                        <li><i class="fa fa-check"></i>High satisfaction</li>
-                                        <li><i class="fa fa-check"></i>Unparalleded service</li>
-                                        <li><i class="fa fa-check"></i>Aenean sollicitudin</li>
-                                    </ul>
-                                </div>
-                                <div class="col-sm-4">
-                                    <ul>
-                                        <li><i class="fa fa-check"></i>Priviliged in Bruges</li>
-                                        <li><i class="fa fa-check"></i>High satisfaction</li>
-                                        <li><i class="fa fa-check"></i>Unparalleded service</li>
-                                        <li><i class="fa fa-check"></i>Aenean sollicitudin</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="room_pricing">
-                            <h3 class="title style-01">PRICING PLANS</h3>
-                            <table class="room-pricing">
-                                <thead>
-                                <tr>
-                                    <th>Mon</th>
-                                    <th>Tue</th>
-                                    <th>Wed</th>
-                                    <th>Thu</th>
-                                    <th>Fri</th>
-                                    <th>Sat</th>
-                                    <th>Sun</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>$200</td>
-                                    <td>$150</td>
-                                    <td>$150</td>
-                                    <td>$100</td>
-                                    <td>$300</td>
-                                    <td>$210</td>
-                                    <td>$250</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="room_review clearfix" id="room_review">
-                            <h3 class="title style-01">REVIEWS</h3>
-                            <div class="inner">
-                                <div class="avatar">
-                                    <img src="images/blog/author1.jpg" alt>
-                                </div>
-                                <div class="content">
-                                    <h4>David Bobby <span class="rating-star"></span></h4>
-                                    <p>Nam dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a
-                                        elementum rutrum, neque sem pretium metus, quis mollis nisl nunc et massa.
-                                        Vestibulum sed metus in lorem tristique ullamcorper id vitae erat. Nulla mollis
-                                        sapien sollicitudin lacinia lacinia.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-review">
-                            <h4 class="title"><i class="fa fa-pencil"></i>Add review</h4>
-                            <form action="#" method="post" class="room_comment">
-                                <p>Your rating</p>
-                                <p><span class="rating-star empty"></span></p>
-                                <p>Your review</p>
-                                <textarea rows="5" cols="8" required placeholder></textarea>
-                                <button type="submit" class="submit">Submit</button>
-                            </form>
-                        </div>
+                        <?php echo $row['noi_dung']; ?>
                     </div>
                 </main>
                 <aside id="secondary" class="widget-area col-sm-12 col-md-3 sticky-sidebar">
                     <div class="wd wd-book-room">
                         <a href="#" class="book-room">Book This Room</a>
-                        <div id="form-popup-room" class="form-popup-room">
-                            <div class="popup-container">
-                                <a href="#" class="close-popup"><i class="ion-android-close"></i></a>
-                                <form id="hotel-popup-results" name="hb-search-single-room" class="hotel-popup-results">
-                                    <div class="room-head">
-                                        <h3 class="room-title">Classic Room</h3>
-                                        <p class="description">Please enter the information to complete the book this
-                                            room.</p>
-                                    </div>
-                                    <div class="search-room-popup">
-                                        <ul class="form-table clearfix">
-                                            <li class="form-field">
-                                                <input type="text" name="name" id="name" required class="name"
-                                                       placeholder="Your Name*">
-                                            </li>
-                                            <li class="form-field">
-                                                <input type="email" name="email" id="email" required class="email"
-                                                       placeholder="Your Email*">
-                                            </li>
-                                            <li class="form-field">
-                                                <input type="tel" name="phone" id="phone" required class="phone"
-                                                       placeholder="Your Phone*">
-                                            </li>
-                                            <li class="form-field">
-                                                <input type="text" name="add" id="add" required class="add"
-                                                       placeholder="Your Address*">
-                                            </li>
-                                            <li class="form-field">
-                                                <input type="text" name="check_in_date" id="popup_check_in_date"
-                                                       required class="check_in_date" placeholder="Arrival Date">
-                                            </li>
-                                            <li class="form-field">
-                                                <input type="text" name="check_out_date" id="popup_check_out_date"
-                                                       required class="check_out_date " placeholder="Departure Date">
-                                            </li>
-                                            <li class="form-field room-submit">
-                                                <button id="check_date" class="submit" type="submit">Book Now</button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
                     </div>
                     <div class="wd wd-check-room">
-                        <h3 class="title">CHECK AVAILABILITY</h3>
+                        <h3 class="title">ĐĂNG KÝ</h3>
                         <form name="search-rooms" class="wd-search-room datepicker"
-                              action="https://html.thimpress.com/hotelwp/rooms-search.html">
+                              action="process_booking.php?id=<?php echo $row['id']; ?>" method="post">
                             <ul class="form-table">
                                 <li class="form-field">
                                     <input type="text" name="check_in_date" id="check_in_date" required
@@ -205,23 +98,9 @@
                                     <input type="text" name="check_out_date" id="check_out_date" required
                                            class="check_out_date " placeholder="Check out">
                                 </li>
-                                <li class="select-field">
-                                    <select name="adults_capacity" required>
-                                        <option value>Guest</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                    </select>
-                                </li>
                             </ul>
                             <div class="room-submit">
-                                <button class="submit" type="submit">Check Availability</button>
+                                <button class="submit" type="submit">ĐĂNG KÝ PHÒNG</button>
                             </div>
                         </form>
                     </div>
@@ -248,7 +127,7 @@
                     <div class="col-sm-6">
                         <div class="widget-text">
                             <div class="footer-location">
-                                <img src="images/logo1-footer.png" alt>
+                                <img src="../assets/img/logo-f.png" alt>
                                 <p>You have questions regarding our services? Contact us, we will be happy to help you
                                     out!</p>
                                 <ul class="info">
@@ -320,22 +199,24 @@
     <i class="ion-ios-arrow-up" aria-hidden="true"></i>
 </div>
 
-<script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-<script src="js/libs/jquery-1.12.4.min.js"></script>
+<script src="../assets/js/js-front/libs/stellar.min.js"></script>
 <script src="../assets/js/js-front/libs/bootstrap.min.js"></script>
 <script src="../assets/js/js-front/libs/smoothscroll.min.js"></script>
 <script src="../assets/js/js-front/libs/owl.carousel.min.js"></script>
 <script src="../assets/js/js-front/libs/jquery.magnific-popup.min.js"></script>
 <script src="../assets/js/js-front/libs/theia-sticky-sidebar.min.js"></script>
 <script src="../assets/js/js-front/libs/counter-box.min.js"></script>
-<script src="../assets/js/js-front/libs/stellar.min.js"></script>
+<script src="../assets/js/js-front/libs/jquery.flexslider-min.js"></script>
+<script src="../assets/js/js-front/libs/jquery.thim-content-slider.min.js"></script>
+<script src="../assets/js/js-front/libs/gallery.min.js"></script>
 <script src="../assets/js/js-front/libs/moment.min.js"></script>
 <script src="../assets/js/js-front/libs/jquery-ui.min.js"></script>
 <script src="../assets/js/js-front/libs/daterangepicker.min.js"></script>
 <script src="../assets/js/js-front/libs/daterangepicker.min-date.min.js"></script>
-<script src="../assets/js/js-front/libs/jquery.thim-content-slider.min.js"></script>
 <script src="../assets/js/js-front/theme-customs.js"></script>
 </body>
 
 <!-- Mirrored from html.thimpress.com/hotelwp/room-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 13 Dec 2023 07:09:29 GMT -->
 </html>
+
+<?php }} ?>

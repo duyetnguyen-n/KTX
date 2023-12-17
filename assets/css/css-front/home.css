@@ -804,5 +804,6 @@ body.home .sc-heading.style-01 {
     position: relative;
     max-height: 700px;
     overflow: hidden;
+    width: 100%;
 }
 

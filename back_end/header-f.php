@@ -1,6 +1,10 @@
+<?php
+session_start();
+include '../config/database.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <!-- Mirrored from html.thimpress.com/hotelwp/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 13 Dec 2023 07:07:43 GMT -->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -13,6 +17,11 @@
     <link rel="stylesheet" href="../assets/css/css-front/style.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="../assets/plugins/OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="../assets/plugins/fontawesome/js/fontawesome.min.js">
+    <link rel="stylesheet" type="text/css" href="../assets/plugins/fontawesome/css/all.min.css">
+    <script type="text/javascript" src="../assets/js/duyet.js"></script>
+    <link rel="stylesheet" href="../assets/css/duyet.css">
+
 </head>
 <body class="demo-1 home">
 <!--<div id="preloading">-->
@@ -61,7 +70,7 @@
                             </div>
                             <ul class="top-menu">
                                 <li class="menu-item"><a href="shop.html">Our Story</a></li>
-                                <li class="menu-item"><a href="blog.html">News & Awards</a></li>
+                                <li class="menu-item"><a href="../front_end/blog.html">News & Awards</a></li>
                                 <li class="menu-item"><a href="gallery.html">Gallery</a></li>
                             </ul>
 
@@ -77,7 +86,7 @@
 
                         </li>
                         <li class="menu-item has-children">
-                            <a href="blog.html">Blog</a>
+                            <a href="../front_end/blog.html">Blog</a>
                         </li>
                         <li class="menu-item has-children">
                             <a href="events.html">Events</a>
@@ -86,66 +95,59 @@
                         <li class="menu-item has-children">
                             <a href="#">Features</a>
                         </li>
-                        <li class="menu-item"><a href="contact.html">Contact</a></li>
+                        <li class="menu-item"><a href="../front_end/contact.html">Contact</a></li>
                     </ul>
                     <div class="header-right">
-                        <?php
-                        session_start();
-                        include '../config/database.php';
-                        ?>
-
                         <?php if (empty($_SESSION['username'])) { ?>
-                            <a href="../back_end/dang_nhap.html" class="btn-book">SIGN IN</a>
+                            <a href="../back_end/dang_nhap.html" class="btn-book"><?php echo $_SESSION['username'];?></a>
                         <?php } else {
                             $db = new Database();
                             $usn = $_SESSION['username'];
 
                             // Lấy thông tin người dùng từ cơ sở dữ liệu
-                            $sql = "SELECT anh_dai_dien, mat_khau FROM client WHERE ten_nguoi_dung = '$usn'";
+                            $sql = "SELECT anh_dai_dien FROM client WHERE ten_nguoi_dung = '$usn'";
                             $result = $db->select($sql);
 
                             if ($result->num_rows == 1) {
                                 $user = $result->fetch_assoc();
-                                $anh_dai_dien = $user['anh_dai_dien'];
+                                $anh_dai_dien = $user['anh_dai_dien'];?>
 
-                                // Hiển thị thông tin người dùng nếu mật khẩu hợp lệ
-                                if (password_verify($user['mat_khau'], $_SESSION['hashed_password'])) {
-                                    ?>
-                                    <li>
-                                        <div class="content-header mr-3">
-                                            <img class="avatar" src="../assets/img/<?php echo $anh_dai_dien ?>" alt="avatar">
-                                            <div class="content-avatar-header">
-                                                <div class="img-info d-flex">
-                                                    <img class="avatar-info mr-3" src="../assets/img/<?php echo $anh_dai_dien ?>" alt="avatar">
-                                                    <div class="name-and-quyen">
-                                <span class="name-admin">
-                                    <?php echo $_SESSION['username'] ?>
-                                </span>
-                                                        <span class="quyen">
-                                    <?php echo $_SESSION['role'] ?>
-                                </span>
-                                                    </div>
-                                                </div>
-                                                <div class="profile-and-setting">
-                                                    <div class="profile d-flex">
-                                                        <i class="fas fa-user mr-2"></i>
-                                                        <a href="main.php" class="content-item">My profile</a>
-                                                    </div>
-                                                    <div class="profile d-flex">
-                                                        <i class="fas fa-cog mr-2"></i>
-                                                        <a href="main.php" class="content-item">Settings</a>
-                                                    </div>
-                                                </div>
-                                                <div class="profile log-out d-flex">
-                                                    <i class="fas fa-sign-out-alt mr-2 text-danger"></i>
-                                                    <a href="log-out.php" class="content-item text-danger">Log-out</a>
+                                    <div class="content-header mr-3">
+                                        <img class="avatar" src="../assets/img/<?php echo $anh_dai_dien ?>" alt="avatar">
+                                        <div class="content-avatar-header">
+                                            <div class="img-info d-flex">
+                                                <img class="avatar-info mr-3" src="../assets/img/<?php echo $anh_dai_dien ?>" alt="avatar">
+                                                <div class="name-and-quyen">
+                                                    <span class="name-admin">
+                                                        <?php echo $_SESSION['username'] ?>
+                                                    </span>
+                                                    <span class="quyen">
+                                                        <?php echo $_SESSION['role'] ?>
+                                                     </span>
                                                 </div>
                                             </div>
+                                            <div class="profile-and-setting">
+                                                <div class="profile d-flex">
+                                                    <i class="fas fa-user mr-2"></i>
+                                                    <a href="../front_end/main.php" class="content-item">My profile</a>
+                                                </div>
+                                                <div class="profile d-flex">
+                                                    <i class="fas fa-shopping-cart mr-2"></i>
+                                                    <a href="../front_end/thanh-toan.php" class="content-item">Rỏ hàng</a>
+                                                </div>
+                                                <div class="profile d-flex">
+                                                    <i class="fas fa-cog mr-2"></i>
+                                                    <a href="../front_end/main.php" class="content-item">Settings</a>
+                                                </div>
+                                            </div>
+                                            <div class="profile log-out d-flex">
+                                                <i class="fas fa-sign-out-alt mr-2 text-danger"></i>
+                                                <a href="../front_end/log-out.php" class="content-item text-danger">Log-out</a>
+                                            </div>
                                         </div>
-                                    </li>
-                                    <?php
-                                }
-                            }
+                                    </div>
+
+                            <?php }
                         } ?>
                     </div>
                 </div>
@@ -164,7 +166,7 @@
                     <a href="rooms.html">Rooms</a>
                 </li>
                 <li class="menu-item has-children">
-                    <a href="blog.html">Blog</a>
+                    <a href="../front_end/blog.html">Blog</a>
                 </li>
                 <li class="menu-item has-children">
                     <a href="events.html">Events</a>
@@ -174,7 +176,7 @@
                 </li>
                 <li class="menu-item has-children"><a href="gallery.html">Gallery</a>
                 </li>
-                <li class="menu-item"><a href="contact.html">Contact</a></li>
+                <li class="menu-item"><a href="../front_end/contact.html">Contact</a></li>
             </ul>
         </div>
     </nav>

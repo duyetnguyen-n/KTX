@@ -1,5 +1,5 @@
 <?php
-    include 'header-f.php';
+    include '../back_end/header-f.php';
 ?>
 <!--    <img src="../assets/img/img-front/slides/h1-slider1.jpg" alt="a">-->
     <div id="main-content" class="main-content">
@@ -219,7 +219,6 @@
                         <div class="sc-posts style-01 auto-height">
                             <div class="item row">
                                 <?php
-                                include '../config/database.php';
                                 $db = new Database();
                                 $sqldichvu = "SELECT * FROM dichvu";
                                 $resultdichvu = $db->select($sqldichvu);
@@ -311,7 +310,7 @@
                                                     </div>
                                                     <div class="room-summary">
                                                         <h3 class="room-title">
-                                                            <a href="room-single.php"><?php echo $row['ten_phong']; ?></a>
+                                                            <a href="room-single.php?id=<?php echo $row['id']; ?>"><?php echo $row['ten_phong']; ?></a>
                                                         </h3>
                                                         <div class="room-price">From: <span class="price">$<?php echo $row['gia']; ?></span></div>
                                                         <p class="room-description">

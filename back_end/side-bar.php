@@ -156,10 +156,10 @@
                 </li>
                 <ul class="item-7-sub item-sub">
                     <li class="mb-2">
-                        <a href="">List user</a>
+                        <a href="list-user.php">List user</a>
                     </li>
                     <li class="mb-2">
-                        <a href="">Add user</a>
+                        <a href="add-admin.php">Add user</a>
                     </li>
                 </ul>
                 <li class="item-8 item">
