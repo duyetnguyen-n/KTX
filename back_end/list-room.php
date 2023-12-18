@@ -83,7 +83,7 @@ if(empty($_SESSION['username'])){
                                         <td><input type="checkbox" name="check_daughter"></td>
                                         <td class="d-flex align-items-center"><img class="img-fluid img-responsive mr-2" height="10" width="10" src="../assets/img/<?php echo $row['anh_dai_dien']; ?>" alt="Phong ki tuc xa"> <?php echo $row['ten_phong']; ?></td>
                                         <td><span>$</span><?php echo $row['gia']; ?></td>
-                                        <td><?php echo $row['suc_chua']; ?></td>
+                                        <td><?php echo $row['so_luong_hien_tai']; ?>/<?php echo $row['suc_chua']; ?></td>
                                         <td><span class="mr-1">Tầng</span><?php echo $row['id_tang']; ?></td>
                                         <td><?php echo $row['trang_thai']; ?></td>
                                         <td><?php echo $row['nguoi_tao'] ?></td>

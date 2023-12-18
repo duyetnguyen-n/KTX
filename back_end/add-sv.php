@@ -27,15 +27,16 @@
         $email = $_POST["email"];
         $so_dien_thoai = $_POST["so_dien_thoai"];
 
-    // Xử lý ảnh đại diện
-    $anh_dai_dien = $_FILES["anh_dai_dien"]["name"];
-    $anh_dai_dien_tmp = $_FILES["anh_dai_dien"]["tmp_name"];
-    move_uploaded_file($anh_dai_dien_tmp, "../assets/img/$anh_dai_dien");
+        // Xử lý ảnh đại diện
+        $anh_dai_dien = $_FILES["anh_dai_dien"]["name"];
+        $anh_dai_dien_tmp = $_FILES["anh_dai_dien"]["tmp_name"];
+        move_uploaded_file($anh_dai_dien_tmp, "../assets/img/$anh_dai_dien");
 
+        $hashed_password = password_hash($mat_khau, PASSWORD_DEFAULT);
 
         // Thực hiện câu lệnh SQL thêm phòng
         $sql = "INSERT INTO client (ma_sinh_vien, ten_nguoi_dung, mat_khau, ho_ten, email, so_dien_thoai, trang_thai, anh_dai_dien)
-            VALUES ('$ma_sinh_vien', '$ten_tai_khoan', '$mat_khau', '$ho_va_ten', '$email', '$so_dien_thoai', 'sẵn sàng', '$anh_dai_dien')";
+            VALUES ('$ma_sinh_vien', '$ten_tai_khoan', '$hashed_password', '$ho_va_ten', '$email', '$so_dien_thoai', 'sẵn sàng', '$anh_dai_dien')";
 
     if ($db->insert($sql)) {
         echo '<script>alert("Thêm sinh viên thành công!"); window.location.href = "list-sv.php";</script>';
@@ -49,8 +50,8 @@
         <div class="col-12 container-content">
             <div class="header-content pb-3">
             <div class="title-content">
-                    <h3 class="m-0 strong">Thêm sinh viên</h3>
-                    <div class="span">Quản lý sinh viên</div>
+                    <h3 class="m-0 strong">Thêm khách hàng</h3>
+                    <div class="span">Quản lý khách hàng</div>
                 </div>
             </div>
             <div class="content-add-room col-12">

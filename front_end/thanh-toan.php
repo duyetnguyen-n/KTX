@@ -13,7 +13,7 @@ $tendangnhap = $_SESSION['username'];
 $db = new Database();
 
 // Lấy thông tin từ các bảng
-$sqlPhong = "SELECT dp.*, p.ten_phong, p.gia FROM dang_ky_phong dp
+$sqlPhong = "SELECT dp.*, p.* FROM dang_ky_phong dp
              INNER JOIN phong p ON dp.idphong = p.id
              WHERE dp.tendangnhap='$tendangnhap'";
 $resultPhong = $db->select($sqlPhong);
@@ -57,28 +57,32 @@ $resultTrangThietBi = $db->select($sqlTrangThietBi);
             <!-- Thông tin về các phòng -->
             <?php
             if ($resultPhong->num_rows > 0) {
-                while ($row = $resultPhong->fetch_assoc()) {?>
+                while($phong = $resultPhong->fetch_assoc()){
+                ?>
                     <div class="boxs-thanh-toan">
                         <div class="row">
-                            <div class="col-4">
-                                <img src="../assets/img/<?php echo $row['anh_dai_dien'];?>" alt="img">
+                            <div class="col-4 col-md-3">
+                                <img src="../assets/img/<?php echo $phong['anh_dai_dien'];?>" alt="img">
                             </div>
-                            <div class="col-8">
+                            <div class="col-8 col-md-9 d-flex align-items-center">
                                 <div class="row">
-                                    <div class="col-8">
-                                        <h2><?php echo $row['ten_phong'];?></h2>
-                                        <p><?php echo $row['ten_phong'];?></p>
+                                    <div class="col-8 content-center">
+                                        <h2><?php echo $phong['ten_phong'];?></h2>
+                                        <span><?php echo $phong['ngay_tao'];?></span>
                                         <p>
                                             <?php
-                                            if (mb_strlen($row['mo_ta'], 'UTF-8') > 100) {
-                                                $mo_ta = mb_substr($row['mo_ta'], 0, 100, 'UTF-8') . '...';
+                                            if (mb_strlen($phong['mo_ta'], 'UTF-8') > 100) {
+                                                $mo_ta = mb_substr($phong['mo_ta'], 0, 100, 'UTF-8') . '...';
                                             }
                                             echo $mo_ta;
                                             ?>
                                         </p>
                                     </div>
-                                    <div class="col-4">
-
+                                    <div class="col-4 content-right d-flex align-items-center">
+                                        <div class="content">
+                                            <h2 class="gia">$<?php echo $phong['gia'];?></h2>
+                                            <span><?php echo $phong['tu_ngay'];?> --></span><span><?php echo $phong['den_ngay'];?></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -96,9 +100,34 @@ $resultTrangThietBi = $db->select($sqlTrangThietBi);
             <!-- Thông tin về các dịch vụ đăng ký -->
             <?php
             if ($resultDichVu->num_rows > 0) {
-                while ($row = $resultDichVu->fetch_assoc()) {
-                    echo "<p>{$row['ten_dv']} - {$row['gia']}</p>";
-                }
+                while ($row = $resultDichVu->fetch_assoc()) {?>
+                    <div class="boxs-thanh-toan">
+                        <div class="row">
+                            <div class="col-4 col-md-3">
+                                <img src="../assets/img/<?php echo $row['anh_dai_dien'];?>" alt="img">
+                            </div>
+                            <div class="col-8 col-md-9 d-flex align-items-center">
+                                <div class="row">
+                                    <div class="col-8 content-center">
+                                        <h2><?php echo $row['ten_dv'];?></h2>
+                                        <span><?php echo $row['ngay_dang_ky'];?></span>
+                                        <p>
+                                            Dịch vụ của chúng tôi quá là oke rồi tôi có thể
+                                            đảm bảo điều ấy nếu bạn có thể tìm thấy chỗ nào oke hơn bảo
+                                            tôi hoàn tiền .
+                                        </p>
+                                    </div>
+                                    <div class="col-4 content-right d-flex align-items-center">
+                                        <div class="content">
+                                            <h2 class="gia">$<?php echo $row['gia'];?></h2>
+                                            <span><?php echo $phong['ngay_tao'];?> </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php }
             } else {
                 echo "<p>Không có dịch vụ nào được đăng ký</p>";
             }
@@ -110,9 +139,34 @@ $resultTrangThietBi = $db->select($sqlTrangThietBi);
             <!-- Thông tin về các trang thiết bị đăng ký -->
             <?php
             if ($resultTrangThietBi->num_rows > 0) {
-                while ($row = $resultTrangThietBi->fetch_assoc()) {
-                    echo "<p>{$row['TenTrangThietBi']} - {$row['GiaThue']}</p>";
-                }
+                while ($row = $resultTrangThietBi->fetch_assoc()) {?>
+                    <div class="boxs-thanh-toan">
+                        <div class="row">
+                            <div class="col-4 col-md-3">
+                                <img src="../assets/img/<?php echo $row['AnhTrangThietBi'];?>" alt="img">
+                            </div>
+                            <div class="col-8 col-md-9 d-flex align-items-center">
+                                <div class="row">
+                                    <div class="col-8 content-center">
+                                        <h2><?php echo $row['TenTrangThietBi'];?></h2>
+                                        <span><?php echo $row[''];?></span>
+                                        <p>
+                                            Dịch vụ của chúng tôi quá là oke rồi tôi có thể
+                                            đảm bảo điều ấy nếu bạn có thể tìm thấy chỗ nào oke hơn bảo
+                                            tôi hoàn tiền .
+                                        </p>
+                                    </div>
+                                    <div class="col-4 content-right d-flex align-items-center">
+                                        <div class="content">
+                                            <h2 class="gia">$<?php echo $row['gia'];?></h2>
+                                            <span><?php echo $phong['ngay_tao'];?> </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php }
             } else {
                 echo "<p>Không có trang thiết bị nào được đăng ký</p>";
             }

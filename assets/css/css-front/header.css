@@ -47,6 +47,7 @@ header#masthead .mobile-logo, header#masthead .retina-logo {
 }
 .weather img {
     height: 30px;
+    width: 30px;
 }
 
 .toolbar-right >div,

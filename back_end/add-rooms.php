@@ -44,7 +44,7 @@
         echo '<script>alert("Lỗi khi thêm phòng: ' . $db->getError() . '");</script>';    }
     }
     ?>
-    <div class="col-md-9">
+    <div class="col-md-9 main-content">
         <div class="col-12 container-content">
             <div class="header-content pb-3">
                 <div class="title-content">
@@ -124,6 +124,20 @@
         <script>
             CKEDITOR.replace( 'mo_ta' );
             CKEDITOR.replace( 'noi_dung' );
+        </script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                // Thay đổi chiều cao của main content khi cửa sổ thay đổi kích thước
+                $(window).resize(function() {
+                    var windowHeight = $(window).height();
+                    $('.main-content').css('height', windowHeight + 'px');
+                });
+
+                // Kích thước ban đầu của main content
+                var initialHeight = $(window).height();
+                $('.main-content').css('height', initialHeight + 'px');
+            });
         </script>
     </body>
     </html>

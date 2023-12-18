@@ -52,8 +52,7 @@ if (empty($_SESSION['username'])) {
             // Giữ nguyên ảnh đại diện cũ
             $newanh_dai_dien = $anh_dai_dien;
         }
-
-       
+        $hashed_password = password_hash($newmat_khau, PASSWORD_DEFAULT);
 
         // ... (your existing code)
 
@@ -62,7 +61,7 @@ if (empty($_SESSION['username'])) {
                     ma_sinh_vien='$newma_sinh_vien',
                     ten_nguoi_dung='$newten_nguoi_dung', 
                     ho_ten='$newho_ten', 
-                    mat_khau='$newmat_khau', 
+                    mat_khau='$hashed_password', 
                     email='$newemail', 
                     so_dien_thoai='$newso_dien_thoai', 
                     trang_thai='$newtrang_thai', 
@@ -105,23 +104,25 @@ if ($db->update($sql)) {
                     </div>
                     <div class="col-12 col-md-4 p-2">
                         <label for="mat_khau">Mật khẩu</label>
-                        <input type="text" id="mat_khau" name="mat_khau" class="form-control" value="<?php echo $mat_khau; ?>" required>
+                        <input type="password" id="mat_khau" name="mat_khau" class="form-control" value="<?php echo $mat_khau; ?>" required>
                     </div>
-                    <div class="col-12 p-2">
+                    <div class="col-12 col-md-4 p-2">
+                        <label for="trang_thai">Trạng thái:</label>
+                        <select id="trang_thai" name="trang_thai" class="form-control" required>
+                            <option value="san_sang" <?php echo ($trang_thai == 'sắn sàng') ? 'selected' : ''; ?>>sẵn sàng</option>
+                            <option value="bi_khoa" <?php echo ($trang_thai == 'bị khóa') ? 'selected' : ''; ?>>bị khóa</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-6 p-2">
                         <label for="email">Email</label>
                         <input type="text" id="email" name="email" class="form-control" value ="<?php echo $email; ?>" required>
                         
                     </div>
-                    <div class="col-12 p-2">
+                    <div class="col-12 col-md-6 p-2">
                         <label for="so_dien_thoai">Số điện thoại</label>
                         <input type="text" id="so_dien_thoai" name="so_dien_thoai" class="form-control" value ="<?php echo $so_dien_thoai; ?>" required>
                     </div>
-                    <div class="col-12 col-md-4 p-2">
-                        <label for="trang_thai">Trạng thái:</label>
-                        <input type="text" id="trang_thai" name="trang_thai" class="form-control" value="<?php echo $trang_thai; ?>" required>
-                    </div>
-                    
-                   
+
                     <!-- Images 1 area -->
                     <div class="col-12 p-2">
                         <label>Ảnh đại diện:</label>

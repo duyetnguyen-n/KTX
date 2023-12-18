@@ -18,17 +18,15 @@
     $ten = $_POST["ten"];
     $maloaitrangthietbi = $_POST["maloaitrangthietbi"];
     $gia = $_POST["gia"];
-    $ngaytao = $_POST["ngaytao"];
     $anh = $_POST["anh"];
-    $nguoitao = $_SESSION['username'];
     // Xử lý ảnh đại diện
     $anh = $_FILES["anh"]["name"];
     $anh_dai_dien_tmp = $_FILES["anh"]["tmp_name"];
     move_uploaded_file($anh_dai_dien_tmp, "../assets/img/$anh");
 
         // Thực hiện câu lệnh SQL thêm tầng
-        $sql = "INSERT INTO trangthietbi (ten, maloaitrangthietbi, gia, nguoitao, ngaytao, anh)
-    VALUES ('$ten','$maloaitrangthietbi', '$gia','$nguoitao', '$ngaytao','$anh')";
+        $sql = "INSERT INTO trangthietbi (ten, maloaitrangthietbi, gia, anh)
+    VALUES ('$ten','$maloaitrangthietbi', '$gia','$anh')";
 
     if ($db->insert($sql)) {
         echo '<script>alert("Thêm loại trang thiết bị thành công!"); window.location.href = "list-trangthietbi.php";</script>';
@@ -55,18 +53,63 @@
 
                         <div class="col-12 col-md-6 p-2">
                             <label for="gia">Giá</label>
-                            <input type="text" id="gia" name="maloaitrangthietbi" class="form-control" required>
+                            <input type="text" id="gia" name="gia" class="form-control" required>
                         </div>
 
                         <div class="col-12 col-md-6 p-2">
-                            <label for="ten">Ngày tạo</label>
-                            <input type="text" id="ngaytao" name="ngaytao" class="form-control" required>
-                        </div>
+                            <label for="maloaitrangthietbi"></label>
+                            <select id="maloaitrangthietbi" name="maloaitrangthietbi" class="form-control" required>
+                                <?php
+                                // Lấy dữ liệu từ cơ sở dữ liệu
+                                $sqlphong = "SELECT * FROM phong";
+                                $resultphong = $db->select($sqlphong);
+                                ?>
 
-                        <div class="col-12 col-md-6 p-2">
-                            <label for="ten">Người tạo</label>
-                            <input type="text" id="nguoitao" name="nguoitao" class="form-control" required>
-                        </div>
+                                <?php
+                                // Số lượng khối cần hiển thị
+                                $blocksToShow = 3;
+                                $blockCount = 0;
+
+                                if ($resultphong->num_rows > 0) {
+                                    while ($row = $resultphong->fetch_assoc()) {
+                                        if ($blockCount >= $blocksToShow) {
+                                            break;
+                                        }
+                                        // Tăng biến đếm
+                                        $blockCount++;
+                                        ?>
+                                        <div class="room col-sm-4 clearfix">
+                                            <div class="room-item">
+                                                <div class="room-media">
+                                                    <a href="room-single.php?id=<?php echo $row['id']; ?>"><img src="../assets/img/<?php echo $row['anh_dai_dien']; ?>" alt="img" class="img-fluid"></a>
+                                                </div>
+                                                <div class="room-summary">
+                                                    <h3 class="room-title">
+                                                        <a href="room-single.php?id=<?php echo $row['id']; ?>"><?php echo $row['ten_phong']; ?></a>
+                                                    </h3>
+                                                    <div class="room-price">From: <span class="price">$<?php echo $row['gia']; ?></span></div>
+                                                    <p class="room-description">
+                                                        <?php
+                                                        if (mb_strlen($row['mo_ta'], 'UTF-8') > 100) {
+                                                            $mo_ta = mb_substr($row['mo_ta'], 0, 100, 'UTF-8') . '...';
+                                                        }
+                                                        echo $mo_ta;
+                                                        ?>
+                                                    </p>
+                                                    <div class="room-meta clearfix">
+                                                        <div class="comment-count">1 Reviews</div>
+                                                        <div class="rating"><span class="star"></span>(5/5)</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php
+                                    }
+                                }
+                                ?>
+                                <option value="san_sang" <?php echo ($trang_thai == 'sắn sàng') ? 'selected' : ''; ?>>sẵn sàng</option>
+                                <option value="bi_khoa" <?php echo ($trang_thai == 'bị khóa') ? 'selected' : ''; ?>>bị khóa</option>
+                            </select>                        </div>
 
                         <div class="col-12 p-2">
                             <label>Ảnh đại diện</label>

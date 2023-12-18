@@ -49,18 +49,18 @@ include '../config/database.php';
                     </div>
                 </div>
                 <div class="width-logo sm-logo table-cell text-center">
-                    <a href="index.html" class="no-sticky-logo" title="Hotel HTML Template">
+                    <a href="../front_end/main2.php" class="no-sticky-logo" title="Hotel HTML Template">
                         <img class="logo" src="../assets/img/logo-f.png" alt>
                         <img class="mobile-logo" src="../assets/img/logo-f.png" alt>
                     </a>
-                    <a href="index.html" class="sticky-logo">
+                    <a href="../front_end/main2.php" class="sticky-logo">
                         <img src="../assets/img/logo-f.png" alt>
                     </a>
                 </div>
                 <div class="width-navigation navigation table-cell">
                     <div class="top-toolbar clearfix">
-                        <div class="toolbar-info pull-left col-sm-4">
-                            <i class="ion-ios-telephone"></i> <span class="label">Need help? Call us now:</span>
+                        <div class="toolbar-info pull-left col-sm-4 d-flex">
+                            <i class="fas fa-phone-alt mr-2"></i> <span class="label">Need help? Call us now:</span>
                             <a class="value" href="tel:+88123456789"> (+88) 12 345 6789</a>
                         </div>
                         <div class="toolbar-right pull-right col-sm-8">
@@ -78,11 +78,11 @@ include '../config/database.php';
                     </div>
                     <ul class="nav main-menu">
                         <li class="menu-item has-children">
-                            <a href="index.html">Home</a>
+                            <a href="../front_end/main2.php">Home</a>
 
                         </li>
                         <li class="menu-item has-children">
-                            <a href="rooms.html">Rooms</a>
+                            <a href="../front_end/rooms.php">Rooms</a>
 
                         </li>
                         <li class="menu-item has-children">

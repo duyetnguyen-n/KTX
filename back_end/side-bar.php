@@ -7,14 +7,10 @@
             </div>
             <div class="logo m-2">
                 <a href="">
-                    <img src="../assets/img/logo.png" alt="Logo">
+                    <img src="../assets/img/logo-f.png" alt="Logo">
                 </a>
             </div>
-            <div class="title-logo">
-                <span class="m-0">TRƯỜNG ĐẠI HỌC HÀNG HẢI VIỆT NAM</span>
-                <span class="m-0">VIETNAM MARITIME UNIVERSITY</span>
-            </div>
-            <a id="toggle_btn" href="javascript:void(0);" class="active"></a>
+
         </div>
         <div class="menu-sidebar">
             <ul class="list-item">
@@ -139,10 +135,10 @@
                 </li>
                 <ul class="item-6-sub item-sub">
                     <li class="mb-2">
-                        <a href="">List pay</a>
+                        <a href="list-pay.php">List pay</a>
                     </li>
                     <li class="mb-2">
-                        <a href="">New pay</a>
+                        <a href="add-pay.php">New pay</a>
                     </li>
                 </ul>
                 <li class="item-7 item">

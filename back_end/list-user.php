@@ -12,8 +12,8 @@ if(empty($_SESSION['username'])){
         <div class="col-12 container-content">
             <div class="header-content pb-3">
                 <div class="title-content">
-                    <h3 class="m-0 strong">Thêm admin</h3>
-                    <div class="span">Quản lý admin</div>
+                    <h3 class="m-0 strong">Tài khoản admin</h3>
+                    <div class="span">Quản lý tài khoản admin</div>
                 </div>
                 <a href="add-admin.php" class="button-add">
                     <i class="fas fa-plus"></i>
@@ -60,7 +60,7 @@ if(empty($_SESSION['username'])){
                     <?php
                     $db = new Database();
                     // Lấy dữ liệu từ cơ sở dữ liệu
-                    $sql = "SELECT * FROM login";
+                    $sql = "SELECT * FROM client where quyen='admin'";
                     $result = $db->select($sql);
                     ?>
                     <?php if ($result->num_rows > 0) { ?>
@@ -71,8 +71,10 @@ if(empty($_SESSION['username'])){
                                 </th>
 
                                 <th>Tên người dùng</th>
-                                <th>Mật khẩu</th>
+                                <th>Họ tên</th>
                                 <th>Quyền</th>
+                                <th>Email</th>
+                                <th>Số điện thoại</th>
                                 <th>Trạng thái</th>
 
                                 <th>Thao tác</th>
@@ -82,22 +84,24 @@ if(empty($_SESSION['username'])){
                             <?php while ($row = $result->fetch_assoc()) { ?>
                                 <tr>
                                     <td><input type="checkbox" name="check_daughter"></td>
+                                    <td class="d-flex align-items-center"><img class="img-fluid img-responsive mr-2" height="10" width="10" src="../assets/img/<?php echo $row['anh_dai_dien']; ?>" alt="Dich vu ki tuc xa"> <?php echo $row['ten_nguoi_dung']; ?></td>
 
-                                    <td><?php echo $row['username']; ?></td>
 
-                                    <td><?php echo $row['password']; ?></td>
-                                    <td><?php echo $row['role']; ?></td>
-                                    <td><?php echo $row['status']; ?></td>
+                                    <td><?php echo $row['ho_ten']; ?></td>
+                                    <td><?php echo $row['quyen']; ?></td>
+                                    <td><?php echo $row['email']; ?></td>
+                                    <td><?php echo $row['so_dien_thoai']; ?></td>
+                                    <td><?php echo $row['trang_thai']; ?></td>
 
 
                                     <td class="d-flex thao-tac">
-                                        <a class="me-3" href="">
+                                        <a class="me-3" href="../front_end/dichvu-detail.php?id=<?php echo $row['id_client'];?>">
                                             <img src="../assets/img/eye.svg" alt="img" class="img-fluid">
                                         </a>
-                                        <a class="me-3" href="edit-admin.php?id=<?php echo $row['username']; ?>">
+                                        <a class="me-3" href="edit-sv.php?id=<?php echo $row['id_client']; ?>">
                                             <img src="../assets/img/edit.svg" alt="img" class="img-fluid icon-edit">
                                         </a>
-                                        <a class="confirm-text" href="delete-admin.php?id=<?php echo $row['username']; ?>">
+                                        <a class="confirm-text" href="delete-sv.php?id=<?php echo $row['id_client']; ?>">
                                             <img src="../assets/img/delete.svg" alt="img" class="img-fluid">
                                         </a>
                                     </td>

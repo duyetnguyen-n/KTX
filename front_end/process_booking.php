@@ -26,11 +26,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result_phong->num_rows > 0) {
         $row_phong = $result_phong->fetch_assoc();
         $anh_dai_dien_phong = $row_phong['anh_dai_dien'];
-        $tu_ngay = DateTime::createFromFormat('d/m/Y', $_POST['check_in_date']);
-        $tu_ngay_formatted = $tu_ngay->format('Y-m-d');
 
+        // Chuyển định dạng ngày đến và ngày đi
+        $tu_ngay = DateTime::createFromFormat('d/m/Y', $_POST['check_in_date']);
         $den_ngay = DateTime::createFromFormat('d/m/Y', $_POST['check_out_date']);
+
+        // Kiểm tra ngày đi không được trước ngày đến
+        if ($tu_ngay >= $den_ngay) {
+            echo '<script>alert("Ngày đi phải sau ngày đến!"); window.location.href = "trang_chu.php";</script>';
+            exit();
+        }
+
+        // Chuyển định dạng ngày thành chuỗi MySQL
+        $tu_ngay_formatted = $tu_ngay->format('Y-m-d');
         $den_ngay_formatted = $den_ngay->format('Y-m-d');
+
+        // Kiểm tra nếu phòng đã đăng ký
+        $sql_check_registered = "SELECT * FROM dang_ky_phong WHERE idphong = '$idphong'";
+        $result_check_registered = $db->select($sql_check_registered);
+
+        if ($result_check_registered->num_rows > 0) {
+            // Nếu đã đăng ký, kiểm tra xem có quá thời gian đến ngày hay không
+            $row_check_registered = $result_check_registered->fetch_assoc();
+            $ngay_den = DateTime::createFromFormat('Y-m-d', $row_check_registered['den_ngay']);
+            $ngay_hien_tai = new DateTime();
+
+            if ($ngay_den >= $ngay_hien_tai) {
+                // Phòng đã đăng ký và chưa hết hạn, hiển thị thông báo
+                echo '<script>alert("Phòng đã được đăng ký!"); window.location.href = "trang_chu.php";</script>';
+                exit();
+            }
+        }
 
         // Thêm thông tin đăng ký phòng vào cơ sở dữ liệu
         $sql_dang_ky_phong = "INSERT INTO dang_ky_phong (tendangnhap, idphong, tu_ngay, den_ngay, anh_dai_dien) VALUES ('$tendangnhap', '$idphong', '$tu_ngay_formatted', '$den_ngay_formatted', '$anh_dai_dien_phong')";

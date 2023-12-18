@@ -17,6 +17,6 @@ if (ini_get("session.use_cookies")) {
 // Hủy bỏ session
 session_destroy();
 
-header("Location: dang_nhap.html");
+header("Location: ../back_end/dang_nhap.html");
 exit(); // Kết thúc chương trình sau khi chuyển hướng
 ?>
