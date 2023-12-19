@@ -34,15 +34,18 @@ if ($rsc) {
     $sqlDeleteTrangThietBi = "DELETE FROM dang_ky_trang_thiet_bi WHERE tendangnhap='$ten_nguoi_dung'";
     $db->delete($sqlDeleteTrangThietBi);
 
-    $sqlInsertThanhToan = "INSERT INTO thanh_toan (tendangnhap, ngay_thanh_toan, tong_so_tien, phuong_thuc_thanh_toan, trang_thai, nguoi_tao, ngay_tao)
-        SELECT tendangnhap, ngay_thanh_toan, tong_so_tien, phuong_thuc_thanh_toan, trang_thai, nguoi_tao, ngay_tao FROM thanh_toan_demo WHERE tendangnhap='$ten_nguoi_dung'";
+    $sqlInsertThanhToan = "INSERT INTO thanh_toan (tendangnhap, tong_so_tien, phuong_thuc_thanh_toan, trang_thai, nguoi_tao, ngay_tao)
+    SELECT tendangnhap, tong_so_tien, phuong_thuc_thanh_toan, 'Completed', nguoi_tao, ngay_tao
+    FROM thanh_toan_demo
+    WHERE tendangnhap='$ten_nguoi_dung'
+    ORDER BY ngay_tao DESC
+    LIMIT 1";
     $db->insert($sqlInsertThanhToan);
-
     $sqlDeleteThanhToan = "DELETE FROM thanh_toan_demo WHERE tendangnhap='$ten_nguoi_dung'";
     $db->delete($sqlDeleteThanhToan);
 
     echo '<script>alert("Thanh toán thành công.");</script>';
-    header("location: list-pay.php?id={$id}");
+    header("location: list-paid.php?id={$id}");
     exit();
 } else {
     echo '<script>alert("Không tìm thấy thông tin người dùng.");</script>';

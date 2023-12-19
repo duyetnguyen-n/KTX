@@ -56,18 +56,9 @@ if (empty($_SESSION['username'])) {
                 </div>
                 <div id="contents">
                     <?php
-                    $id = isset($_GET['id']) ? $_GET['id'] : '';
-                    $db = new Database();
 
-                    $checknguoidung = "SELECT * FROM client WHERE id_client='$id'";
-                    $rschecknguoidung = $db->select($checknguoidung);
-                    $rsc = $rschecknguoidung->fetch_assoc();
-
-                    if ($rsc) {
-                        $ten_nguoi_dung = $rsc['ten_nguoi_dung'];
                         $db = new Database();
-                        $sqlthanhtoan = "SELECT * FROM thanh_toan
-                        WHERE tendangnhap='$ten_nguoi_dung'";
+                        $sqlthanhtoan = "SELECT * FROM thanh_toan";
                         $resultthanhtoan = $db->select($sqlthanhtoan);
                         ?>
 
@@ -84,7 +75,14 @@ if (empty($_SESSION['username'])) {
                                     <th>Thao Tác</th>
                                 </tr>
 
-                                <?php while ($row = $resultthanhtoan->fetch_assoc()) { ?>
+                                <?php while ($row = $resultthanhtoan->fetch_assoc()) {
+                                    $user = $row['tendangnhap'];
+                                    $checknguoidung = "SELECT * FROM client WHERE ten_nguoi_dung='{$user}'";
+                                    $rschecknguoidung = $db->select($checknguoidung);
+                                    $rsc = $rschecknguoidung->fetch_assoc();
+                                    $anh_dai_dien = $rsc['anh_dai_dien'];
+                                    ?>
+
                                     <tr>
                                         <td><input type="checkbox" name="check_daughter"></td>
                                         <td class="d-flex align-items-center">
@@ -129,7 +127,7 @@ if (empty($_SESSION['username'])) {
                                             <a class="me-3" href="edit-room.php?id=<?php echo $row['id']; ?>">
                                                 <img src="../assets/img/edit.svg" alt="img" class="img-fluid icon-edit">
                                             </a>
-                                            <a class="confirm-text" href="delete-room.php?id=<?php echo $row['id']; ?>">
+                                            <a class="confirm-text" href="delete-paid.php?id=<?php echo $row['id']; ?>">
                                                 <img src="../assets/img/delete.svg" alt="img" class="img-fluid">
                                             </a>
                                         </td>
@@ -138,39 +136,7 @@ if (empty($_SESSION['username'])) {
                             </table>
                         <?php } else {
                             echo "Không có dữ liệu.";
-                        }
-                    } else {
-                        echo "Không tìm thấy tên người dùng cho id='$id'";
-                    }
-                    ?>
-                </div>
-            </div>
-
-            <div class="content-add-room col-12 mt-3">
-                <div class="table-top d-flex justify-content-between mb-4">
-                    <div class="search-set d-flex align-items-center mr-2">
-                    </div>
-                    <div class="wordset d-flex align-items-center">
-                        <ul class="d-flex">
-                            <li class="mr-2">
-                                <a data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="pdf" aria-label="pdf"><img src="../assets/img/pdf.svg" alt="img"></a>
-                            </li>
-                            <li class="mr-2">
-                                <a data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="excel" aria-label="excel"><img src="../assets/img/excel.svg" alt="img"></a>
-                            </li>
-                            <li class="mr-2">
-                                <a data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="print" aria-label="print"><img src="../assets/img/printer.svg" alt="img"></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div id="contents">
-                    <?php
-                    $db = new Database();
-                    $sqlthanhtoan = "SELECT * FROM thanh_toan_demo
-                        WHERE tendangnhap='$ten_nguoi_dung'";
-                    $resultthanhtoan = $db->select($sqlthanhtoan);
-                    ?>
+                        } ?>
                 </div>
             </div>
         </div>

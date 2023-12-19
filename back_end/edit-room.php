@@ -88,7 +88,7 @@ if (empty($_SESSION['username'])) {
     }?>
 
 
-<div class="col-md-9">
+<div class="col-md-9 main-content">
     <div class="col-12 container-content">
         <div class="header-content pb-3">
             <div class="title-content">
@@ -181,6 +181,17 @@ if (empty($_SESSION['username'])) {
     <script>
         CKEDITOR.replace( 'mo_ta' );
         CKEDITOR.replace( 'noi_dung' );
+        $(document).ready(function() {
+            // Thay đổi chiều cao của main content khi cửa sổ thay đổi kích thước
+            $(window).resize(function() {
+                var windowHeight = $(window).height();
+                $('.main-content').css('height', windowHeight + 'px');
+            });
+
+            // Kích thước ban đầu của main content
+            var initialHeight = $(window).height();
+            $('.main-content').css('height', initialHeight + 'px');
+        });
     </script>
 </body>
 </html>

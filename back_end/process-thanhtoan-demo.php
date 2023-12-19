@@ -19,11 +19,16 @@ if ($rsc) { // Kiểm tra xem tên người dùng có tồn tại hay không
     $sqlPhong = "SELECT dp.*, p.* FROM dang_ky_phong dp
             INNER JOIN phong p ON dp.idphong = p.id
             WHERE dp.tendangnhap='$ten_nguoi_dung'";
-    $resultPhong = $db->select($sqlPhong);
+        $resultPhong = $db->select($sqlPhong);
 
     if ($resultPhong->num_rows > 0) {
         while ($row = $resultPhong->fetch_assoc()) {
-            $tongtienphong = $tongtienphong + $row['gia'];
+            $tuNgay = new DateTime($row['tu_ngay']);
+            $denNgay = new DateTime($row['den_ngay']);
+            $soNgayThue = $tuNgay->diff($denNgay)->days;
+
+            $tongtienphong = $tongtienphong + ($soNgayThue/30 * $row['gia']);
+            $tongtienphong = round($tongtienphong,2);
         }
     }
 

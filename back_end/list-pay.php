@@ -78,7 +78,12 @@ if(empty($_SESSION['username'])){
                                     <th>Ngày Tạo</th>
                                     <th>Thao Tác</th>
                                 </tr>
-                                <?php while ($row = $result->fetch_assoc()) { ?>
+                                <?php while ($row = $result->fetch_assoc()) {
+                                    $tuNgay = new DateTime($row['tu_ngay']);
+                                    $denNgay = new DateTime($row['den_ngay']);
+                                    $soNgayThue = $tuNgay->diff($denNgay)->days;
+                                    ?>
+
                                     <tr>
                                         <td><input type="checkbox" name="check_daughter"></td>
                                         <td class="d-flex align-items-center">
@@ -103,7 +108,8 @@ if(empty($_SESSION['username'])){
                                         </td>
                                     </tr>
                                 <?php
-                                    $tongtienphong = $tongtienphong + $row['gia'];
+                                    $tongtienphong = $tongtienphong + ($soNgayThue/30 * $row['gia']);
+                                    $tongtienphong = round($tongtienphong,2);
                                 }
                                 ?>
                             </table>
@@ -175,7 +181,7 @@ if(empty($_SESSION['username'])){
                                         <a class="me-3" href="edit-room.php?id=<?php echo $row['id']; ?>">
                                             <img src="../assets/img/edit.svg" alt="img" class="img-fluid icon-edit">
                                         </a>
-                                        <a class="confirm-text" href="delete-room.php?id=<?php echo $row['id']; ?>">
+                                        <a class="confirm-text" href="delete-phong-pay.php?id=<?php echo $row['id']; ?>">
                                             <img src="../assets/img/delete.svg" alt="img" class="img-fluid">
                                         </a>
                                     </td>
@@ -304,78 +310,80 @@ if(empty($_SESSION['username'])){
                 <div id="contents">
                     <?php
                     $db = new Database();
-                    $sqlthanhtoan = "SELECT * FROM thanh_toan_demo
-                        where tendangnhap='$ten_nguoi_dung'";
+                    $sqlthanhtoan = "SELECT * FROM thanh_toan_demo WHERE tendangnhap='$ten_nguoi_dung' ORDER BY ngay_tao DESC LIMIT 1";
                     $resultthanhtoan = $db->select($sqlthanhtoan);
+
+                    // Lấy một dòng dữ liệu từ kết quả truy vấn
+                    $row = $resultthanhtoan->fetch_assoc();
+
+                    if ($row) {
                     ?>
-                    <?php if ($resultthanhtoan->num_rows > 0) { ?>
-                        <table class="table-data">
-                            <tr>
-                                <th>
-                                    <input type="checkbox" name="check_all">
-                                </th>
-                                <th>Khách hàng</th>
-                                <th>Ngày thanh toán</th>
-                                <th>Tổng tiền</th>
-                                <th>Phương thức</th>
-                                <th>Trạng thái</th>
-                                <th>Người tạo</th>
-                                <th>Thao Tác</th>
-                            </tr>
-                            <!--    Hiển thị dữ liệu từ cơ sở dữ liệu-->
-                            <?php while ($row = $resultthanhtoan->fetch_assoc()) { ?>
-                                <tr>
-                                    <td><input type="checkbox" name="check_daughter"></td>
-                                    <td class="d-flex align-items-center"><img class="img-fluid img-responsive mr-2" height="10" width="10" src="../assets/img/<?php echo $rsc['anh_dai_dien']; ?>" alt="Phong ki tuc xa"> <?php echo $row['tendangnhap']; ?></td>
-                                    <td><?php echo $row['ngay_thanh_toan']; ?></td>
-                                    <td><?php echo $row['tong_so_tien']; ?></td>
-                                    <td>
-                                        <?php if($row['phuong_thuc_thanh_toan'] === "Paid"){?>
-                                            <div class="boxs-paid">
-                                                <?php echo $row['phuong_thuc_thanh_toan']; ?>
-                                            </div>
-                                        <?php }else if($row['phuong_thuc_thanh_toan'] === "Loan"){?>
-                                            <div class="boxs-loan">
-                                                <?php echo $row['phuong_thuc_thanh_toan']; ?>
-                                            </div>
-                                        <?php }else{?>
-                                            <div class="boxs-due">
-                                                <?php echo $row['phuong_thuc_thanh_toan']; ?>
-                                            </div>
-                                        <?php } ?>
-
-                                    </td>
-                                    <td>
-                                        <?php if($row['trang_thai'] === "Pending"){?>
-                                            <div class="boxs-pending">
-                                                <?php echo $row['trang_thai']; ?></td>
-                                            </div>
-                                        <?php }else{?>
-                                            <div class="boxs-completed">
-                                                <?php echo $row['trang_thai']; ?></td>
-                                            </div>
-                                        <?php } ?>
-
-                                    <td><?php echo $row['nguoi_tao']; ?></td>
-                                    <td class="d-flex thao-tac">
-                                        <a class="me-3 d-flex align-items-center" href="process-thanh-toan.php?id=<?php echo $id; ?>">
-                                            <img src="../assets/img/tich-xanh.webp" alt="img" class="img-fluid img-tich">
-                                        </a>
-                                        <a class="me-3" href="edit-room.php?id=<?php echo $row['id']; ?>">
-                                            <img src="../assets/img/edit.svg" alt="img" class="img-fluid icon-edit">
-                                        </a>
-                                        <a class="confirm-text" href="delete-room.php?id=<?php echo $row['id']; ?>">
-                                            <img src="../assets/img/delete.svg" alt="img" class="img-fluid">
-                                        </a>
-                                    </td>
-                                </tr>
-                                <?php
-                            } ?>
-                        </table>
-                    <?php } else {
-                        echo "Không có dữ liệu.";
-                    } ?>
+                    <table class="table-data">
+                        <tr>
+                            <th>
+                                <input type="checkbox" name="check_all">
+                            </th>
+                            <th>Khách hàng</th>
+                            <th>Ngày thanh toán</th>
+                            <th>Tổng tiền</th>
+                            <th>Phương thức</th>
+                            <th>Trạng thái</th>
+                            <th>Người tạo</th>
+                            <th>Thao Tác</th>
+                        </tr>
+                        <!-- Hiển thị dòng mới nhất từ cơ sở dữ liệu -->
+                        <tr>
+                            <td><input type="checkbox" name="check_daughter"></td>
+                            <td class="d-flex align-items-center"><img class="img-fluid img-responsive mr-2" height="10" width="10" src="../assets/img/<?php echo $rsc['anh_dai_dien']; ?>" alt="Phong ki tuc xa"> <?php echo $row['tendangnhap']; ?></td>
+                            <td><?php echo $row['ngay_thanh_toan']; ?></td>
+                            <td><?php echo $row['tong_so_tien']; ?></td>
+                            <td>
+                                <?php if($row['phuong_thuc_thanh_toan'] === "Paid"){?>
+                                    <div class="boxs-paid">
+                                        <?php echo $row['phuong_thuc_thanh_toan']; ?>
+                                    </div>
+                                <?php }else if($row['phuong_thuc_thanh_toan'] === "Loan"){?>
+                                    <div class="boxs-loan">
+                                        <?php echo $row['phuong_thuc_thanh_toan']; ?>
+                                    </div>
+                                <?php }else{?>
+                                    <div class="boxs-due">
+                                        <?php echo $row['phuong_thuc_thanh_toan']; ?>
+                                    </div>
+                                <?php } ?>
+                            </td>
+                            <td>
+                                <?php if($row['trang_thai'] === "Pending"){?>
+                                <div class="boxs-pending">
+                                <?php echo $row['trang_thai']; ?></td>
                 </div>
+                <?php }else{?>
+                    <div class="boxs-completed">
+                        <?php echo $row['trang_thai']; ?></td>
+                    </div>
+                <?php } ?>
+                </td>
+                <td><?php echo $row['nguoi_tao']; ?></td>
+                <td class="d-flex thao-tac">
+                    <a class="me-3 d-flex align-items-center" href="process-thanh-toan.php?id=<?php echo $id; ?>">
+                        <img src="../assets/img/tich-xanh.webp" alt="img" class="img-fluid img-tich">
+                    </a>
+                    <a class="me-3" href="edit-pay.php?id=<?php echo $row['id']; ?>">
+                        <img src="../assets/img/edit.svg" alt="img" class="img-fluid icon-edit">
+                    </a>
+                    <a class="confirm-text" href="delete-room.php?id=<?php echo $row['id']; ?>">
+                        <img src="../assets/img/delete.svg" alt="img" class="img-fluid">
+                    </a>
+                </td>
+                </tr>
+                </table>
+                <?php
+                } else {
+                    echo "Không có dữ liệu.";
+                }
+                ?>
+
+            </div>
             </div>
 
         </div>
