@@ -15,7 +15,7 @@ if(empty($_SESSION['username'])){
                         <h3 class="m-0 strong">Danh sách dịch vụ</h3>
                         <div class="span">QUản lý dịch vụ của bạn!</div>
                     </div>
-                    <a href="add-dv.php" class="button-add">
+                    <a href="them-dv.php" class="button-add">
                         <i class="fas fa-plus"></i>
                         <span>Thêm mới</span>
                     </a>

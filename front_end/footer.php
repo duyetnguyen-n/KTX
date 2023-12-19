@@ -5,17 +5,16 @@
                 <div class="widget-text">
                     <div class="footer-location">
                         <img src="../assets/img/logo-f.png" alt>
-                        <p>You have questions regarding our services? Contact us, we will be happy to help you
-                            out!</p>
+                        <p>TRƯỜNG ĐẠI HỌC HÀNG HẢI VIỆT NAM</p>
                         <ul class="info">
-                            <li><i class="ion-ios-location"></i> <span>123 Camino Ramon, Suite 500 San Ramon, United Kingdom</span>
+                            <li><i class="fas fa-map-marker-alt"></i> <span>Địa chỉ: 484 Lạch Tray, Kênh Dương, Lê Chân, TP Hải Phòng.</span>
                             </li>
-                            <li><i class="fas fa-phone-alt"></i><a href="tel:8812345678">(+88) 12-345-678</a>
+                            <li><i class="fas fa-phone-alt"></i><a href="tel:8812345678">Điện thoại: (+84). 225. 3829 109 / 3735 931</a>
                             </li>
-                            <li><i class="ion-email"></i><a
-                                    href="https://html.thimpress.com/cdn-cgi/l/email-protection#b3d0dcddc7d2d0c7f3c7dbdadec3c1d6c0c09dd0dcde"><span
+                            <li><i class="fas fa-envelope"></i>Email: <a
+                                    href="info@vimaru.edu.vn"><span
                                         class="__cf_email__"
-                                        data-cfemail="cba8a4a5bfaaa8bf8bbfa3a2a6bbb9aeb8b8e5a8a4a6">[email&#160;protected]</span></a>
+                                        data-cfemail="cba8a4a5bfaaa8bf8bbfa3a2a6bbb9aeb8b8e5a8a4a6">info@vimaru.edu.vn</span></a>
                             </li>
                         </ul>
                     </div>
@@ -47,9 +46,9 @@
             </div>
             <div class="col-sm-2">
                 <div class="widget-menu">
-                    <h3 class="widget-title">Connect Us</h3>
+                    <h3 class="widget-title">Liên hệ</h3>
                     <ul class="list-social">
-                        <li><a class="facebook" href="https://www.facebook.com/thimpress">Facebook</a></li>
+                        <li><a class="facebook" href="https://www.facebook.com/nhuuha2810">Facebook</a></li>
                         <li><a class="twitter" href="https://www.twitter.com/thimpress">Twitter</a></li>
                         <li><a class="instagram" href="http://www.thimpress.com/">Instagram</a></li>
                         <li><a class="youtube" href="http://www.thimpress.com/">Youtube</a></li>

@@ -9,7 +9,7 @@
                     <div class="item">
                         <div class="slide-content">
                             <div class="slide-scale">
-                                <img src="../assets/img/slide1.jpg" alt="Kí túc xá">
+                                <img src="../assets/img/4.jpg" alt="Kí túc xá">
                             </div>
                             <div class="slide-back">
                                 <div class="container">
@@ -26,9 +26,7 @@
                                                 <button class="btn butn text-and-border-color-blue design-but2-slide1">LIÊN HỆ CHÚNG TÔI</button>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 col-sm-12 img-slide1">
-                                            <img class="col-12" src="../assets/img/2.png">
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -37,7 +35,7 @@
                     <div class="item">
                         <div class="slide-content">
                             <div class="slide-scale">
-                                <img src="../assets/img/slide2.jpeg" alt="Kí túc xá">
+                                <img src="../assets/img/4.jpg" alt="Kí túc xá">
                             </div>
                             <div class="slide-back">
                                 <div class="container">
@@ -54,9 +52,7 @@
                                                 <button class="btn butn text-and-border-color-blue design-but2-slide1">LIÊN HỆ CHÚNG TÔI</button>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 col-sm-12 img-slide1">
-                                            <img class="col-12" src="../assets/img/2.png">
-                                        </div>
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +61,7 @@
                     <div class="item">
                         <div class="slide-content">
                             <div class="slide-scale">
-                                <img src="../assets/img/slide3.jpeg" alt="Kí túc xá">
+                                <img src="../assets/img/4.jpg" alt="Kí túc xá">
                             </div>
                             <div class="slide-back">
                                 <div class="container">
@@ -82,9 +78,7 @@
                                                 <button class="btn butn text-and-border-color-blue design-but2-slide1">LIÊN HỆ CHÚNG TÔI</button>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 col-sm-12 img-slide1">
-                                            <img class="col-12" src="../assets/img/2.png">
-                                        </div>
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -166,13 +160,10 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="sc-heading style-02">
-                                <h3 class="title">Comfort are perfectly combined here</h3>
+                                <h3 class="title">Chào mừng bạn đến với kí túc xá Đại học Hàng Hải Việt Nam</h3>
                                 <div class="description">
-                                    <p>This charming private 19th century mansion, which originally belonged to the
-                                        family, has been completely renovated with care & passion while respecting the
-                                        spirit of place.</p>
-                                    <p>Divo Hotel surrounded herself by a team of French artisans to create a
-                                        sophisticated place in a refined.</p>
+                                    <p>Nơi lý tưởng cho cuộc sống sinh viên sôi động!</p>
+                                    <p>Tận hưởng không gian hiện đại, an ninh đảm bảo và cộng đồng đa dạng.</p>
                                 </div>
                                 <div class="head-button">
                                     <a href="about-us.html" class="more-info">More Info</a>
@@ -182,10 +173,10 @@
                         <div class="col-sm-6">
                             <div class="sc-img-box row">
                                 <div class="col-sm-6">
-                                    <a href="gallery-full-width.html"><img src="../assets/img/img-front/home/h1-img1.jpg" alt></a>
+                                    <a href="gallery-full-width.html"><img src="../assets/img/55.png" alt></a>
                                 </div>
                                 <div class="col-sm-6">
-                                    <a href="gallery-full-width.html"><img src="../assets/img/img-front/home/h1-img2.jpg" alt></a>
+                                    <a href="gallery-full-width.html"><img src="../assets/img/55.png" alt></a>
                                 </div>
                             </div>
                         </div>
@@ -193,28 +184,30 @@
                 </div>
             </div>
             <div class="empty-space"></div>
-            <div class="h1-video rectangle-overlay">
-                <div class="sc-video">
-                    <div class="background-video">
-                        <div class="cover-image"></div>
-                        <div class="content container">
-                            <h3 class="title">Summer is here. Get ready <br> to enjoy it!</h3>
-                            <i class="video-play ion-ios-play"></i>
-                            <span class="text-icon">Play Video</span>
+                    <div class="h1-video rectangle-overlay">
+                        <div class="sc-video">
+                            <div class="background-video">
+                                <div class="cover-image"></div>
+                                <div class="content container">
+                                    <h3 class="title">Summer is here. Get ready <br> to enjoy it!</h3>
+                                    <i class="video-play ion-ios-play"></i>
+                                    <span class="text-icon">Play Video</span>
+                                </div>
+                                <video loop class="full-screen-video" data-autoplay>
+                                    <source src="assets/img/vid.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
                         </div>
-                        <video loop class="full-screen-video" data-autoplay>
-                            <source src="../assets/img/img-front/home/hotel.mp4" type="video/mp4">
-                        </video>
                     </div>
-                </div>
+
             <div class="group-destination">
                 <div class="sc-content-overlay">
                     <div class="container">
                         <div class="empty-space"></div>
                         <div class="sc-heading style-01 text-center">
                             <h3 class="title">Dịch Vụ Nổi Bật</h3>
-                            <p class="description">For anything that brings people together to celebrate an occasion, we
-                                create truly memorable experiences that you will cherish forever</p>
+                            <p class="description">Kí túc xá Đại học Hàng Hải Việt Nam mang đến cho bạn một trải nghiệm sống tiện nghi và hiện đại. Wi-Fi siêu tốc, phòng tập gym, khu vực giải trí và thư viện - tất cả đều sẵn có tại ngôi nhà mới của bạn. Hãy bắt đầu chương mới của cuộc sống sinh viên với chúng tôi!"</p>
                         </div>
                         <div class="sc-posts style-01 auto-height">
                             <div class="item row">
@@ -242,9 +235,7 @@
                                                 <div class="content">
                                                     <h3 class="title"><a href="blog-single.html"><?php echo $row['ten_dv']; ?></a></h3>
                                                     <div class="short-text">Start from <span class="gia">$<?php echo $row['gia']; ?></div>
-                                                    <div class="summary">Dịch vụ của chúng tôi quá là oke rồi tôi có thể
-                                                        đảm bảo điều ấy nếu bạn có thể tìm thấy chỗ nào oke hơn bảo
-                                                        tôi hoàn tiền .
+                                                    <div class="summary">Đây không chỉ là một không gian tập luyện, mà còn là nơi để bạn cải thiện sức khỏe, nâng cao tinh thần và tận hưởng cuộc sống đại học. 
                                                     </div>
                                                     <a href="blog-single.html" class="read-more">More Info</a>
                                                 </div>
@@ -388,8 +379,8 @@
                                             <div class="content">
                                                 <div class="category"><a href="#">Hotel - Travel</a></div>
                                                 <h3 class="title"><a href="blog-single.html"> Futurethon – Explore the
-                                                    future</a></h3>
-                                                <div class="date"><i class="ion-android-calendar"></i>15 July, 2018
+                                                    future</a></h3> 
+                                                <div class="date d-flex align-items-center"><i class="fas fa-calendar-alt"></i> 19/12/2023
                                                 </div>
                                                 <div class="summary">We continuously strive to enhance our living and
                                                     working environments. The environments we live in today are almost
