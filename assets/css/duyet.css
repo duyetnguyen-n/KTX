@@ -81,6 +81,7 @@ a:hover {
 
 
 
+
 .sidebar .menu-arrow {
     -webkit-transition: -webkit-transform 0.15s;
     -o-transition: -o-transform 0.15s;
@@ -649,9 +650,49 @@ form.signup .row {
     font-size: 30px;
 }
 
-
-
-
+.boxs-loan {
+    background: #efc42bf7;
+    text-align: center;
+    margin: 0 10px;
+    padding: 3px;
+    border-radius: 5px;
+    color: white;
+}
+.boxs-due {
+    background: rgba(5, 178, 161, 0.97);
+    text-align: center;
+    margin: 0 10px;
+    padding: 3px;
+    border-radius: 5px;
+    color: white;
+}
+.boxs-paid {
+    background: rgba(88, 148, 3, 0.97);
+    text-align: center;
+    margin: 0 10px;
+    padding: 3px;
+    border-radius: 5px;
+    color: white;
+}
+.boxs-pending {
+    background: #EA5354;
+    text-align: center;
+    margin: 0 10px;
+    padding: 3px;
+    border-radius: 5px;
+    color: white;
+}
+.boxs-completed {
+    background: #29C76F;
+    text-align: center;
+    margin: 0 10px;
+    padding: 3px;
+    border-radius: 5px;
+    color: white;
+}
+img.img-tich {
+    height: 54% !important;
+}
 
 
 /*===========end thanh toan======================*/

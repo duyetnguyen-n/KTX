@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 18, 2023 at 05:49 PM
+-- Generation Time: Dec 19, 2023 at 11:52 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -103,14 +103,6 @@ CREATE TABLE `dang_ky_phong` (
   `ngay_tao` datetime DEFAULT current_timestamp(),
   `anh_dai_dien` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `dang_ky_phong`
---
-
-INSERT INTO `dang_ky_phong` (`id`, `tendangnhap`, `idphong`, `tu_ngay`, `den_ngay`, `ngay_tao`, `anh_dai_dien`) VALUES
-(1, 'ntduyet', 2, '2003-10-20', '2023-02-12', '2023-12-16 21:15:22', 'sp-3.webp'),
-(3, 'ntduyet', 3, '2003-10-20', '2023-02-12', '2023-12-16 22:43:50', 'sp-3.webp');
 
 --
 -- Triggers `dang_ky_phong`
@@ -223,6 +215,21 @@ INSERT INTO `dichvu` (`id`, `ten_dv`, `gia`, `trangthai`, `ngaytao`, `nguoitao`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `dich_vu_da_dang_ky`
+--
+
+CREATE TABLE `dich_vu_da_dang_ky` (
+  `id` int(11) NOT NULL,
+  `tendangnhap` varchar(255) NOT NULL,
+  `id_dichvu` int(11) NOT NULL,
+  `ngay_dang_ky` date NOT NULL,
+  `nguoi_tao` varchar(255) NOT NULL,
+  `ngay_tao` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `donvi`
 --
 
@@ -315,9 +322,79 @@ CREATE TABLE `phong` (
 --
 
 INSERT INTO `phong` (`id`, `ten_phong`, `suc_chua`, `id_tang`, `gia`, `trang_thai`, `anh_dai_dien`, `anh_khac`, `nguoi_tao`, `noi_dung`, `mo_ta`, `so_luong_hien_tai`) VALUES
-(1, 'Phòng 101', 2, 1, 15, 'Chưa đủ', 'sp-3.webp', 'sp-8.webp', 'ntduyet', '<div class=\"room_additinal\">\r\n<h3>AMENITIES AND SERVICES</h3>\r\n\r\n<div class=\"row\">\r\n<div class=\"col-sm-4\">\r\n<ul>\r\n	<li>Priviliged in Bruges</li>\r\n	<li>High satisfaction</li>\r\n	<li>Unparalleded service</li>\r\n	<li>Aenean sollicitudin</li>\r\n</ul>\r\n</div>\r\n\r\n<div class=\"col-sm-4\">\r\n<ul>\r\n	<li>Priviliged in Bruges</li>\r\n	<li>High satisfaction</li>\r\n	<li>Unparalleded service</li>\r\n	<li>Aenean sollicitudin</li>\r\n</ul>\r\n</div>\r\n\r\n<div class=\"col-sm-4\">\r\n<ul>\r\n	<li>Priviliged in Bruges</li>\r\n	<li>High satisfaction</li>\r\n	<li>Unparalleded service</li>\r\n	<li>Aenean sollicitudin</li>\r\n</ul>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class=\"room_pricing\">\r\n<h3>PRICING PLANS</h3>\r\n\r\n<table class=\"room-pricing\">\r\n	<thead>\r\n		<tr>\r\n			<th>Mon</th>\r\n			<th>Tue</th>\r\n			<th>Wed</th>\r\n			<th>Thu</th>\r\n			<th>Fri</th>\r\n			<th>Sat</th>\r\n			<th>Sun</th>\r\n		</tr>\r\n	</thead>\r\n	<tbody>\r\n		<tr>\r\n			<td>$200</td>\r\n			<td>$150</td>\r\n			<td>$150</td>\r\n			<td>$100</td>\r\n			<td>$300</td>\r\n			<td>$210</td>\r\n			<td>$250</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n</div>\r\n\r\n<div class=\"clearfix room_review\" id=\"room_review\">\r\n<h3>REVIEWS</h3>\r\n\r\n<div class=\"inner\">\r\n<div class=\"avatar\"><img alt=\"\" src=\"images/blog/author1.jpg\" /></div>\r\n\r\n<div class=\"content\">\r\n<h4>David Bobby</h4>\r\n\r\n<p>Nam dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a elementum rutrum, neque sem pretium metus, quis mollis nisl nunc et massa. Vestibulum sed metus in lorem tristique ullamcorper id vitae erat. Nulla mollis sapien sollicitudin lacinia lacinia.</p>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class=\"form-review\">\r\n<h4>Add review</h4>\r\n\r\n<form action=\"#\" method=\"post\">\r\n<p>Your rating</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Your review</p>\r\n<textarea cols=\"8\" required=\"\" rows=\"5\"></textarea>Submit</form>\r\n</div>\r\n', '<p>This large suite in the courtyard adobe has a Queen-size built-in platform bed and a large indoor/outdoor stone tub with a rain shower. The suite features a full kitchen with breakfast bar, a spacious sitting area with a wood burning fireplace. The private patio offers dramatic views of the San Jacinto Mountains. The suite features a full kitchen with breakfast bar, a spacious sitting area with a wood burning fireplace. The private patio offers dramatic views of the San Jacinto Mountains.</p>\r\n\r\n<p>The suite features a full kitchen with breakfast bar, a spacious sitting area with a wood burning fireplace. The private patio offers dramatic views of the San Jacinto Mountains.</p>\r\n', NULL),
-(2, 'Phòng 102', 4, 1, 10, 'Chưa đủ', 'sp-3.webp', 'sp-8.webp', 'ntduyet', '<pre>\r\n&lt;div class=&quot;room_additinal&quot;&gt;\r\n    &lt;h3 class=&quot;title style-01&quot;&gt;AMENITIES AND SERVICES&lt;/h3&gt;\r\n    &lt;div class=&quot;row&quot;&gt;\r\n        &lt;div class=&quot;col-sm-4&quot;&gt;\r\n            &lt;ul&gt;\r\n                &lt;li&gt;&lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt;Priviliged in Bruges&lt;/li&gt;\r\n                &lt;li&gt;&lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt;High satisfaction&lt;/li&gt;\r\n                &lt;li&gt;&lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt;Unparalleded service&lt;/li&gt;\r\n                &lt;li&gt;&lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt;Aenean sollicitudin&lt;/li&gt;\r\n            &lt;/ul&gt;\r\n        &lt;/div&gt;\r\n        &lt;div class=&quot;col-sm-4&quot;&gt;\r\n            &lt;ul&gt;\r\n                &lt;li&gt;&lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt;Priviliged in Bruges&lt;/li&gt;\r\n                &lt;li&gt;&lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt;High satisfaction&lt;/li&gt;\r\n                &lt;li&gt;&lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt;Unparalleded service&lt;/li&gt;\r\n                &lt;li&gt;&lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt;Aenean sollicitudin&lt;/li&gt;\r\n            &lt;/ul&gt;\r\n        &lt;/div&gt;\r\n        &lt;div class=&quot;col-sm-4&quot;&gt;\r\n            &lt;ul&gt;\r\n                &lt;li&gt;&lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt;Priviliged in Bruges&lt;/li&gt;\r\n                &lt;li&gt;&lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt;High satisfaction&lt;/li&gt;\r\n                &lt;li&gt;&lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt;Unparalleded service&lt;/li&gt;\r\n                &lt;li&gt;&lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt;Aenean sollicitudin&lt;/li&gt;\r\n            &lt;/ul&gt;\r\n        &lt;/div&gt;\r\n    &lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;div class=&quot;room_pricing&quot;&gt;\r\n    &lt;h3 class=&quot;title style-01&quot;&gt;PRICING PLANS&lt;/h3&gt;\r\n    &lt;table class=&quot;room-pricing&quot;&gt;\r\n        &lt;thead&gt;\r\n        &lt;tr&gt;\r\n            &lt;th&gt;Mon&lt;/th&gt;\r\n            &lt;th&gt;Tue&lt;/th&gt;\r\n            &lt;th&gt;Wed&lt;/th&gt;\r\n            &lt;th&gt;Thu&lt;/th&gt;\r\n            &lt;th&gt;Fri&lt;/th&gt;\r\n            &lt;th&gt;Sat&lt;/th&gt;\r\n            &lt;th&gt;Sun&lt;/th&gt;\r\n        &lt;/tr&gt;\r\n        &lt;/thead&gt;\r\n        &lt;tbody&gt;\r\n        &lt;tr&gt;\r\n            &lt;td&gt;$200&lt;/td&gt;\r\n            &lt;td&gt;$150&lt;/td&gt;\r\n            &lt;td&gt;$150&lt;/td&gt;\r\n            &lt;td&gt;$100&lt;/td&gt;\r\n            &lt;td&gt;$300&lt;/td&gt;\r\n            &lt;td&gt;$210&lt;/td&gt;\r\n            &lt;td&gt;$250&lt;/td&gt;\r\n        &lt;/tr&gt;\r\n        &lt;/tbody&gt;\r\n    &lt;/table&gt;\r\n&lt;/div&gt;\r\n&lt;div class=&quot;room_review clearfix&quot; id=&quot;room_review&quot;&gt;\r\n    &lt;h3 class=&quot;title style-01&quot;&gt;REVIEWS&lt;/h3&gt;\r\n    &lt;div class=&quot;inner&quot;&gt;\r\n        &lt;div class=&quot;avatar&quot;&gt;\r\n            &lt;img src=&quot;images/blog/author1.jpg&quot; alt&gt;\r\n        &lt;/div&gt;\r\n        &lt;div class=&quot;content&quot;&gt;\r\n            &lt;h4&gt;David Bobby &lt;span class=&quot;rating-star&quot;&gt;&lt;/span&gt;&lt;/h4&gt;\r\n            &lt;p&gt;Nam dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a\r\n                elementum rutrum, neque sem pretium metus, quis mollis nisl nunc et massa.\r\n                Vestibulum sed metus in lorem tristique ullamcorper id vitae erat. Nulla mollis\r\n                sapien sollicitudin lacinia lacinia.&lt;/p&gt;\r\n        &lt;/div&gt;\r\n    &lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;div class=&quot;form-review&quot;&gt;\r\n    &lt;h4 class=&quot;title&quot;&gt;&lt;i class=&quot;fa fa-pencil&quot;&gt;&lt;/i&gt;Add review&lt;/h4&gt;\r\n    &lt;form action=&quot;#&quot; method=&quot;post&quot; class=&quot;room_comment&quot;&gt;\r\n        &lt;p&gt;Your rating&lt;/p&gt;\r\n        &lt;p&gt;&lt;span class=&quot;rating-star empty&quot;&gt;&lt;/span&gt;&lt;/p&gt;\r\n        &lt;p&gt;Your review&lt;/p&gt;\r\n        &lt;textarea rows=&quot;5&quot; cols=&quot;8&quot; required placeholder&gt;&lt;/textarea&gt;\r\n        &lt;button type=&quot;submit&quot; class=&quot;submit&quot;&gt;Submit&lt;/button&gt;\r\n    &lt;/form&gt;\r\n&lt;/div&gt;</pre>\r\n', '<p>This large suite in the courtyard adobe has a Queen-size built-in platform bed and a large indoor/outdoor stone tub with a rain shower. The suite features a full kitchen with breakfast bar, a spacious sitting area with a wood burning fireplace. The private patio offers dramatic views of the San Jacinto Mountains. The suite features a full kitchen with breakfast bar, a spacious sitting area with a wood burning fireplace. The private patio offers dramatic views of the San Jacinto Mountains.</p>\r\n\r\n<p>The suite features a full kitchen with breakfast bar, a spacious sitting area with a wood burning fireplace. The private patio offers dramatic views of the San Jacinto Mountains.</p>\r\n', NULL),
-(3, 'Phòng 103', 4, 1, 100, 'Chưa đủ', 'sp-5.webp', 'sp-10.webp', 'ntduyet', '<h3>AMENITIES AND SERVICES</h3>\r\n\r\n<ul>\r\n	<li>Priviliged in Bruges</li>\r\n	<li>High satisfaction</li>\r\n	<li>Unparalleded service</li>\r\n	<li>Aenean sollicitudin</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>Priviliged in Bruges</li>\r\n	<li>High satisfaction</li>\r\n	<li>Unparalleded service</li>\r\n	<li>Aenean sollicitudin</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>Priviliged in Bruges</li>\r\n	<li>High satisfaction</li>\r\n	<li>Unparalleded service</li>\r\n	<li>Aenean sollicitudin</li>\r\n</ul>\r\n\r\n<h3>PRICING PLANS</h3>\r\n\r\n<table>\r\n	<thead>\r\n		<tr>\r\n			<th>Mon</th>\r\n			<th>Tue</th>\r\n			<th>Wed</th>\r\n			<th>Thu</th>\r\n			<th>Fri</th>\r\n			<th>Sat</th>\r\n			<th>Sun</th>\r\n		</tr>\r\n	</thead>\r\n	<tbody>\r\n		<tr>\r\n			<td>$200</td>\r\n			<td>$150</td>\r\n			<td>$150</td>\r\n			<td>$100</td>\r\n			<td>$300</td>\r\n			<td>$210</td>\r\n			<td>$250</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<h3>REVIEWS</h3>\r\n\r\n<p><img alt=\"\" src=\"images/blog/author1.jpg\" /></p>\r\n\r\n<h4>David Bobby</h4>\r\n\r\n<p>Nam dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a elementum rutrum, neque sem pretium metus, quis mollis nisl nunc et massa. Vestibulum sed metus in lorem tristique ullamcorper id vitae erat. Nulla mollis sapien sollicitudin lacinia lacinia.</p>\r\n\r\n<h4>Add review</h4>\r\n\r\n<form action=\"#\" method=\"post\">\r\n<p>Your rating</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Your review</p>\r\n<textarea cols=\"8\" required=\"\" rows=\"5\"></textarea></form>\r\n', '<p>This large suite in the courtyard adobe has a Queen-size built-in platform bed and a large indoor/outdoor stone tub with a rain shower. The suite features a full kitchen with breakfast bar, a spacious sitting area with a wood burning fireplace. The private patio offers dramatic views of the San Jacinto Mountains. The suite features a full kitchen with breakfast bar, a spacious sitting area with a wood burning fireplace. The private patio offers dramatic views of the San Jacinto Mountains.</p>\r\n\r\n<p>The suite features a full kitchen with breakfast bar, a spacious sitting area with a wood burning fireplace. The private patio offers dramatic views of the San Jacinto Mountains.</p>\r\n', 1);
+(3, 'Phòng 103', 4, 1, 100, 'Chưa đủ', 'sp-5.webp', 'sp-10.webp', 'ntduyet', '<h3>AMENITIES AND SERVICES</h3>\r\n\r\n<ul>\r\n	<li>Priviliged in Bruges</li>\r\n	<li>High satisfaction</li>\r\n	<li>Unparalleded service</li>\r\n	<li>Aenean sollicitudin</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>Priviliged in Bruges</li>\r\n	<li>High satisfaction</li>\r\n	<li>Unparalleded service</li>\r\n	<li>Aenean sollicitudin</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>Priviliged in Bruges</li>\r\n	<li>High satisfaction</li>\r\n	<li>Unparalleded service</li>\r\n	<li>Aenean sollicitudin</li>\r\n</ul>\r\n\r\n<h3>PRICING PLANS</h3>\r\n\r\n<table>\r\n	<thead>\r\n		<tr>\r\n			<th>Mon</th>\r\n			<th>Tue</th>\r\n			<th>Wed</th>\r\n			<th>Thu</th>\r\n			<th>Fri</th>\r\n			<th>Sat</th>\r\n			<th>Sun</th>\r\n		</tr>\r\n	</thead>\r\n	<tbody>\r\n		<tr>\r\n			<td>$200</td>\r\n			<td>$150</td>\r\n			<td>$150</td>\r\n			<td>$100</td>\r\n			<td>$300</td>\r\n			<td>$210</td>\r\n			<td>$250</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<h3>REVIEWS</h3>\r\n\r\n<p><img alt=\"\" src=\"images/blog/author1.jpg\" /></p>\r\n\r\n<h4>David Bobby</h4>\r\n\r\n<p>Nam dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a elementum rutrum, neque sem pretium metus, quis mollis nisl nunc et massa. Vestibulum sed metus in lorem tristique ullamcorper id vitae erat. Nulla mollis sapien sollicitudin lacinia lacinia.</p>\r\n\r\n<h4>Add review</h4>\r\n\r\n<form action=\"#\" method=\"post\">\r\n<p>Your rating</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Your review</p>\r\n<textarea cols=\"8\" required=\"\" rows=\"5\"></textarea></form>\r\n', '<p>This large suite in the courtyard adobe has a Queen-size built-in platform bed and a large indoor/outdoor stone tub with a rain shower. The suite features a full kitchen with breakfast bar, a spacious sitting area with a wood burning fireplace. The private patio offers dramatic views of the San Jacinto Mountains. The suite features a full kitchen with breakfast bar, a spacious sitting area with a wood burning fireplace. The private patio offers dramatic views of the San Jacinto Mountains.</p>\r\n\r\n<p>The suite features a full kitchen with breakfast bar, a spacious sitting area with a wood burning fireplace. The private patio offers dramatic views of the San Jacinto Mountains.</p>\r\n', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `phong_da_dang_ky`
+--
+
+CREATE TABLE `phong_da_dang_ky` (
+  `id` int(11) NOT NULL,
+  `tendangnhap` varchar(255) DEFAULT NULL,
+  `idphong` int(11) DEFAULT NULL,
+  `tu_ngay` date DEFAULT NULL,
+  `den_ngay` date DEFAULT NULL,
+  `ngay_tao` datetime DEFAULT current_timestamp(),
+  `anh_dai_dien` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `phong_da_dang_ky`
+--
+
+INSERT INTO `phong_da_dang_ky` (`id`, `tendangnhap`, `idphong`, `tu_ngay`, `den_ngay`, `ngay_tao`, `anh_dai_dien`) VALUES
+(4, 'ntduyet', 2, '2003-10-20', '2023-02-12', '2023-12-16 21:15:22', 'sp-3.webp'),
+(5, 'ntduyet', 3, '2003-10-20', '2023-02-12', '2023-12-16 22:43:50', 'sp-3.webp');
+
+--
+-- Triggers `phong_da_dang_ky`
+--
+DELIMITER $$
+CREATE TRIGGER `phong_da_dang_ky_after_insert` AFTER INSERT ON `phong_da_dang_ky` FOR EACH ROW BEGIN
+    -- Tăng số người hiện tại của phòng lên 1
+    UPDATE phong
+    SET so_luong_hien_tai = so_luong_hien_tai + 1
+    WHERE id = NEW.idphong;
+
+    -- Kiểm tra xem số người hiện tại có bằng sức chứa không
+    IF (SELECT so_luong_hien_tai FROM phong WHERE id = NEW.idphong) = (SELECT suc_chua FROM phong WHERE id = NEW.idphong) THEN
+        -- Nếu bằng, cập nhật trạng thái thành "Đủ"
+        UPDATE phong
+        SET trang_thai = 'Đủ'
+        WHERE id = NEW.idphong;
+    END IF;
+
+    -- Cộng tổng số tiền ở bảng thanh_toan khi đăng ký phòng
+    UPDATE thanh_toan
+    SET tong_so_tien = tong_so_tien + (SELECT gia FROM phong WHERE id = NEW.idphong)
+    WHERE tendangnhap = NEW.tendangnhap;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `phong_huy_dang_ky_after_delete` BEFORE DELETE ON `phong_da_dang_ky` FOR EACH ROW BEGIN
+    -- Trừ tổng số tiền ở bảng thanh_toan khi hủy đăng ký phòng
+    UPDATE thanh_toan
+    SET tong_so_tien = GREATEST(tong_so_tien - (SELECT gia FROM phong WHERE id = OLD.id), 0)
+    WHERE tendangnhap = OLD.tendangnhap;
+
+    -- Giảm số người hiện tại của phòng xuống 1
+    UPDATE phong
+    SET so_luong_hien_tai = so_luong_hien_tai - 1
+    WHERE id = OLD.id;
+
+    -- Kiểm tra xem số người hiện tại có nhỏ hơn sức chứa không
+    IF (SELECT so_luong_hien_tai FROM phong WHERE id = OLD.id) < (SELECT suc_chua FROM phong WHERE id = OLD.id) THEN
+        -- Nếu nhỏ hơn, cập nhật trạng thái thành "Chưa đủ"
+        UPDATE phong
+        SET trang_thai = 'Chưa đủ'
+        WHERE id = OLD.id;
+    END IF;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -362,6 +439,31 @@ CREATE TABLE `thanh_toan` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `thanh_toan_demo`
+--
+
+CREATE TABLE `thanh_toan_demo` (
+  `id` int(11) NOT NULL,
+  `tendangnhap` varchar(255) NOT NULL,
+  `ngay_thanh_toan` date NOT NULL,
+  `tong_so_tien` decimal(10,2) DEFAULT 0.00,
+  `phuong_thuc_thanh_toan` varchar(255) NOT NULL,
+  `trang_thai` text DEFAULT 'Pending',
+  `nguoi_tao` varchar(255) NOT NULL,
+  `ngay_tao` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `thanh_toan_demo`
+--
+
+INSERT INTO `thanh_toan_demo` (`id`, `tendangnhap`, `ngay_thanh_toan`, `tong_so_tien`, `phuong_thuc_thanh_toan`, `trang_thai`, `nguoi_tao`, `ngay_tao`) VALUES
+(1, 'ntduyet', '9999-10-10', 110.00, 'Loan', 'Pending', 'admin', '2023-12-19 16:07:41'),
+(2, 'ntduyet', '9999-10-10', 110.00, 'Loan', 'Pending', 'admin', '2023-12-19 17:26:11');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `trangthietbi`
 --
 
@@ -388,6 +490,21 @@ SET SoLuong = SoLuong + 1
 WHERE MaLoaiTrangThietBi = NEW.MaLoaiTrangThietBi
 $$
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `trang_thiet_bi_da_dang_ky`
+--
+
+CREATE TABLE `trang_thiet_bi_da_dang_ky` (
+  `id` int(11) NOT NULL,
+  `tendangnhap` varchar(255) NOT NULL,
+  `ma_trang_thiet_bi` int(11) NOT NULL,
+  `ngay_dang_ky` date NOT NULL,
+  `nguoi_tao` varchar(255) NOT NULL,
+  `ngay_tao` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Indexes for dumped tables
@@ -432,6 +549,14 @@ ALTER TABLE `dichvu`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `dich_vu_da_dang_ky`
+--
+ALTER TABLE `dich_vu_da_dang_ky`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tendangnhap` (`tendangnhap`),
+  ADD KEY `id_dichvu` (`id_dichvu`);
+
+--
 -- Indexes for table `donvi`
 --
 ALTER TABLE `donvi`
@@ -456,6 +581,14 @@ ALTER TABLE `phong`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `phong_da_dang_ky`
+--
+ALTER TABLE `phong_da_dang_ky`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tendangnhap` (`tendangnhap`),
+  ADD KEY `idphong` (`idphong`);
+
+--
 -- Indexes for table `tang`
 --
 ALTER TABLE `tang`
@@ -469,10 +602,25 @@ ALTER TABLE `thanh_toan`
   ADD KEY `tendangnhap` (`tendangnhap`);
 
 --
+-- Indexes for table `thanh_toan_demo`
+--
+ALTER TABLE `thanh_toan_demo`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tendangnhap` (`tendangnhap`);
+
+--
 -- Indexes for table `trangthietbi`
 --
 ALTER TABLE `trangthietbi`
   ADD PRIMARY KEY (`MaTrangThietBi`);
+
+--
+-- Indexes for table `trang_thiet_bi_da_dang_ky`
+--
+ALTER TABLE `trang_thiet_bi_da_dang_ky`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tendangnhap` (`tendangnhap`),
+  ADD KEY `ma_trang_thiet_bi` (`ma_trang_thiet_bi`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -509,10 +657,22 @@ ALTER TABLE `dichvu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `dich_vu_da_dang_ky`
+--
+ALTER TABLE `dich_vu_da_dang_ky`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `phong`
 --
 ALTER TABLE `phong`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `phong_da_dang_ky`
+--
+ALTER TABLE `phong_da_dang_ky`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tang`
@@ -524,6 +684,18 @@ ALTER TABLE `tang`
 -- AUTO_INCREMENT for table `thanh_toan`
 --
 ALTER TABLE `thanh_toan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `thanh_toan_demo`
+--
+ALTER TABLE `thanh_toan_demo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `trang_thiet_bi_da_dang_ky`
+--
+ALTER TABLE `trang_thiet_bi_da_dang_ky`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -556,6 +728,12 @@ ALTER TABLE `dang_ky_trang_thiet_bi`
 --
 ALTER TABLE `thanh_toan`
   ADD CONSTRAINT `thanh_toan_ibfk_1` FOREIGN KEY (`tendangnhap`) REFERENCES `client` (`ten_nguoi_dung`);
+
+--
+-- Constraints for table `thanh_toan_demo`
+--
+ALTER TABLE `thanh_toan_demo`
+  ADD CONSTRAINT `thanh_toan_demo_ibfk_1` FOREIGN KEY (`tendangnhap`) REFERENCES `client` (`ten_nguoi_dung`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -57,59 +57,25 @@
                         </div>
 
                         <div class="col-12 col-md-6 p-2">
-                            <label for="maloaitrangthietbi"></label>
+                            <label for="maloaitrangthietbi">Mã loại</label>
                             <select id="maloaitrangthietbi" name="maloaitrangthietbi" class="form-control" required>
                                 <?php
                                 // Lấy dữ liệu từ cơ sở dữ liệu
-                                $sqlphong = "SELECT * FROM phong";
-                                $resultphong = $db->select($sqlphong);
+                                $sql = "SELECT * FROM loaitrangthietbi";
+                                $result = $db->select($sql);
                                 ?>
 
                                 <?php
-                                // Số lượng khối cần hiển thị
-                                $blocksToShow = 3;
-                                $blockCount = 0;
-
-                                if ($resultphong->num_rows > 0) {
-                                    while ($row = $resultphong->fetch_assoc()) {
-                                        if ($blockCount >= $blocksToShow) {
-                                            break;
-                                        }
-                                        // Tăng biến đếm
-                                        $blockCount++;
-                                        ?>
-                                        <div class="room col-sm-4 clearfix">
-                                            <div class="room-item">
-                                                <div class="room-media">
-                                                    <a href="room-single.php?id=<?php echo $row['id']; ?>"><img src="../assets/img/<?php echo $row['anh_dai_dien']; ?>" alt="img" class="img-fluid"></a>
-                                                </div>
-                                                <div class="room-summary">
-                                                    <h3 class="room-title">
-                                                        <a href="room-single.php?id=<?php echo $row['id']; ?>"><?php echo $row['ten_phong']; ?></a>
-                                                    </h3>
-                                                    <div class="room-price">From: <span class="price">$<?php echo $row['gia']; ?></span></div>
-                                                    <p class="room-description">
-                                                        <?php
-                                                        if (mb_strlen($row['mo_ta'], 'UTF-8') > 100) {
-                                                            $mo_ta = mb_substr($row['mo_ta'], 0, 100, 'UTF-8') . '...';
-                                                        }
-                                                        echo $mo_ta;
-                                                        ?>
-                                                    </p>
-                                                    <div class="room-meta clearfix">
-                                                        <div class="comment-count">1 Reviews</div>
-                                                        <div class="rating"><span class="star"></span>(5/5)</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {?>
+                                        <option value="<?php echo $row['MaLoaiTrangThietBi']; ?>"><?php echo $row['MaLoaiTrangThietBi']; ?></option>
                                         <?php
                                     }
                                 }
                                 ?>
-                                <option value="san_sang" <?php echo ($trang_thai == 'sắn sàng') ? 'selected' : ''; ?>>sẵn sàng</option>
-                                <option value="bi_khoa" <?php echo ($trang_thai == 'bị khóa') ? 'selected' : ''; ?>>bị khóa</option>
-                            </select>                        </div>
+                            </select>
+                        </div>
+
 
                         <div class="col-12 p-2">
                             <label>Ảnh đại diện</label>

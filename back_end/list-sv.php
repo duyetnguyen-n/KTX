@@ -95,7 +95,7 @@ if(empty($_SESSION['username'])){
 
 
                                         <td class="d-flex thao-tac">
-                                            <a class="me-3" href="../back_end/list-pay.php?id=<?php echo $row['id_client'];?>">
+                                            <a class="me-3" href="../back_end/process-thanhtoan-demo.php?id=<?php echo $row['id_client'];?>">
                                                 <img src="../assets/img/eye.svg" alt="img" class="img-fluid">
                                             </a>
                                             <a class="me-3" href="edit-sv.php?id=<?php echo $row['id_client']; ?>">

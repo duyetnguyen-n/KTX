@@ -135,7 +135,7 @@
                 </li>
                 <ul class="item-6-sub item-sub">
                     <li class="mb-2">
-                        <a href="list-pay.php">List pay</a>
+                        <a href="list-paid.php">List pay</a>
                     </li>
                     <li class="mb-2">
                         <a href="add-pay.php">New pay</a>
