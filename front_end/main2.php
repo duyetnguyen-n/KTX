@@ -147,8 +147,8 @@
                                 </li>
                             </ul>
                             <p class="hb-submit">
-                                <span class="contact-info">Need Help: <span>(+12) 34-567-89</span></span>
-                                <button type="submit">Check Availability</button>
+                                <span class="contact-info">Cần giúp đỡ: <span>(+12) 34-567-89</span></span>
+                                <button type="submit">Check</button>
                             </p>
                         </form>
                     </div>
@@ -189,7 +189,7 @@
                             <div class="background-video">
                                 <div class="cover-image"></div>
                                 <div class="content container">
-                                    <h3 class="title">Summer is here. Get ready <br> to enjoy it!</h3>
+                                    <h6 class="title">Kí túc xá của chúng tôi không chỉ là nơi ở, mà là mái nhà thứ hai cho bạn.</h6>
                                     <i class="video-play ion-ios-play"></i>
                                     <span class="text-icon">Play Video</span>
                                 </div>
@@ -250,27 +250,14 @@
                     </div>
                 </div>
             </div>
-            <div class="h1-banner">
-                <div class="sc-content-overlay">
-                    <div class="container rectangle-overlay">
-                        <div class="sc-box style-01 text-center">
-                            <h3 class="title">Get up to 20% off on your next
-                                <br> travel</h3>
-                            <p class="description">Choose the package you would like to offer to your clients and
-                                <br> send us an inquiry using the contact form.</p>
-                            <div class="button-box"><a href="#" class="btn-box">Get it now</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <div class="h1-rooms">
                 <div class="sc-content-overlay">
                     <div class="empty-space"></div>
                     <div class="container">
                         <div class="sc-heading style-01 text-center">
-                            <h3 class="title">Awesome Offer</h3>
-                            <p class="description">For anything that brings people together to celebrate an occasion, we
-                                create truly memorable experiences that you will cherish forever</p>
+                            <h3 class="title">Một sô đề nghị từ chúng tôi</h3>
+                            <p class="description">Với phòng ốc hiện đại, internet nhanh chóng và không gian chung đầy sáng tạo, chúng tôi tự hào mang đến cho bạn không chỉ một chỗ ở, mà là một trải nghiệm sống đầy đủ tiện ích.</p>
                         </div>
                         <div class="sc-rooms style-01">
                             <div class="rooms-content layout-grid style-01">
@@ -334,22 +321,24 @@
                 <div class="sc-content-overlay">
                     <div class="container rectangle-overlay">
                         <div class="sc-testimonials style-01">
-                            <h3 class="heading">Comments from our happy <br> Guests</h3>
+                            <h3 class="heading">Đánh giá</h3>
                             <div class="testimonial-slider" data-itemsvisible="3" data-nav="false">
                                 <div class="item">
                                     <div class="content">
                                         <div class="image">
                                             <img src="../assets/img/img-front/blog/sidebar.jpg" alt>
                                         </div>
-                                        <div class="rating-star"></div>
+                                        <div class="d-flex justify-content-center star" >
+                                            <i class="fas fa-star mr-1"></i> <i class="fas fa-star mr-1"></i> <i class="fas fa-star mr-1"></i> <i class="fas fa-star mr-1"></i> <i class="fas fa-star mr-1"></i>
+                                        </div>
                                         <div class="description">
-                                            " Conversations can be a tricky business. Sometimes, decoding what is said
-                                            with what is meant is difficult at best. However, communication is a
-                                            necessary tool in today’s world. "
+                                            " Tôi rất hài lòng với kí túc xá này. Phòng ốc thoải mái, sạch sẽ và được trang bị đầy đủ tiện nghi. Cộng đồng ở đây rất thân thiện và đa dạng, tạo nên môi trường sống tốt cho việc học tập và giao lưu."
+
+
                                         </div>
                                         <div class="user-info">
-                                            <h4 class="name">Bobby Tom</h4>
-                                            <div class="regency">Manager</div>
+                                            <h4 class="name">Như Hà</h4>
+
                                         </div>
                                     </div>
                                 </div>
@@ -365,8 +354,9 @@
                         <div class="empty-space"></div>
                         <div class="sc-heading style-01 text-center">
                             <h3 class="title">Latest News</h3>
-                            <p class="description">For anything that brings people together to celebrate an occasion, we
-                                create truly memorable experiences that you will cherish forever</p>
+                            <p class="description">"Sống, học và khám phá cùng chúng tôi tại kí túc xá hiện đại nhất thành phố. Với các tiện ích đẳng cấp, an ninh 24/7 và không gian xanh thoáng đãng, chúng tôi mang đến cho bạn không gian sống tốt nhất để phát triển và thư giãn. Đặt phòng ngay để bắt đầu cuộc phiêu lưu mới của bạn!"
+
+                            </p>
                         </div>
                         <div class="sc-posts style-01">
                             <div class="row">
@@ -377,14 +367,11 @@
                                                 <a href="blog-single.html"><img src="../assets/img/img-front/gallery/img-4.jpg" alt></a>
                                             </div>
                                             <div class="content">
-                                                <div class="category"><a href="#">Hotel - Travel</a></div>
-                                                <h3 class="title"><a href="blog-single.html"> Futurethon – Explore the
-                                                    future</a></h3> 
+                                                <div class="category"><a href="#">Phòng</a></div>
+
                                                 <div class="date d-flex align-items-center"><i class="fas fa-calendar-alt"></i> 19/12/2023
                                                 </div>
-                                                <div class="summary">We continuously strive to enhance our living and
-                                                    working environments. The environments we live in today are almost
-                                                    unrecognisable from those that existed.
+                                                <div class="summary">Với không gian sáng tạo, tiện nghi tiên tiến và một cộng đồng đa dạng, chúng tôi tạo ra môi trường lý tưởng để bạn phát triển cả về mặt học thuật lẫn cá nhân.
                                                 </div>
                                             </div>
                                         </div>
@@ -397,8 +384,8 @@
                                                 <a href="blog-single.html"><img src="../assets/img/img-front/gallery/img-5.jpg" alt></a>
                                             </div>
                                             <div class="content">
-                                                <div class="category"><a href="#">Hotel</a></div>
-                                                <h3 class="title"><a href="blog-single.html">Beach</a></h3>
+                                                <div class="category"><a href="#">Giải trí</a></div>
+                                                <h3 class="title"><a href="blog-single.html">Gym</a></h3>
                                                 <div class="summary">We continuously strive to enhance our living...
                                                 </div>
                                             </div>
@@ -410,8 +397,8 @@
                                                 <a href="blog-single.html"><img src="../assets/img/img-front/gallery/img-7.jpg" alt></a>
                                             </div>
                                             <div class="content">
-                                                <div class="category"><a href="#">Relax</a></div>
-                                                <h3 class="title"><a href="blog-single.html">Spa</a></h3>
+                                                <div class="category"><a href="#">Học tập</a></div>
+                                                <h3 class="title"><a href="blog-single.html">Thư viện</a></h3>
                                                 <div class="summary">We continuously strive to enhance our living...
                                                 </div>
                                             </div>
@@ -423,8 +410,8 @@
                                                 <a href="blog-single.html"><img src="../assets/img/img-front/gallery/img-6.jpg" alt></a>
                                             </div>
                                             <div class="content">
-                                                <div class="category"><a href="#">Hotel</a></div>
-                                                <h3 class="title"><a href="blog-single.html">Pool</a></h3>
+                                                <div class="category"><a href="#">Thư giãn</a></div>
+                                                <h3 class="title"><a href="blog-single.html">Bể bơi</a></h3>
                                                 <div class="summary">We continuously strive to enhance our living...
                                                 </div>
                                             </div>
@@ -436,8 +423,8 @@
                                                 <a href="blog-single.html"><img src="../assets/img/img-front/gallery/img-9.jpg" alt></a>
                                             </div>
                                             <div class="content">
-                                                <div class="category"><a href="#">Hotel</a></div>
-                                                <h3 class="title"><a href="blog-single.html">Outdoor</a></h3>
+                                                <div class="category"><a href="#">Cảnh quang</a></div>
+                                                <h3 class="title"><a href="blog-single.html">AAA</a></h3>
                                                 <div class="summary">We continuously strive to enhance our living...
                                                 </div>
                                             </div>
@@ -448,9 +435,8 @@
                         </div>
                         <div class="empty-space"></div>
                         <div class="sc-heading style-01 text-center">
-                            <h3 class="title">Our Gallery</h3>
-                            <p class="description">For anything that brings people together to celebrate an occasion, we
-                                create truly memorable experiences that you will cherish forever</p>
+                            <h3 class="title">TỔNG KẾT</h3>
+                            <p class="description">Hãy đến và khám phá sự thuận tiện, an ninh và sự ấm áp tại nơi chúng tôi gọi là "nhà".</p>
                         </div>
                         <div class="sc-gallery style-01">
                             <div class="gallery-slider owl-carousel owl-theme">
@@ -467,7 +453,7 @@
                                         </div>
                                     </div>
                                     <div class="content">
-                                        <h4 class="title"><a href="blog-single-gallery.html">Rooms</a></h4>
+                                        <h4 class="title"><a href="blog-single-gallery.html">Phòng</a></h4>
                                         <span class="count">3 photos</span>
                                     </div>
                                 </div>
@@ -487,7 +473,7 @@
                                         </div>
                                     </div>
                                     <div class="content">
-                                        <h4 class="title"><a href="blog-single-gallery.html">Restaurant</a></h4>
+                                        <h4 class="title"><a href="blog-single-gallery.html">Giải trí/a></h4>
                                         <span class="count">3 photos</span>
                                     </div>
                                 </div>
@@ -502,11 +488,8 @@
                                             <a href="../assets/img/img-front/gallery/img-9.jpg"><img src="../assets/img/img-front/gallery/img-9.jpg" alt></a>
                                         </div>
                                     </div>
-                                    <div class="content">
-                                        <h4 class="title"><a href="blog-single-gallery.html">Pool</a></h4>
-                                        <span class="count">3 photos</span>
-                                    </div>
-                                </div>
+
+
                                 <div class="item">
                                     <div class="gallery">
                                         <a href="#gallery-4" class="btn-gallery"><img src="../assets/img/img-front/gallery/img-13.jpg"
@@ -519,11 +502,7 @@
                                                                                      alt></a>
                                         </div>
                                     </div>
-                                    <div class="content">
-                                        <h4 class="title"><a href="blog-single-gallery.html">Activities</a></h4>
-                                        <span class="count">3 photos</span>
-                                    </div>
-                                </div>
+
                                 <div class="item">
                                     <div class="gallery">
                                         <a href="#gallery-5" class="btn-gallery"><img src="../assets/img/img-front/gallery/img-1.jpg"
@@ -535,11 +514,7 @@
                                             <a href="../assets/img/img-front/gallery/img-9.jpg"><img src="../assets/img/img-front/gallery/img-9.jpg" alt></a>
                                         </div>
                                     </div>
-                                    <div class="content">
-                                        <h4 class="title"><a href="blog-single-gallery.html">Beach</a></h4>
-                                        <span class="count">3 photos</span>
-                                    </div>
-                                </div>
+
                                 <div class="item">
                                     <div class="gallery">
                                         <a href="#gallery-7" class="btn-gallery"><img src="../assets/img/img-front/gallery/img-3.jpg"
@@ -550,11 +525,7 @@
                                             <a href="../assets/img/img-front/gallery/img-3.jpg"><img src="../assets/img/img-front/gallery/img-3.jpg" alt></a>
                                         </div>
                                     </div>
-                                    <div class="content">
-                                        <h4 class="title"><a href="blog-single-gallery.html">Spa</a></h4>
-                                        <span class="count">3 photos</span>
-                                    </div>
-                                </div>
+
                                 <div class="item">
                                     <div class="gallery">
                                         <a href="#gallery-7" class="btn-gallery"><img src="../assets/img/img-front/gallery/img-14.jpg"
@@ -568,10 +539,7 @@
                                                                                      alt></a>
                                         </div>
                                     </div>
-                                    <div class="content">
-                                        <h4 class="title"><a href="blog-single-gallery.html">Outdoor</a></h4>
-                                        <span class="count">3 photos</span>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>

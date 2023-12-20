@@ -14,13 +14,13 @@ while ($row = $resultphong->fetch_assoc()) {
         <div class="page-title">
             <div class="page-title-wrapper" data-stellar-background-ratio="0.5">
                 <div class="content container">
-                    <h1 class="heading_primary">Room detail</h1>
+                    <h1 class="heading_primary">Chi tiết phòng</h1>
                     <ul class="breadcrumbs">
                         <li class="item"><a href="index.html">Home</a></li>
                         <li class="item"><span class="separator"></span></li>
-                        <li class="item"><a href="rooms.html">Rooms</a></li>
+                        <li class="item"><a href="rooms.html">Phòng</a></li>
                         <li class="item"><span class="separator"></span></li>
-                        <li class="item active">CLASSIC ROOM</li>
+
                     </ul>
                 </div>
             </div>
@@ -83,7 +83,7 @@ while ($row = $resultphong->fetch_assoc()) {
                 </main>
                 <aside id="secondary" class="widget-area col-sm-12 col-md-3 sticky-sidebar">
                     <div class="wd wd-book-room">
-                        <a href="#" class="book-room">Book This Room</a>
+                        <a href="#" class="book-room">Đặt phòng</a>
                     </div>
                     <div class="wd wd-check-room">
                         <h3 class="title">ĐĂNG KÝ</h3>
@@ -99,9 +99,15 @@ while ($row = $resultphong->fetch_assoc()) {
                                            class="check_out_date " placeholder="Check out">
                                 </li>
                             </ul>
-                            <div class="room-submit">
-                                <button class="submit" type="submit">ĐĂNG KÝ PHÒNG</button>
-                            </div>
+                            <?php
+                                if($row['trang_thai']==='Đủ'){
+
+                                }else{?>
+                                    <div class="room-submit">
+                                        <button class="submit" type="submit">ĐĂNG KÝ PHÒNG</button>
+                                    </div>
+                               <?php  }
+                            ?>
                         </form>
                     </div>
                 </aside>
@@ -128,11 +134,9 @@ while ($row = $resultphong->fetch_assoc()) {
                         <div class="widget-text">
                             <div class="footer-location">
                                 <img src="../assets/img/logo-f.png" alt>
-                                <p>You have questions regarding our services? Contact us, we will be happy to help you
-                                    out!</p>
+                                <p>Nếu có bất kì câu hỏi nào, xin hãy liên hệ với chúng tối</p>
                                 <ul class="info">
-                                    <li><i class="ion-ios-location"></i> <a href="contact.html#sc-google-map">329
-                                        Queensberry Street, North Melbourne VIC 3051, Australia.</a></li>
+                                    <li><i class="ion-ios-location"></i> <a href="contact.html#sc-google-map">484 Lạch Tray, Đại học Hàng Hải Việt Nam</a></li>
                                     <li><i class="ion-ios-telephone"></i><a href="tel:8812345678">(+88) 12-345-678</a>
                                     </li>
                                     <li><i class="ion-email"></i><a
@@ -148,11 +152,9 @@ while ($row = $resultphong->fetch_assoc()) {
                         <div class="widget-menu">
                             <h3 class="widget-title">Booking</h3>
                             <ul class="menu">
-                                <li><a href="#">Rooms & Suites</a></li>
-                                <li><a href="#">Restaurant</a></li>
-                                <li><a href="#">Spa & Fitness</a></li>
-                                <li><a href="#">Shop</a></li>
-                                <li><a href="#">Gallery</a></li>
+                                <li><a href="#">Phòng</a></li>
+                                <li><a href="#">Giải trí</a></li>
+
                             </ul>
                         </div>
                     </div>

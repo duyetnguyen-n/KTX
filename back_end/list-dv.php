@@ -87,7 +87,7 @@ if(empty($_SESSION['username'])){
                                         <td><?php echo $row['ngaytao']; ?></td>
                                         <td><?php echo $row['nguoitao'] ?></td>
                                         <td class="d-flex thao-tac">
-                                            <a class="me-3" href="../front_end/dichvu-detail.php?id=<?php echo $row['id'];?>">
+                                            <a class="me-3" href="../front_end/service-single.php?id=<?php echo $row['id'];?>">
                                                 <img src="../assets/img/eye.svg" alt="img" class="img-fluid">
                                             </a>
                                             <a class="me-3" href="sua-dv.php?id=<?php echo $row['id']; ?>">

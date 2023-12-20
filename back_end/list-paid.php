@@ -122,7 +122,7 @@ if (empty($_SESSION['username'])) {
                                         <td><?php echo $row['nguoi_tao']; ?></td>
                                         <td class="d-flex thao-tac">
                                             <a class="me-3 d-flex align-items-center" href="process-thanh-toan.php?id=<?php echo $id; ?>">
-                                                <img src="../assets/img/tich-xanh.webp" alt="img" class="img-fluid img-tich">
+                                                <img src="../assets/img/eye.svg" alt="img" class="img-fluid">
                                             </a>
                                             <a class="me-3" href="edit-room.php?id=<?php echo $row['id']; ?>">
                                                 <img src="../assets/img/edit.svg" alt="img" class="img-fluid icon-edit">

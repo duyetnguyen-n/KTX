@@ -169,7 +169,7 @@ if(empty($_SESSION['username'])){
                             <?php while ($row = $resultDichVu->fetch_assoc()) { ?>
                                 <tr>
                                     <td><input type="checkbox" name="check_daughter"></td>
-                                    <td class="d-flex align-items-center"><img class="img-fluid img-responsive mr-2" height="10" width="10" src="../assets/img/<?php echo $row['anh_dai_dien']; ?>" alt="Phong ki tuc xa"> <?php echo $row['ten_dv']; ?></td>
+                                    <td class="d-flex align-items-center"><img class="img-fluid img-responsive mr-2" height="10" width="10" src="../assets/img/<?php echo $row['anh']; ?>" alt="Phong ki tuc xa"> <?php echo $row['ten_dv']; ?></td>
                                     <td><?php echo $row['tendangnhap']; ?></td>
                                     <td><?php echo $row['ngay_dang_ky']; ?></td>
                                     <td><?php echo $row['gia']; ?></td>
@@ -188,9 +188,10 @@ if(empty($_SESSION['username'])){
                                 </tr>
                             <?php
                                 $tongtiendichvu = $tongtiendichvu + $row['gia'];
+                                $tongtiendichvu = round($tongtiendichvu,2);
                             } ?>
                         </table>
-                        <h2 class="text-danger">Tổng tiền: $<?php echo $tongtiendichvu;?></h2>
+                        <h2 class="text-danger text-xl-right strong">Tổng tiền: $<?php echo $tongtiendichvu;?></h2>
                     <?php } else {
                         echo "Không có dữ liệu.";
                     } ?>
@@ -263,10 +264,10 @@ if(empty($_SESSION['username'])){
                                 </tr>
                             <?php
                                 $tongtientrangthietbi = $tongtientrangthietbi + $row['gia'];
-
+                                $tongtientrangthietbi = round($tongtientrangthietbi,2);
                             } ?>
                         </table>
-                        <h2 class="text-danger">Tổng tiền: $<?php echo $tongtientrangthietbi;?></h2>
+                        <h2 class="text-danger text-xl-right strong">Tổng tiền: $<?php echo $tongtientrangthietbi;?></h2>
                     <?php } else {
                         echo "Không có dữ liệu.";
                     } ?>

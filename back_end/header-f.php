@@ -1,6 +1,8 @@
 <?php
 session_start();
 include '../config/database.php';
+$db = new Database();
+$usn = $_SESSION['username'];
 ?>
 
 <!DOCTYPE html>
@@ -86,11 +88,10 @@ include '../config/database.php';
 
                         </li>
                         <li class="menu-item has-children">
-                            <a href="../front_end/blog.html">Blog</a>
+                            <a href="../front_end/blog.php">Services</a>
                         </li>
                         <li class="menu-item has-children">
                             <a href="events.html">Events</a>
-
                         </li>
                         <li class="menu-item has-children">
                             <a href="#">Features</a>
@@ -99,11 +100,8 @@ include '../config/database.php';
                     </ul>
                     <div class="header-right">
                         <?php if (empty($_SESSION['username'])) { ?>
-                            <a href="../back_end/dang_nhap.html" class="btn-book"><?php echo $_SESSION['username'];?></a>
+                            <a href="../back_end/dang_nhap.html" class="btn-book">SIGN IN</a>
                         <?php } else {
-                            $db = new Database();
-                            $usn = $_SESSION['username'];
-
                             // Lấy thông tin người dùng từ cơ sở dữ liệu
                             $sql = "SELECT anh_dai_dien FROM client WHERE ten_nguoi_dung = '$usn'";
                             $result = $db->select($sql);
@@ -111,7 +109,6 @@ include '../config/database.php';
                             if ($result->num_rows == 1) {
                                 $user = $result->fetch_assoc();
                                 $anh_dai_dien = $user['anh_dai_dien'];?>
-
                                     <div class="content-header mr-3">
                                         <img class="avatar" src="../assets/img/<?php echo $anh_dai_dien ?>" alt="avatar">
                                         <div class="content-avatar-header">
@@ -129,20 +126,20 @@ include '../config/database.php';
                                             <div class="profile-and-setting">
                                                 <div class="profile d-flex">
                                                     <i class="fas fa-user mr-2"></i>
-                                                    <a href="../front_end/main.php" class="content-item">My profile</a>
+                                                    <a href="../front_end/main.php" class="content-item">Hồ sơ</a>
                                                 </div>
                                                 <div class="profile d-flex">
                                                     <i class="fas fa-shopping-cart mr-2"></i>
-                                                    <a href="../front_end/thanh-toan.php" class="content-item">Rỏ hàng</a>
+                                                    <a href="../front_end/thanh-toan.php" class="content-item">Giỏ hàng</a>
                                                 </div>
                                                 <div class="profile d-flex">
                                                     <i class="fas fa-cog mr-2"></i>
-                                                    <a href="../front_end/main.php" class="content-item">Settings</a>
+                                                    <a href="../front_end/main.php" class="content-item">Cài đặt</a>
                                                 </div>
                                             </div>
                                             <div class="profile log-out d-flex">
                                                 <i class="fas fa-sign-out-alt mr-2 text-danger"></i>
-                                                <a href="../front_end/log-out.php" class="content-item text-danger">Log-out</a>
+                                                <a href="../front_end/log-out.php" class="content-item text-danger">Đăng xuất</a>
                                             </div>
                                         </div>
                                     </div>
@@ -160,23 +157,23 @@ include '../config/database.php';
             <div class="menu-mobile-effect navbar-toggle">Close <i class="fa fa-times"></i></div>
             <ul class="nav main-menu">
                 <li class="menu-item has-children">
-                    <a href="index.html">Home</a>
+                    <a href="../front_end/main2.php">Home</a>
                 </li>
                 <li class="menu-item has-children">
-                    <a href="rooms.html">Rooms</a>
+                    <a href="../front_end/rooms.php">Phòng</a>
                 </li>
                 <li class="menu-item has-children">
-                    <a href="../front_end/blog.html">Blog</a>
+                    <a href="../front_end/blog.html">Bài viết</a>
                 </li>
                 <li class="menu-item has-children">
-                    <a href="events.html">Events</a>
+                    <a href="events.html">Sự kiện</a>
                 </li>
                 <li class="menu-item has-children">
-                    <a href="#">Features</a>
+                    <a href="#">Tính năng</a>
                 </li>
-                <li class="menu-item has-children"><a href="gallery.html">Gallery</a>
+                <li class="menu-item has-children"><a href="gallery.html">Ảnh</a>
                 </li>
-                <li class="menu-item"><a href="../front_end/contact.html">Contact</a></li>
+                <li class="menu-item"><a href="../front_end/contact.html">Liên hệ/a></li>
             </ul>
         </div>
     </nav>

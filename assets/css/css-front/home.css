@@ -254,7 +254,7 @@ body.home .sc-heading.style-01 {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    background-image: url("../../img/img-front/home/h1-bg-testimonials.jpg");
+    background-image: url("../../img/jj.PNG");
 }
 .h1-bg-testimonial .sc-content-overlay:after {
     position: absolute;
@@ -805,5 +805,11 @@ body.home .sc-heading.style-01 {
     max-height: 700px;
     overflow: hidden;
     width: 100%;
+}
+.star i {
+    color: yellow !important;
+}
+.description {
+    color: black;
 }
 
